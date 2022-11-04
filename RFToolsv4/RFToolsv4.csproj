@@ -12,7 +12,17 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Views\CoaxialCableLossPage.xaml" />
+    <None Remove="Views\DeltaWyePage.xaml" />
     <None Remove="Views\FreeSpacePathLossPage.xaml" />
+    <None Remove="Views\FresnelZonesPage.xaml" />
+    <None Remove="Views\LinkBudgetPage.xaml" />
+    <None Remove="Views\PECConversionPage.xaml" />
+    <None Remove="Views\ResonancePage.xaml" />
+    <None Remove="Views\SkinDepthPage.xaml" />
+    <None Remove="Views\StandingWavesPage.xaml" />
+    <None Remove="Views\TransmissionLinesPage.xaml" />
+    <None Remove="Views\WavelengthFrequencyPage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +49,56 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\DeltaWyePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\StandingWavesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\SkinDepthPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\WavelengthFrequencyPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\CoaxialCableLossPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\PECConversionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\TransmissionLinesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\ResonancePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\FresnelZonesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\LinkBudgetPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\FreeSpacePathLossPage.xaml">
