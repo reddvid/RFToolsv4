@@ -7,12 +7,48 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-                <!--  Other merged dictionaries here  -->
-
             </ResourceDictionary.MergedDictionaries>
-           
-
-            <!--  Other app resources here  -->
+            <ThemeShadow x:Name="SharedShadow" />
+            <Style x:Key="CardStyle" TargetType="StackPanel">
+                <Setter Property="Spacing" Value="4" />
+                <Setter Property="Padding" Value="12,12,12,16" />
+                <Setter Property="Background" Value="#303030" />
+            </Style>
+            <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource SystemAccentColor}" />
+            <Style x:Key="CardTitleTextStyle" TargetType="TextBlock">
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+            <Style x:Key="CardBodyTextStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+            <Style x:Key="CardResultTextStyle" TargetType="TextBlock">
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+            <x:String x:Key="PathLossString" xml:space="preserve">
+Free-space path loss is often defined as the loss incurred by an electromagnetic wave as it pro[agates in a straight line through a vacuum with no absor[tion or reflection of energy from nearby objects.
+               
+Free-space path loss assumes ideal atmospheric conditions so that no electromagnetic energy is actually lost or dissipated - it merely spreads out as it propagates away from the source, resulting in lower relative power densities.
+            </x:String>
+            <Style
+                x:Key="CalculateButtonStyle"
+                BasedOn="{StaticResource AccentButtonStyle}"
+                TargetType="Button">
+                <Setter Property="Background" Value="#50A830E1" />
+                <Setter Property="Height" Value="64" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="FontSize" Value="20" />
+            </Style>
+            <Style
+                x:Key="AccentedButtonStyle"
+                BasedOn="{StaticResource AccentButtonStyle}"
+                TargetType="Button">
+                <Setter Property="Background" Value="#50A830E1" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

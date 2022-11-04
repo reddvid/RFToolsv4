@@ -15,14 +15,111 @@
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <Grid x:Name="navGrid" Background="#2C2C2C" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="appTitleBar" />
         <Grid
-            x:Name="mainGrid"
+            x:Name="navGrid"
+            Grid.Row="1"
+            Padding="32,0,0,0"
+            Background="#333333">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Margin="0,24,0,20"
+                FontSize="24"
+                FontWeight="Bold"
+                Text="RF Tools" />
+            <ListView Grid.Row="1" Margin="-16,0,0,0">
+                <ListViewItem Content="Free Space Path Loss" IsSelected="True" />
+                <ListViewItem Content="Link Budget" />
+                <ListViewItem Content="Standing Waves" />
+                <ListViewItem Content="Fresnel Zones" />
+                <ListViewItem Content="Coaxial Cable Loss" />
+                <ListViewItem Content="Resonance" />
+                <ListViewItem Content="Two-Wire Transmission Lines" />
+                <ListViewItem Content="Skin Depth" />
+                <ListViewItem Content="Wavelength &amp; Frequency Conversion" />
+                <ListViewItem Content="Delta-Wye Conversion" />
+                <ListViewItem Content="Power, Energy, &amp; Charge Conversion" />
+            </ListView>
+        </Grid>
+        <Frame
+            x:Name="mainFrame"
+            Grid.Row="1"
             Grid.Column="1"
             Background="#383838" />
         <Grid
             x:Name="infoGrid"
+            Grid.Row="1"
             Grid.Column="2"
-            Background="#444444" />
+            Background="#444444">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ScrollViewer>
+                <StackPanel Padding="16,16,16,40" Spacing="16">
+                    <StackPanel Spacing="4">
+                        <Button HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}">
+                            <Button.Content>
+                                <StackPanel
+                                    HorizontalAlignment="Left"
+                                    Orientation="Horizontal"
+                                    Spacing="12">
+                                    <SymbolIcon Symbol="Pin" />
+                                    <TextBlock Text="Pin tool to Start" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}">
+                            <Button.Content>
+                                <StackPanel
+                                    HorizontalAlignment="Left"
+                                    Orientation="Horizontal"
+                                    Spacing="12">
+                                    <SymbolIcon Symbol="NewWindow" />
+                                    <TextBlock Text="Open new tool window" />
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                    <!--  INFO CARD  -->
+                    <StackPanel CornerRadius="6" Style="{StaticResource CardStyle}">
+                        <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Information" />
+                        <TextBlock
+                            IsTextSelectionEnabled="True"
+                            Style="{StaticResource CardBodyTextStyle}"
+                            Text="{StaticResource PathLossString}"
+                            TextWrapping="WrapWholeWords" />
+                    </StackPanel>
+                    <!--  MISC CARD  -->
+                    <StackPanel CornerRadius="6" Style="{StaticResource CardStyle}">
+                        <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Noteworthy" />
+                        <TextBlock
+                            IsTextSelectionEnabled="True"
+                            Style="{StaticResource CardBodyTextStyle}"
+                            Text="{StaticResource PathLossString}"
+                            TextWrapping="WrapWholeWords" />
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+            <StackPanel
+                Grid.Row="1"
+                Background="{StaticResource CardBackgroundBrush}"
+                CornerRadius="6,6,0,0"
+                Style="{StaticResource CardStyle}">
+                <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Results" />
+                <TextBlock
+                    IsTextSelectionEnabled="True"
+                    Style="{StaticResource CardResultTextStyle}"
+                    Text="Path Loss: 420.69 dB" />
+            </StackPanel>
+
+        </Grid>
     </Grid>
 </Window>
