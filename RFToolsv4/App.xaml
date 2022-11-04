@@ -15,6 +15,11 @@
                 <Setter Property="Background" Value="#303030" />
             </Style>
             <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource SystemAccentColor}" />
+            <Style x:Key="PageTitleTextStyle" TargetType="TextBlock">
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="Margin" Value="0,0,0,12" />
+            </Style>
             <Style x:Key="CardTitleTextStyle" TargetType="TextBlock">
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="FontSize" Value="18" />
@@ -35,19 +40,28 @@ Free-space path loss assumes ideal atmospheric conditions so that no electromagn
                 x:Key="CalculateButtonStyle"
                 BasedOn="{StaticResource AccentButtonStyle}"
                 TargetType="Button">
-                <Setter Property="Background" Value="#50A830E1" />
-                <Setter Property="Height" Value="64" />
+                <Setter Property="Height" Value="48" />
                 <Setter Property="HorizontalAlignment" Value="Stretch" />
                 <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="0,24,0,40" />
             </Style>
-            <Style
-                x:Key="AccentedButtonStyle"
-                BasedOn="{StaticResource AccentButtonStyle}"
-                TargetType="Button">
-                <Setter Property="Background" Value="#50A830E1" />
-                <Setter Property="Foreground" Value="White" />
-                <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <DataTemplate x:Key="ControlHeaderTemplate">
+                <TextBlock
+                    FontSize="14"
+                    FontWeight="Bold"
+                    Text="{Binding}" />
+            </DataTemplate>
+            <Style TargetType="ComboBox">
+                <Setter Property="HeaderTemplate" Value="{StaticResource ControlHeaderTemplate}" />
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="HeaderTemplate" Value="{StaticResource ControlHeaderTemplate}" />
+                <Setter Property="MinWidth" Value="240" />
+            </Style>
+            <Style x:Key="TwoElementStackStyle" TargetType="StackPanel">
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="Spacing" Value="12" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

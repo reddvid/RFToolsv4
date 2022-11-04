@@ -15,6 +15,9 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using RFToolsv4.ViewModels;
+using static RFToolsv4.Models.SelectorModels;
+using System.Diagnostics;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -33,6 +36,8 @@ namespace RFToolsv4
         public MainWindow()
         {
             this.InitializeComponent();
+
+           
 
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(appTitleBar);
@@ -159,6 +164,19 @@ namespace RFToolsv4
                 case ElementTheme.Light: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Light; break;
                 case ElementTheme.Default: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Default; break;
             }
+        }
+
+        private void ComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            comboBox.ItemsSource = ViewModel.Materials;
+            comboBox.SelectedItem = ViewModel.SelectedMaterial;
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = e.AddedItems[0] as Material;
+            Debug.WriteLine(item.Caption);
         }
     }
 
