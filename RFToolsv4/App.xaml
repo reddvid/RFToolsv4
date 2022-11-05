@@ -9,6 +9,15 @@
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
             </ResourceDictionary.MergedDictionaries>
             <ThemeShadow x:Name="SharedShadow" />
+            <DataTemplate x:Key="ListViewItemTemplate">
+                <TextBlock Tag="{Binding Tag}" Text="{Binding Title}" />
+            </DataTemplate>
+            <DataTemplate x:Key="ControlHeaderTemplate">
+                <TextBlock
+                    FontSize="14"
+                    FontWeight="Bold"
+                    Text="{Binding}" />
+            </DataTemplate>
             <Style x:Key="CardStyle" TargetType="StackPanel">
                 <Setter Property="Spacing" Value="4" />
                 <Setter Property="Padding" Value="12,12,12,16" />
@@ -36,6 +45,7 @@ Free-space path loss is often defined as the loss incurred by an electromagnetic
                
 Free-space path loss assumes ideal atmospheric conditions so that no electromagnetic energy is actually lost or dissipated - it merely spreads out as it propagates away from the source, resulting in lower relative power densities.
             </x:String>
+
             <Style
                 x:Key="CalculateButtonStyle"
                 BasedOn="{StaticResource AccentButtonStyle}"
@@ -46,23 +56,37 @@ Free-space path loss assumes ideal atmospheric conditions so that no electromagn
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="Margin" Value="0,24,0,40" />
             </Style>
-            <DataTemplate x:Key="ControlHeaderTemplate">
-                <TextBlock
-                    FontSize="14"
-                    FontWeight="Bold"
-                    Text="{Binding}" />
-            </DataTemplate>
             <Style TargetType="ComboBox">
                 <Setter Property="HeaderTemplate" Value="{StaticResource ControlHeaderTemplate}" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Style>
+            <Style
+                x:Key="UnheaderedComboBoxStyle"
+                BasedOn="{StaticResource DefaultComboBoxStyle}"
+                TargetType="ComboBox">
+                <Setter Property="VerticalAlignment" Value="Bottom" />
+                <Setter Property="FontWeight" Value="SemiBold" />
             </Style>
             <Style TargetType="TextBox">
                 <Setter Property="HeaderTemplate" Value="{StaticResource ControlHeaderTemplate}" />
                 <Setter Property="MinWidth" Value="240" />
+                <!--<Setter Property="HorizontalTextAlignment" Value="Right" />-->
+                <!--<Setter Property="TextAlignment" Value="Right" />-->
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Style>
+            <Style TargetType="NumberBox">
+                <Setter Property="HeaderTemplate" Value="{StaticResource ControlHeaderTemplate}" />
+                <Setter Property="MinWidth" Value="240" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="AcceptsExpression" Value="False" />
+                <Setter Property="TextReadingOrder" Value="UseFlowDirection" />
             </Style>
             <Style x:Key="TwoElementStackStyle" TargetType="StackPanel">
                 <Setter Property="Orientation" Value="Horizontal" />
                 <Setter Property="Spacing" Value="12" />
             </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -37,13 +37,24 @@ namespace RFToolsv4
         {
             this.InitializeComponent();
 
-           
-
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(appTitleBar);
             SubClassing();
         }
 
+        private void MenuListView_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Get last tool saved
+
+        }
+        private void MenuListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+
+
+        }
+
+        #region WINDOW_CONTROL
         private delegate IntPtr WinProc(IntPtr hWnd, PInvoke.User32.WindowMessage Msg, IntPtr wParam, IntPtr lParam);
         private WinProc newWndProc = null;
         private IntPtr oldWndProc = IntPtr.Zero;
@@ -165,19 +176,9 @@ namespace RFToolsv4
                 case ElementTheme.Default: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Default; break;
             }
         }
+        #endregion
 
-        private void ComboBox_Loaded(object sender, RoutedEventArgs e)
-        {
-            var comboBox = sender as ComboBox;
-            comboBox.ItemsSource = ViewModel.Materials;
-            comboBox.SelectedItem = ViewModel.SelectedMaterial;
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = e.AddedItems[0] as Material;
-            Debug.WriteLine(item.Caption);
-        }
+      
     }
 
     class WindowsSystemDispatcherQueueHelper

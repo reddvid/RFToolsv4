@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="using:RFToolsv4.Helpers"
     xmlns:local="using:RFToolsv4"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:RFToolsv4.ViewModels"
@@ -37,54 +38,17 @@
                 FontSize="20"
                 FontWeight="Bold"
                 Text="RF Tools" />
-            <ListView Grid.Row="1" Margin="-16,0,0,0">
-                <ListViewItem Content="Free Space Path Loss" IsSelected="True" />
-                <ListViewItem Content="Link Budget" />
-                <ListViewItem Content="Standing Waves" />
-                <ListViewItem Content="Fresnel Zones" />
-                <ListViewItem Content="Coaxial Cable Loss" />
-                <ListViewItem Content="Resonance" />
-                <ListViewItem Content="Two-Wire Transmission Lines" />
-                <ListViewItem Content="Skin Depth" />
-                <ListViewItem Content="Wavelength &amp; Frequency Conversion" />
-                <ListViewItem Content="Delta-Wye Conversion" />
-                <ListViewItem Content="Power, Energy, &amp; Charge Conversion" />
-            </ListView>
+            <ListView
+                Grid.Row="1" SelectionChanged="MenuListView_SelectionChanged"
+                Margin="-16,0,0,0" Loaded="MenuListView_Loaded"
+                ItemTemplate="{StaticResource ListViewItemTemplate}"
+                ItemsSource="{x:Bind ViewModel.MenuItems}" />
         </Grid>
         <Frame
             x:Name="mainFrame"
             Grid.Row="1"
             Grid.Column="1"
-            Background="#383838">
-            <Grid Padding="20,20,20,0">
-                <ScrollViewer>
-                    <StackPanel Spacing="12">
-                        <TextBlock Style="{StaticResource PageTitleTextStyle}" Text="Skin Depth" />
-                        <ComboBox
-                            MinWidth="256"
-                            DisplayMemberPath="Caption"
-                            Header="Type of Material:"
-                            ItemsSource="{x:Bind ViewModel.Materials}"
-                            SelectedItem="{x:Bind ViewModel.SelectedMaterial, Mode=TwoWay}" />
-                        <StackPanel Style="{StaticResource TwoElementStackStyle}">
-                            <TextBox
-                                Header="Resistivity (ρ in µΩ/cm):"
-                                IsReadOnly="{x:Bind ViewModel.IsReadOnly, Mode=OneWay}"
-                                Text="{x:Bind ViewModel.Resistivity, Mode=TwoWay}" />
-                            <TextBox
-                                Header="Relative Permeability (µr):"
-                                IsReadOnly="{x:Bind ViewModel.IsReadOnly, Mode=OneWay}"
-                                Text="{x:Bind ViewModel.Permeability, Mode=TwoWay}" />
-
-                        </StackPanel>
-                        <Button
-                            Content="Calculate"
-                            IsEnabled="{x:Bind ViewModel.CanCalculate, Mode=OneWay}"
-                            Style="{StaticResource CalculateButtonStyle}" />
-                    </StackPanel>
-                </ScrollViewer>
-            </Grid>
-        </Frame>
+            Background="#383838" />
         <Grid
             x:Name="infoGrid"
             Grid.Row="1"
@@ -140,17 +104,7 @@
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
-            <StackPanel
-                Grid.Row="1"
-                Background="{StaticResource CardBackgroundBrush}"
-                CornerRadius="6,6,0,0"
-                Style="{StaticResource CardStyle}">
-                <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Results" />
-                <TextBlock
-                    IsTextSelectionEnabled="True"
-                    Style="{StaticResource CardResultTextStyle}"
-                    Text="Path Loss: 420.69 dB" />
-            </StackPanel>
+
 
         </Grid>
     </Grid>

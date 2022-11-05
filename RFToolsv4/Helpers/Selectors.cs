@@ -21,8 +21,7 @@ namespace RFToolsv4.Helpers
         public static List<Frequency> LargeFrequency = new()
         {
             new Frequency("GHz", 1_000_000_000),
-            new Frequency("MHz", 1_000_000),
-            new Frequency("kHz", 1_000),
+            new Frequency("MHz", 1_000_000)
         };
 
         public static List<Material> Materials = new()
