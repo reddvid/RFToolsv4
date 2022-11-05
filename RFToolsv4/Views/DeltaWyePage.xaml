@@ -22,15 +22,15 @@
                 </RadioButtons>
                 <StackPanel Style="{StaticResource TwoElementStackStyle}">
                     <NumberBox Header="Rᴀ" />
-                    <ComboBox MinWidth="120" Style="{StaticResource UnheaderedComboBoxStyle}" />
+                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
                 </StackPanel>
                 <StackPanel Style="{StaticResource TwoElementStackStyle}">
                     <NumberBox Header="Rʙ" />
-                    <ComboBox MinWidth="120" Style="{StaticResource UnheaderedComboBoxStyle}" />
+                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
                 </StackPanel>
                 <StackPanel Style="{StaticResource TwoElementStackStyle}">
                     <NumberBox Header="Rᴄ" />
-                    <ComboBox MinWidth="120" Style="{StaticResource UnheaderedComboBoxStyle}" />
+                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
                 </StackPanel>
                 <Button Content="Convert" Style="{StaticResource CalculateButtonStyle}" />
                 <!--  RESULTS CARD  -->

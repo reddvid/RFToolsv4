@@ -15,11 +15,11 @@
                 <ComboBox MinWidth="256" Header="Manufacturer:" />
                 <StackPanel Style="{StaticResource TwoElementStackStyle}">
                     <NumberBox Header="Signal Frequency:" />
-                    <ComboBox Width="120" Style="{StaticResource UnheaderedComboBoxStyle}" />
+                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
                 </StackPanel>
                 <StackPanel Style="{StaticResource TwoElementStackStyle}">
                     <NumberBox Header="Cable Length:" />
-                    <ComboBox Width="120" Style="{StaticResource UnheaderedComboBoxStyle}" />
+                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
                 </StackPanel>
                 <Button Content="Calculate Cable Loss" Style="{StaticResource CalculateButtonStyle}" />
                 <!--  RESULTS CARD  -->

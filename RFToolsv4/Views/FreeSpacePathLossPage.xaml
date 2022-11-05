@@ -16,11 +16,11 @@
                 <NumberBox Header="Receiver Gain (dBi):" />
                 <StackPanel Style="{StaticResource TwoElementStackStyle}">
                     <NumberBox Header="Distance:" />
-                    <ComboBox Width="120" Style="{StaticResource UnheaderedComboBoxStyle}" />
+                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
                 </StackPanel>
                 <StackPanel Style="{StaticResource TwoElementStackStyle}">
                     <NumberBox Header="Frequency:" />
-                    <ComboBox Width="120" Style="{StaticResource UnheaderedComboBoxStyle}" />
+                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
                 </StackPanel>
                 <Button Content="Calculate Path Loss" Style="{StaticResource CalculateButtonStyle}" />
                 <!--  RESULTS CARD  -->

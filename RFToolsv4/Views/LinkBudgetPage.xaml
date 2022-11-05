@@ -2,13 +2,51 @@
     x:Class="RFToolsv4.Views.LinkBudgetPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:RFToolsv4.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:RFToolsv4.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
 
     <Grid>
-
+        <ScrollViewer>
+            <StackPanel Padding="20,20,20,0" Spacing="12">
+                <TextBlock Style="{StaticResource PageTitleTextStyle}" Text="Link Budget" />
+                <StackPanel Style="{StaticResource TwoElementStackStyle}">
+                    <NumberBox Header="Transmit Power:" />
+                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
+                </StackPanel>
+                <StackPanel Style="{StaticResource TwoElementStackStyle}">
+                    <NumberBox Header="Transmitter Gain (dBi):" />
+                    <NumberBox Header="Transmitter Losses (dB):" />
+                </StackPanel>
+                <StackPanel Style="{StaticResource TwoElementStackStyle}">
+                    <NumberBox Header="Receiver Gain (dBi):" />
+                    <NumberBox Header="Receiver Losses (dB):" />
+                </StackPanel>
+                <StackPanel Style="{StaticResource TwoElementStackStyle}">
+                    <NumberBox Header="Distance:" />
+                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
+                </StackPanel>
+                <StackPanel Style="{StaticResource TwoElementStackStyle}">
+                    <NumberBox Header="Frequency:" />
+                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
+                </StackPanel>
+                <Button Content="Calculate Cable Loss" Style="{StaticResource CalculateButtonStyle}" />
+                <!--  RESULTS CARD  -->
+                <StackPanel
+                    Grid.Row="1"
+                    Background="{StaticResource CardBackgroundBrush}"
+                    CornerRadius="6"
+                    Style="{StaticResource ResultsCardStyle}">
+                    <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Results" />
+                    <TextBlock
+                        IsTextSelectionEnabled="True"
+                        SelectionHighlightColor="{ThemeResource SystemControlHighlightAccentBrush}"
+                        Style="{StaticResource CardResultTextStyle}"
+                        Text="" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
