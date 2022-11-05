@@ -2,13 +2,43 @@
     x:Class="RFToolsv4.Views.WavelengthFrequencyPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:RFToolsv4.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:RFToolsv4.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
 
     <Grid>
-
+        <ScrollViewer>
+            <StackPanel Padding="20,20,20,0" Spacing="12">
+                <TextBlock Style="{StaticResource PageTitleTextStyle}" Text="Wavelength &amp; Frequency Conversion" />
+                <RadioButtons
+                    x:Name="ConvertRadioButtons"
+                    Header="Select conversion:"
+                    HeaderTemplate="{StaticResource ControlHeaderTemplate}"
+                    MaxColumns="2">
+                    <x:String>Wavelength to Frequency</x:String>
+                    <x:String>Frequency to Wavelength</x:String>
+                </RadioButtons>
+                <StackPanel Style="{StaticResource TwoElementStackStyle}">
+                    <NumberBox Header="Wavelength:" />
+                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
+                </StackPanel>
+                <Button Content="Convert" Style="{StaticResource CalculateButtonStyle}" />
+                <!--  RESULTS CARD  -->
+                <StackPanel
+                    Grid.Row="1"
+                    Background="{StaticResource CardBackgroundBrush}"
+                    CornerRadius="6"
+                    Style="{StaticResource ResultsCardStyle}">
+                    <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Results" />
+                    <TextBlock
+                        IsTextSelectionEnabled="True"
+                        SelectionHighlightColor="{ThemeResource SystemControlHighlightAccentBrush}"
+                        Style="{StaticResource CardResultTextStyle}"
+                        Text="" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
