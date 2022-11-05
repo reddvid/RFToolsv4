@@ -86,7 +86,7 @@ Free-space path loss assumes ideal atmospheric conditions so that no electromagn
             </Style>
             <Style TargetType="NumberBox">
                 <Setter Property="HeaderTemplate" Value="{StaticResource ControlHeaderTemplate}" />
-                <Setter Property="MinWidth" Value="240" />
+                <Setter Property="MinWidth" Value="180" />
                 <Setter Property="FontWeight" Value="SemiBold" />
                 <Setter Property="AcceptsExpression" Value="False" />
                 <Setter Property="TextReadingOrder" Value="UseFlowDirection" />
