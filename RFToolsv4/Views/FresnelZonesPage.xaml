@@ -30,7 +30,7 @@
                     <NumberBox Header="Obstruction Height:" />
                     <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
                 </StackPanel>
-                <Button Content="Calculate Path Loss" Style="{StaticResource CalculateButtonStyle}" />
+                <Button Content="Calculate Fresnel Zone Radius" Style="{StaticResource CalculateButtonStyle}" />
                 <!--  RESULTS CARD  -->
                 <StackPanel
                     Grid.Row="1"

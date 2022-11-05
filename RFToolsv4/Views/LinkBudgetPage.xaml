@@ -32,7 +32,7 @@
                     <NumberBox Header="Frequency:" />
                     <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
                 </StackPanel>
-                <Button Content="Calculate Cable Loss" Style="{StaticResource CalculateButtonStyle}" />
+                <Button Content="Calculate Link Budget" Style="{StaticResource CalculateButtonStyle}" />
                 <!--  RESULTS CARD  -->
                 <StackPanel
                     Grid.Row="1"
