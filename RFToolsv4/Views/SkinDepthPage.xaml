@@ -10,12 +10,12 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
-    <Grid Padding="20,20,20,0">
+    <Grid>
         <Grid.DataContext>
             <vm:SkinDepthViewModel x:Name="ViewModel" />
         </Grid.DataContext>
         <ScrollViewer>
-            <StackPanel Spacing="12">
+            <StackPanel Padding="20,20,20,0" Spacing="12">
                 <TextBlock Style="{StaticResource PageTitleTextStyle}" Text="Skin Depth" />
                 <ComboBox
                     MinWidth="256"
@@ -55,7 +55,7 @@
                     Grid.Row="1"
                     Background="{StaticResource CardBackgroundBrush}"
                     CornerRadius="6"
-                    Style="{StaticResource CardStyle}">
+                    Style="{StaticResource ResultsCardStyle}">
                     <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Results" />
                     <TextBlock
                         IsTextSelectionEnabled="True"

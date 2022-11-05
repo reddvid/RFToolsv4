@@ -8,10 +8,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
-    <Grid Padding="20,20,20,0">
-        <Grid.DataContext />
+    <Grid>
         <ScrollViewer>
-            <StackPanel Spacing="12">
+            <StackPanel Padding="20,20,20,0" Spacing="12">
                 <TextBlock Style="{StaticResource PageTitleTextStyle}" Text="Coaxial Cable Loss" />
                 <ComboBox MinWidth="256" Header="Manufacturer:" />
                 <StackPanel Style="{StaticResource TwoElementStackStyle}">
@@ -28,7 +27,7 @@
                     Grid.Row="1"
                     Background="{StaticResource CardBackgroundBrush}"
                     CornerRadius="6"
-                    Style="{StaticResource CardStyle}">
+                    Style="{StaticResource ResultsCardStyle}">
                     <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Results" />
                     <TextBlock
                         IsTextSelectionEnabled="True"

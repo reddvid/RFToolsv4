@@ -23,6 +23,12 @@
                 <Setter Property="Padding" Value="12,12,12,16" />
                 <Setter Property="Background" Value="#202020" />
             </Style>
+            <Style x:Key="ResultsCardStyle" TargetType="StackPanel">
+                <Setter Property="Spacing" Value="4" />
+                <Setter Property="Padding" Value="12,12,12,16" />
+                <Setter Property="Margin" Value="0,0,0,60" />
+                <Setter Property="Background" Value="#202020" />
+            </Style>
             <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource SystemAccentColor}" />
             <Style x:Key="PageTitleTextStyle" TargetType="TextBlock">
                 <Setter Property="FontWeight" Value="Bold" />
@@ -54,7 +60,7 @@ Free-space path loss assumes ideal atmospheric conditions so that no electromagn
                 <Setter Property="HorizontalAlignment" Value="Stretch" />
                 <Setter Property="FontWeight" Value="SemiBold" />
                 <Setter Property="FontSize" Value="16" />
-                <Setter Property="Margin" Value="0,24,0,40" />
+                <Setter Property="Margin" Value="0,24" />
             </Style>
             <Style TargetType="ComboBox">
                 <Setter Property="HeaderTemplate" Value="{StaticResource ControlHeaderTemplate}" />
