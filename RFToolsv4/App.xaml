@@ -73,6 +73,7 @@ Free-space path loss assumes ideal atmospheric conditions so that no electromagn
                 x:Key="UnheaderedComboBoxStyle"
                 BasedOn="{StaticResource DefaultComboBoxStyle}"
                 TargetType="ComboBox">
+                <Setter Property="MinWidth" Value="120" />
                 <Setter Property="VerticalAlignment" Value="Bottom" />
                 <Setter Property="FontWeight" Value="SemiBold" />
             </Style>
