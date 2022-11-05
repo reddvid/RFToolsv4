@@ -27,11 +27,7 @@
                     <TextBlock FontSize="12" Text="For Reflection Coefficient: Enter a value between 0 and 1 (0 &gt; Γ &lt; 1) " />
                     <TextBlock FontSize="12" Text="For Return Loss: Enter a value greater than 0 (RL &gt; 0)" />
                 </StackPanel>
-                <Button
-                    Command="{x:Bind ViewModel.CalculateCommand}"
-                    Content="Calculate VSWR &amp; Return Loss"
-                    IsEnabled="{x:Bind ViewModel.CanCalculate, Mode=OneWay}"
-                    Style="{StaticResource CalculateButtonStyle}" />
+                <Button Content="Calculate VSWR &amp; Return Loss" Style="{StaticResource CalculateButtonStyle}" />
                 <!--  RESULTS CARD  -->
                 <StackPanel
                     Grid.Row="1"
@@ -43,7 +39,7 @@
                         IsTextSelectionEnabled="True"
                         SelectionHighlightColor="{ThemeResource SystemControlHighlightAccentBrush}"
                         Style="{StaticResource CardResultTextStyle}"
-                        Text="{x:Bind ViewModel.Results, Mode=OneWay}" />
+                        Text="" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
