@@ -9,19 +9,34 @@
     mc:Ignorable="d">
 
     <Grid>
-        <Grid.Resources>
-            <Style
-                x:Key="CalculateButtonStyle"
-                BasedOn="{StaticResource AccentButtonStyle}"
-                TargetType="Button">
-                <Setter Property="Height" Value="64" />
-                <Setter Property="HorizontalAlignment" Value="Stretch" />
-                <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="FontSize" Value="20" />
-            </Style>
-        </Grid.Resources>
-        <Button Style="{StaticResource CalculateButtonStyle}">
-            Yes Sir!
-        </Button>
+        <ScrollViewer>
+            <StackPanel Padding="20,20,20,0" Spacing="12">
+                <TextBlock Style="{StaticResource PageTitleTextStyle}" Text="Free-Space Path Loss" />
+                <NumberBox Header="Transmitter Gain (dBi):" />
+                <NumberBox Header="Receiver Gain (dBi):" />
+                <StackPanel Style="{StaticResource TwoElementStackStyle}">
+                    <NumberBox Header="Distance:" />
+                    <ComboBox Width="120" Style="{StaticResource UnheaderedComboBoxStyle}" />
+                </StackPanel>
+                <StackPanel Style="{StaticResource TwoElementStackStyle}">
+                    <NumberBox Header="Frequency:" />
+                    <ComboBox Width="120" Style="{StaticResource UnheaderedComboBoxStyle}" />
+                </StackPanel>
+                <Button Content="Calculate Path Loss" Style="{StaticResource CalculateButtonStyle}" />
+                <!--  RESULTS CARD  -->
+                <StackPanel
+                    Grid.Row="1"
+                    Background="{StaticResource CardBackgroundBrush}"
+                    CornerRadius="6"
+                    Style="{StaticResource ResultsCardStyle}">
+                    <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Results" />
+                    <TextBlock
+                        IsTextSelectionEnabled="True"
+                        SelectionHighlightColor="{ThemeResource SystemControlHighlightAccentBrush}"
+                        Style="{StaticResource CardResultTextStyle}"
+                        Text="" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

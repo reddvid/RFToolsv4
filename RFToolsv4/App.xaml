@@ -51,7 +51,9 @@ Free-space path loss is often defined as the loss incurred by an electromagnetic
                
 Free-space path loss assumes ideal atmospheric conditions so that no electromagnetic energy is actually lost or dissipated - it merely spreads out as it propagates away from the source, resulting in lower relative power densities.
             </x:String>
-
+            <Style x:Key="ContainerPanel" TargetType="StackPanel">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+            </Style>
             <Style
                 x:Key="CalculateButtonStyle"
                 BasedOn="{StaticResource AccentButtonStyle}"
@@ -87,6 +89,7 @@ Free-space path loss assumes ideal atmospheric conditions so that no electromagn
                 <Setter Property="FontWeight" Value="SemiBold" />
                 <Setter Property="AcceptsExpression" Value="False" />
                 <Setter Property="TextReadingOrder" Value="UseFlowDirection" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
             </Style>
             <Style x:Key="TwoElementStackStyle" TargetType="StackPanel">
                 <Setter Property="Orientation" Value="Horizontal" />

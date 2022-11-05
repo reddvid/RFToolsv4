@@ -32,7 +32,7 @@
                     <NumberBox Header="Rᴄ" />
                     <ComboBox MinWidth="120" Style="{StaticResource UnheaderedComboBoxStyle}" />
                 </StackPanel>
-                <Button Content="Calculate Cable Loss" Style="{StaticResource CalculateButtonStyle}" />
+                <Button Content="Convert" Style="{StaticResource CalculateButtonStyle}" />
                 <!--  RESULTS CARD  -->
                 <StackPanel
                     Grid.Row="1"
