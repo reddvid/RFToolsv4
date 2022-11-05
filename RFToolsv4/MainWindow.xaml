@@ -20,40 +20,44 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="32" />
+            <RowDefinition Height="48" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid x:Name="appTitleBar" />
-        <Grid
-            x:Name="navGrid"
-            Grid.Row="1"
-            Padding="32,0,0,0"
-            Background="#333333">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid x:Name="appTitleBar" Grid.ColumnSpan="3">
             <TextBlock
-                Margin="0,24,0,20"
-                FontSize="20"
-                FontWeight="Bold"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
                 Text="RF Tools" />
-            <ListView
-                Grid.Row="1" SelectionChanged="MenuListView_SelectionChanged"
-                Margin="-16,0,0,0" Loaded="MenuListView_Loaded"
-                ItemTemplate="{StaticResource ListViewItemTemplate}"
-                ItemsSource="{x:Bind ViewModel.MenuItems}" />
         </Grid>
-        <Frame
-            x:Name="mainFrame"
+        <NavigationView
+            x:Name="navigationView"
             Grid.Row="1"
-            Grid.Column="1"
-            Background="#383838" />
+            Grid.ColumnSpan="2"
+            Background="#333333"
+            IsBackButtonVisible="Collapsed"
+            IsBackEnabled="False"
+            IsPaneOpen="True"
+            IsPaneToggleButtonVisible="False"
+            IsTitleBarAutoPaddingEnabled="True"
+            Loaded="MenuListView_Loaded"
+            MenuItemsSource="{x:Bind ViewModel.MenuItems}"
+            OpenPaneLength="300"
+            PaneDisplayMode="Left"
+            SelectionChanged="MenuListView_SelectionChanged">
+            <NavigationView.Content>
+                <Frame
+                    x:Name="mainFrame"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Background="#383838"
+                    CornerRadius="6,6,0,0" />
+            </NavigationView.Content>
+        </NavigationView>
         <Grid
             x:Name="infoGrid"
             Grid.Row="1"
             Grid.Column="2"
-            Background="#444444">
+            Background="#333333">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition Height="Auto" />

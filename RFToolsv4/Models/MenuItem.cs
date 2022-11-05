@@ -9,12 +9,17 @@ namespace RFToolsv4.Models
     public class MenuItem
     {
         public string Title { get; set; }
-        public string Tag { get; set; }
+        public Type Page { get; set; }
 
-        public MenuItem(string title, string tag)
+        public MenuItem(string title, Type type)
         {
             Title = title;
-            Tag = tag;
+            Page = type;
+        }
+
+        public override string ToString()
+        {
+            return Title;
         }
     }
 }

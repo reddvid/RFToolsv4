@@ -18,6 +18,10 @@ using Windows.Foundation.Collections;
 using RFToolsv4.ViewModels;
 using static RFToolsv4.Models.SelectorModels;
 using System.Diagnostics;
+using System.Reflection;
+using RFToolsv4.Views;
+using Windows.Storage;
+using RFToolsv4.Models;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -44,14 +48,27 @@ namespace RFToolsv4
 
         private void MenuListView_Loaded(object sender, RoutedEventArgs e)
         {
-            // Get last tool saved
-
+            SelectMenuFromLastSavedItem();
         }
-        private void MenuListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void SelectMenuFromLastSavedItem()
         {
+            string savedNavigation = GetLastMenuItem();
 
+            foreach (var menuItem in ViewModel.MenuItems)
+            {
+                if (savedNavigation == menuItem.Title)
+                {
+                    navigationView.SelectedItem = menuItem;
+                    break;
+                }
+            }
+        }
 
-
+        private static string GetLastMenuItem()
+        {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            return localSettings.Values["navigation"] as string;
         }
 
         #region WINDOW_CONTROL
@@ -130,10 +147,10 @@ namespace RFToolsv4
                 SetConfigurationSourceTheme();
 
                 m_backdropController = new Microsoft.UI.Composition.SystemBackdrops.MicaController();
-    
-            // Enable the system backdrop.
-            // Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
-            m_backdropController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
+
+                // Enable the system backdrop.
+                // Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
+                m_backdropController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
                 m_backdropController.SetSystemBackdropConfiguration(m_configurationSource);
                 return true; // succeeded
             }
@@ -176,9 +193,43 @@ namespace RFToolsv4
                 case ElementTheme.Default: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Default; break;
             }
         }
+
         #endregion
 
-      
+        private void MenuListView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            var nav = sender as NavigationView;
+            if (args.IsSettingsSelected)
+            {
+                // Navigate Frame to Settings Page
+            }
+            else
+            {
+                string item = (nav.SelectedItem as MenuItem).Title;
+                NavigateFrame(item);
+                SaveMenuItem(item);
+            }
+        }
+
+        private static void SaveMenuItem(string item)
+        {
+            Debug.WriteLine($"Saving {item}");
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            localSettings.Values["navigation"] = item;
+        }
+
+        private void NavigateFrame(string item)
+        {
+            if (mainFrame == null || item == null) return;
+            foreach (var menuItem in ViewModel.MenuItems)
+            {
+                if (item == menuItem.Title)
+                {
+                    mainFrame.Navigate(menuItem.Page);
+                    break;
+                }
+            }
+        }
     }
 
     class WindowsSystemDispatcherQueueHelper

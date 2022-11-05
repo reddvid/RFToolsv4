@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using RFToolsv4.Helpers;
 using RFToolsv4.Models;
+using RFToolsv4.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,17 +20,17 @@ namespace RFToolsv4.ViewModels
     {
         public List<MenuItem> MenuItems = new()
         {
-           new MenuItem("Free-Space Path Loss", "path_loss"),
-           new MenuItem("Link Budget", "link_budget"),
-           new MenuItem("Standing Waves", "vswr"),
-           new MenuItem("Fresnel Zones", "fresnel"),
-           new MenuItem("Coaxial Cable Loss", "coax"),
-           new MenuItem("Resonance", "resonance"),
-           new MenuItem("Two-Wire Transmission Lines", "two_wire"),
-           new MenuItem("Skin Depth", "skin"),
-           new MenuItem("Wavelength & Frequency Conversion", "wave"),
-           new MenuItem("Delta-Wye Conversion", "delta"),
-           new MenuItem("Power, Energy, & Charge Conversion", "power"),
+           new MenuItem("Free-Space Path Loss", typeof(FreeSpacePathLossPage)),
+           new MenuItem("Link Budget", typeof(LinkBudgetPage)),
+           new MenuItem("Standing Waves", typeof(StandingWavesPage)),
+           new MenuItem("Fresnel Zones", typeof(FresnelZonesPage)),
+           new MenuItem("Coaxial Cable Loss", typeof(CoaxialCableLossPage)),
+           new MenuItem("Resonance", typeof(ResonancePage)),
+           new MenuItem("Two-Wire Transmission Lines", typeof(TransmissionLinesPage)),
+           new MenuItem("Skin Depth", typeof(SkinDepthPage)),
+           new MenuItem("Wavelength & Frequency Conversion", typeof(WavelengthFrequencyPage)),
+           new MenuItem("Delta-Wye Conversion", typeof(DeltaWyePage)),
+           new MenuItem("Power, Energy, & Charge Conversion", typeof(PECConversionPage)),
         };
 
     }
