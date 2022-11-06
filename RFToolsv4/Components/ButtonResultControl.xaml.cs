@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Windows.Input;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -27,14 +28,26 @@ namespace RFToolsv4.Components
 
         public static readonly DependencyProperty ButtonContentProperty =
             DependencyProperty.Register(nameof(ButtonContent), typeof(string), typeof(ButtonResultControl), new PropertyMetadata(string.Empty));
-    
-    
+
+
         public string ButtonContent
         {
             get => (string)GetValue(ButtonContentProperty);
             set
             {
                 SetValue(ButtonContentProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty IsButtonEnabledProperty =
+            DependencyProperty.Register(nameof(IsButtonEnabled), typeof(bool), typeof(ButtonResultControl), new PropertyMetadata(true));
+
+        public bool IsButtonEnabled
+        {
+            get => (bool)GetValue(IsButtonEnabledProperty);
+            set
+            {
+                SetValue(IsButtonEnabledProperty, value);
             }
         }
 
@@ -47,6 +60,18 @@ namespace RFToolsv4.Components
             set
             {
                 SetValue(CardResultsProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty CalculateCommandProperty =
+            DependencyProperty.Register(nameof(CalculateCommand), typeof(ICommand), typeof(ButtonResultControl), new PropertyMetadata(null));
+
+        public ICommand CalculateCommand
+        {
+            get => (ICommand)GetValue(CalculateCommandProperty);
+            set
+            {
+                SetValue(CalculateCommandProperty, value);
             }
         }
     }

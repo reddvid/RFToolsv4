@@ -64,15 +64,17 @@
             </Grid.RowDefinitions>
             <ScrollViewer>
                 <StackPanel Padding="16,16,16,40" Spacing="16">
-                    <StackPanel Spacing="4">
+                    <StackPanel Spacing="12" Style="{StaticResource CardStyle}">
                         <Button HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}">
                             <Button.Content>
                                 <StackPanel
                                     HorizontalAlignment="Left"
                                     Orientation="Horizontal"
-                                    Spacing="12">
-                                    <SymbolIcon Symbol="Pin" />
-                                    <TextBlock Text="Pin tool to Start" />
+                                    Spacing="8">
+                                    <Viewbox Height="14">
+                                        <SymbolIcon Symbol="Pin" />
+                                    </Viewbox>
+                                    <TextBlock FontSize="12" Text="Pin tool to Start" />
                                 </StackPanel>
                             </Button.Content>
                         </Button>
@@ -81,15 +83,17 @@
                                 <StackPanel
                                     HorizontalAlignment="Left"
                                     Orientation="Horizontal"
-                                    Spacing="12">
-                                    <SymbolIcon Symbol="NewWindow" />
-                                    <TextBlock Text="Open new tool window" />
+                                    Spacing="8">
+                                    <Viewbox Height="14">
+                                        <SymbolIcon Symbol="NewWindow" />
+                                    </Viewbox>
+                                    <TextBlock FontSize="12" Text="Open new tool window" />
                                 </StackPanel>
                             </Button.Content>
                         </Button>
                     </StackPanel>
                     <!--  INFO CARD  -->
-                    <StackPanel CornerRadius="6" Style="{StaticResource CardStyle}">
+                    <StackPanel Style="{StaticResource CardStyle}">
                         <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Information" />
                         <TextBlock
                             IsTextSelectionEnabled="True"
@@ -98,7 +102,7 @@
                             TextWrapping="WrapWholeWords" />
                     </StackPanel>
                     <!--  MISC CARD  -->
-                    <StackPanel CornerRadius="6" Style="{StaticResource CardStyle}">
+                    <StackPanel Style="{StaticResource CardStyle}">
                         <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Noteworthy" />
                         <TextBlock
                             IsTextSelectionEnabled="True"

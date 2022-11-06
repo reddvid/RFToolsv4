@@ -13,6 +13,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Components\ButtonResultControl.xaml" />
+    <None Remove="Components\NumberBoxUnit.xaml" />
+    <None Remove="Components\ToolPageTitle.xaml" />
     <None Remove="Views\CoaxialCableLossPage.xaml" />
     <None Remove="Views\DeltaWyePage.xaml" />
     <None Remove="Views\FreeSpacePathLossPage.xaml" />
@@ -52,6 +54,16 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Components\ToolPageTitle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Components\NumberBoxUnit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\DeltaWyePage.xaml">

@@ -5,10 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:RFToolsv4.Components"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="root"
     mc:Ignorable="d">
 
     <StackPanel>
-        <Button Content="{Binding}" Style="{StaticResource CalculateButtonStyle}" />
+        <Button
+            Command="{Binding CalculateCommand, ElementName=root}"
+            Content="{Binding ButtonContent, ElementName=root}"
+            IsEnabled="{Binding IsButtonEnabled, ElementName=root}"
+            Style="{StaticResource CalculateButtonStyle}" />
         <StackPanel
             Background="{StaticResource CardBackgroundBrush}"
             CornerRadius="6"
@@ -17,7 +22,7 @@
             <TextBlock
                 IsTextSelectionEnabled="True"
                 Style="{StaticResource CardResultTextStyle}"
-                Text="" />
+                Text="{Binding CardResults, ElementName=root}" />
         </StackPanel>
     </StackPanel>
 </UserControl>

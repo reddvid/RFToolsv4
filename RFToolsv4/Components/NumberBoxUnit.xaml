@@ -1,0 +1,24 @@
+﻿<UserControl
+    x:Class="RFToolsv4.Components.NumberBoxUnit"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="using:RFToolsv4.Helpers"
+    xmlns:local="using:RFToolsv4.Components"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="root"
+    mc:Ignorable="d">
+
+    <StackPanel Style="{StaticResource TwoElementStackStyle}">
+        <NumberBox
+            Header="{Binding HeaderText, ElementName=root}"
+            NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+            Value="{Binding NumberBoxValue, ElementName=root, Mode=TwoWay}" />
+        <ComboBox
+            Width="{Binding ComboBoxWidth, ElementName=root}"
+            DisplayMemberPath="Caption"
+            ItemsSource="{Binding ComboBoxItemsSource, ElementName=root}"
+            SelectedItem="{Binding ComboBoxSelectedItem, ElementName=root, Mode=TwoWay}"
+            Style="{StaticResource UnheaderedComboBoxStyle}" />
+    </StackPanel>
+</UserControl>
