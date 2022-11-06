@@ -12,6 +12,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Components\ButtonResultControl.xaml" />
     <None Remove="Views\CoaxialCableLossPage.xaml" />
     <None Remove="Views\DeltaWyePage.xaml" />
     <None Remove="Views\FreeSpacePathLossPage.xaml" />
@@ -104,6 +105,11 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\FreeSpacePathLossPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Components\ButtonResultControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
