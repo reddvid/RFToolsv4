@@ -10,18 +10,20 @@ namespace RFToolsv4.Helpers
 {
     public class Selectors
     {
-        public static List<Flex> LargeDistance { get; } = new()
+        public static List<Flex> Distance { get; } = new()
         {
             new Flex("m", 1),
-            new Flex("km", Math.Pow(10,3)),
+            new Flex("km", Math.Pow(10, 3)),
             new Flex("mi",  0.000621371),
             new Flex("ft", 3.28084)
         };
 
         public static List<Flex> LargeFrequency { get; } = new()
         {
-            new Flex("GHz", Math.Pow(10,9)),
-            new Flex("MHz", Math.Pow(10,6))
+            new Flex("THz", Math.Pow(10, 12)),
+            new Flex("GHz", Math.Pow(10, 9)),
+            new Flex("MHz", Math.Pow(10, 6)),
+            new Flex("kHz", Math.Pow(10, 3)),
         };
 
         public static List<Material> Materials { get; } = new()

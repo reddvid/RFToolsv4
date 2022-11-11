@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using UnitsNet;
@@ -205,6 +206,24 @@ namespace RFToolsv4.Helpers
             }
 
             return ResultsBuilder.Build(results);
+        }
+
+        /// <summary>
+        /// Calculate Free-Space path Loss
+        /// </summary>
+        /// <param name="txGain">Transmitter Gain in dBi</param>
+        /// <param name="rxGain">Receiver Gain in dBi</param>
+        /// <param name="distance">Distance in kilometers</param>
+        /// <param name="frequency">Frequency in Megahertz</param>
+        /// <returns></returns>
+        public static string PathLoss(double txGain, double rxGain, double distance, double frequency)
+        {
+            double pathLoss = (20 * Math.Log10(distance)) + (20 * Math.Log10(frequency)) + 32.44 - rxGain - txGain;
+
+            return ResultsBuilder.Build(new()
+            {
+                new Result(name: "Path Loss", value: pathLoss, units: "dB"),
+            });
         }
     }
 }
