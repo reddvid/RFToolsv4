@@ -45,12 +45,26 @@
             PaneDisplayMode="Left"
             SelectionChanged="MenuListView_SelectionChanged">
             <NavigationView.Content>
-                <Frame
-                    x:Name="mainFrame"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Background="#383838"
-                    CornerRadius="6,6,0,0" />
+                <Grid>
+                    <Frame
+                        x:Name="mainFrame"
+                        Background="#383838"
+                        CornerRadius="6,6,0,0" />
+                    <Button
+                        Width="32"
+                        Height="32"
+                        Margin="0,20,12,0"
+                        Padding="0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        ToolTipService.ToolTip="Open new tool window">
+                        <Button.Content>
+                            <Viewbox Height="14">
+                                <SymbolIcon Symbol="NewWindow" />
+                            </Viewbox>
+                        </Button.Content>
+                    </Button>
+                </Grid>
             </NavigationView.Content>
         </NavigationView>
         <Grid
@@ -58,13 +72,12 @@
             Grid.Row="1"
             Grid.Column="2"
             Background="#333333">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <ScrollViewer>
-                <StackPanel Padding="16,16,16,40" Spacing="16">
-                    <StackPanel Spacing="12" Style="{StaticResource CardStyle}">
+            <ScrollViewer Padding="16,0">
+                <StackPanel Padding="0,0,0,40" Spacing="16">
+                    <!--<StackPanel
+                        Spacing="12"
+                        Style="{StaticResource CardStyle}"
+                        Visibility="Collapsed">
                         <Button HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}">
                             <Button.Content>
                                 <StackPanel
@@ -91,7 +104,7 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                    </StackPanel>
+                    </StackPanel>-->
                     <!--  INFO CARD  -->
                     <StackPanel Style="{StaticResource CardStyle}">
                         <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Information" />
