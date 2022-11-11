@@ -225,5 +225,29 @@ namespace RFToolsv4.Helpers
                 new Result(name: "Path Loss", value: pathLoss, units: "dB"),
             });
         }
+
+        /// <summary>
+        /// Calculate Link Budget
+        /// </summary>
+        /// <param name="txPower">Transmitter output power in dBm</param>
+        /// <param name="txGain">Transmitter Gain in dBi</param>
+        /// <param name="txLoss">Transmitter Loss in dB</param>
+        /// <param name="rxGain">Receiver Gain in dBi</param>
+        /// <param name="rxLoss">Receiver Loss in dB</param>
+        /// <param name="distance">System Distance in Kilometers</param>
+        /// <param name="frequency">System Frequency in Megahertz</param>
+        /// <returns></returns>
+        public static string LinkBudget(double txPower, double txGain, double txLoss, double rxGain, double rxLoss, double distance, double frequency)
+        {
+            double pathLoss = (20 * Math.Log10(distance)) + (20 * Math.Log10(frequency)) + 32.44;
+            double receivedPower = txPower + txGain + rxGain - txLoss - rxLoss - pathLoss;
+
+            return ResultsBuilder.Build(new()
+            {
+                new Result(name: "Transmitted Power", value: txPower, units: "dBm"),
+                new Result(name: "Received Power", value: receivedPower, units: "dBm"),
+                new Result(name: "Path Loss", value: pathLoss, units: "dB"),
+            });
+        }
     }
 }

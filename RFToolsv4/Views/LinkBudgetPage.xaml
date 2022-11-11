@@ -2,50 +2,62 @@
     x:Class="RFToolsv4.Views.LinkBudgetPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:components="using:RFToolsv4.Components"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="using:RFToolsv4.Helpers"
     xmlns:local="using:RFToolsv4.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:RFToolsv4.ViewModels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
     <Grid>
-        <ScrollViewer>
-            <StackPanel Padding="20,20,20,0" Spacing="12">
-                <TextBlock Style="{StaticResource PageTitleTextStyle}" Text="Link Budget" />
+        <Grid.Resources>
+            <vm:LinkBudgetViewModel x:Name="ViewModel" />
+        </Grid.Resources>
+        <ScrollViewer Padding="20,20,20,0">
+            <StackPanel Spacing="12">
+                <components:ToolPageTitle HeaderText="Link Budget" />
+                <components:NumberBoxUnit
+                    ComboBoxItemsSource="{x:Bind ViewModel.OutputPower}"
+                    ComboBoxSelectedItem="{x:Bind ViewModel.PowerMultiplier, Mode=TwoWay}"
+                    HeaderText="Transmitter Output Power:"
+                    NumberBoxValue="{x:Bind ViewModel.OutputPowerValue, Mode=TwoWay}" />
                 <StackPanel Style="{StaticResource TwoElementStackStyle}">
-                    <NumberBox Header="Transmit Power:" />
-                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
+                    <NumberBox
+                        Header="Transmitter Gain (dBi):"
+                        NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+                        Value="{x:Bind ViewModel.TransmitterGainValue, Mode=TwoWay}" />
+                    <NumberBox
+                        Header="Transmitter Losses (dB):"
+                        NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+                        Value="{x:Bind ViewModel.TransmitLossValue, Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel Style="{StaticResource TwoElementStackStyle}">
-                    <NumberBox Header="Transmitter Gain (dBi):" />
-                    <NumberBox Header="Transmitter Losses (dB):" />
+                    <NumberBox
+                        Header="Receiver Gain (dBi):"
+                        NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+                        Value="{x:Bind ViewModel.ReceiverGainValue, Mode=TwoWay}" />
+                    <NumberBox
+                        Header="Receiver Losses (dB):"
+                        NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+                        Value="{x:Bind ViewModel.ReceiveLossValue, Mode=TwoWay}" />
                 </StackPanel>
-                <StackPanel Style="{StaticResource TwoElementStackStyle}">
-                    <NumberBox Header="Receiver Gain (dBi):" />
-                    <NumberBox Header="Receiver Losses (dB):" />
-                </StackPanel>
-                <StackPanel Style="{StaticResource TwoElementStackStyle}">
-                    <NumberBox Header="Distance:" />
-                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
-                </StackPanel>
-                <StackPanel Style="{StaticResource TwoElementStackStyle}">
-                    <NumberBox Header="Frequency:" />
-                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
-                </StackPanel>
-                <Button Content="Calculate Link Budget" Style="{StaticResource CalculateButtonStyle}" />
-                <!--  RESULTS CARD  -->
-                <StackPanel
-                    Grid.Row="1"
-                    Background="{StaticResource CardBackgroundBrush}"
-                    CornerRadius="6"
-                    Style="{StaticResource ResultsCardStyle}">
-                    <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Results" />
-                    <TextBlock
-                        IsTextSelectionEnabled="True"
-                        SelectionHighlightColor="{ThemeResource SystemControlHighlightAccentBrush}"
-                        Style="{StaticResource CardResultTextStyle}"
-                        Text="" />
-                </StackPanel>
+                <components:NumberBoxUnit
+                    ComboBoxItemsSource="{x:Bind ViewModel.Distance}"
+                    ComboBoxSelectedItem="{x:Bind ViewModel.DistanceMultiplier, Mode=TwoWay}"
+                    HeaderText="Distance:"
+                    NumberBoxValue="{x:Bind ViewModel.DistanceValue, Mode=TwoWay}" />
+                <components:NumberBoxUnit
+                    ComboBoxItemsSource="{x:Bind ViewModel.Frequency}"
+                    ComboBoxSelectedItem="{x:Bind ViewModel.FrequencyMultiplier, Mode=TwoWay}"
+                    HeaderText="Frequency:"
+                    NumberBoxValue="{x:Bind ViewModel.FrequencyValue, Mode=TwoWay}" />
+                <components:ButtonResultControl
+                    ButtonContent="Calculate Path Loss"
+                    CalculateCommand="{x:Bind ViewModel.CalculateCommand}"
+                    CardResults="{x:Bind ViewModel.Results, Mode=OneWay}"
+                    IsButtonEnabled="{x:Bind ViewModel.CanCalculate, Mode=OneWay}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

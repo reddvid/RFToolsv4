@@ -125,5 +125,13 @@ namespace RFToolsv4.Helpers
             new Flex("ohms (Ω)", 1),
             new Flex("milliohms (mΩ)", Math.Pow(10, -3)),
         };
+
+        public static List<Flex> OutputPower { get; } = new()
+        {
+            new Flex("dBm", 1),
+            new Flex("mW", default),
+            new Flex("W",  default),
+            new Flex("kW", default),
+        };
     }
 }

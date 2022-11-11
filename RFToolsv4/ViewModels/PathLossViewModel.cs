@@ -105,17 +105,19 @@ namespace RFToolsv4.ViewModels
             }
         }
 
-        public bool CanCalculate => (TransmitterGainValue != 0 && ReceiverGainValue != 0 && DistanceValue != 0 && FrequencyValue != 0);
+        public bool CanCalculate => TransmitterGainValue >= 0
+                                    && ReceiverGainValue >= 0
+                                    && DistanceValue != 0
+                                    && FrequencyValue != 0;
 
         public ICommand CalculateCommand { get; }
 
         private void Calculate()
         {
-            Results = Calculator.PathLoss(
-                txGain: TransmitterGainValue, 
-                rxGain: ReceiverGainValue, 
-                distance: DistanceValue * DistanceMultiplier.Multiplier / 1_000,
-                frequency: FrequencyValue * FrequencyMultiplier.Multiplier / 1_000_000);
+            Results = Calculator.PathLoss(txGain: TransmitterGainValue,
+                                          rxGain: ReceiverGainValue,
+                                          distance: DistanceValue * DistanceMultiplier.Multiplier / 1_000,
+                                          frequency: FrequencyValue * FrequencyMultiplier.Multiplier / 1_000_000);
         }
 
         private string _results;
