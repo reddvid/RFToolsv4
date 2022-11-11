@@ -101,7 +101,6 @@ namespace RFToolsv4.Helpers
 
         public static string StandingWave(double input, string known)
         {
-            List<Result> results = new();
             double vswr;
             double reflectionCoefficient;
             double returnLoss;
@@ -167,6 +166,45 @@ namespace RFToolsv4.Helpers
             {
                 new Result(name: unknown, value: outputValue, units: unit),
             });
+        }
+
+        public static string DeltaWye(double first, double second, double third, string setting)
+        {
+            List<Result> results = new();
+            double firstConvert;
+            double secondConvert;
+            double thirdConvert;
+
+            if (setting.Equals("Delta to Wye"))
+            {
+                double denominator = first + second + third;
+                firstConvert = second * third / denominator;
+                secondConvert = first * third / denominator;
+                thirdConvert = first * second / denominator;
+
+                results = new()
+                {
+                    new Result(name: "R₁", value: firstConvert, units: "Ω"),
+                    new Result(name: "R₂", value: secondConvert, units: "Ω"),
+                    new Result(name: "R₃", value: thirdConvert, units: "Ω"),
+                };
+            }
+            else
+            {
+                double denominator = (first * second) + (second * third) + (third * first);
+                firstConvert = denominator / first;
+                secondConvert =denominator / second;
+                thirdConvert = denominator / third;
+
+                results = new()
+                {
+                    new Result(name: "Rᴀ", value: firstConvert, units: "Ω"),
+                    new Result(name: "Rʙ", value: secondConvert, units: "Ω"),
+                    new Result(name: "Rᴄ", value: thirdConvert, units: "Ω"),
+                };
+            }
+
+            return ResultsBuilder.Build(results);
         }
     }
 }

@@ -115,5 +115,13 @@ namespace RFToolsv4.Helpers
             new Flex("mH", Math.Pow(10, -3)),
             new Flex("H", 1),
         };
+
+        public static List<Flex> Resistance { get; } = new()
+        {
+            new Flex("megohms (MΩ)", Math.Pow(10, 6)),
+            new Flex("kilohms (kΩ)", Math.Pow(10, 3)),
+            new Flex("ohms (Ω)", 1),
+            new Flex("milliohms (mΩ)", Math.Pow(10, -3)),
+        };
     }
 }
