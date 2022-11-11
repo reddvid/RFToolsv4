@@ -27,5 +27,7 @@ namespace RFToolsv4.Views
         {
             this.InitializeComponent();
         }
+
+       
     }
 }

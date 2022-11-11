@@ -19,10 +19,9 @@
             <StackPanel Spacing="12">
                 <components:ToolPageTitle HeaderText="Skin Depth" />
                 <ComboBox
-                    MinWidth="256"
                     DisplayMemberPath="Caption"
                     Header="Type of Material:"
-                    ItemsSource="{x:Bind ViewModel.Materials}"
+                    ItemsSource="{x:Bind ViewModel.Materials, Mode=OneWay}"
                     SelectedItem="{x:Bind ViewModel.SelectedMaterial, Mode=TwoWay}" />
                 <StackPanel Style="{StaticResource TwoElementStackStyle}">
                     <NumberBox

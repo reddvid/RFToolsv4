@@ -14,7 +14,7 @@ namespace RFToolsv4.ViewModels
     public class SkinDepthViewModel : ObservableObject
     {
         public List<Material> Materials;
-        public List<Frequency> LargeFrequency;
+        public List<Flex> LargeFrequency;
 
         public SkinDepthViewModel()
         {
@@ -26,8 +26,8 @@ namespace RFToolsv4.ViewModels
             CalculateCommand = new RelayCommand(Calculate);
         }
 
-        private Frequency _selectedFrequency;
-        public Frequency SelectedFrequency
+        private Flex _selectedFrequency;
+        public Flex SelectedFrequency
         {
             get => _selectedFrequency;
             set

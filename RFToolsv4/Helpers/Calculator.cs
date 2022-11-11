@@ -31,5 +31,18 @@ namespace RFToolsv4.Helpers
                 new Result(name: "Skin Depth", value: meter.Micrometers, units: "microns") 
             });
         }
+
+        public static string WavelengthFrequency(double input, string unknown)
+        {
+            // Wavelength formula
+            // w = c / f
+            double result = Constants.SPEED_OF_LIGHT / input;
+            string unit = unknown.Equals("Wavelength") ? "MHz" : "m";
+
+            return ResultsBuilder.Build(new()
+            {
+                new Result(name: unknown, value: result, units: unit),
+            });
+        }
     }
 }

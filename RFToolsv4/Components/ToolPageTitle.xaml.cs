@@ -27,7 +27,7 @@ namespace RFToolsv4.Components
 
 
         public static readonly DependencyProperty HeaderTextProperty =
-            DependencyProperty.Register(nameof(HeaderText), typeof(string), typeof(ScrollPanelTitle), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register(nameof(HeaderText), typeof(string), typeof(ToolPageTitle), new PropertyMetadata(string.Empty));
 
         public string HeaderText
         {

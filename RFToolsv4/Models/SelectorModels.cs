@@ -8,17 +8,6 @@ namespace RFToolsv4.Models
 {
     public class SelectorModels
     {
-        public class Distance
-        {
-            public double Multiplier { get; set; }
-            public string Caption { get; set; }
-            public Distance(string caption, double multiplier)
-            {
-                Caption = caption;
-                Multiplier = multiplier;
-            }
-        }
-
         public class Material
         {
             public string Caption { get; set; }
@@ -32,14 +21,31 @@ namespace RFToolsv4.Models
             }
         }
 
-        public class Frequency
+        public class Cable
         {
-            public double Multiplier { get; set; }
+            public string Manufacturer { get; set; }
+            public string Brand { get; set; }
+        }
+
+        public class Flex
+        {
             public string Caption { get; set; }
-            public Frequency(string caption, double multiplier)
+            public double Multiplier { get; set; }
+            public Flex(string caption, double multiplier)
             {
                 Caption = caption;
                 Multiplier = multiplier;
+            }
+        }
+
+        public class Preset
+        {
+            public string Caption { get; set; }
+            public double Value { get; set; }
+            public Preset(string caption, double value)
+            {
+                Caption = caption;
+                Value = value;
             }
         }
     }
