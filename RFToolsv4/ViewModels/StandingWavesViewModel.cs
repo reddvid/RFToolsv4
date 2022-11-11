@@ -53,19 +53,17 @@ namespace RFToolsv4.ViewModels
         }
 
 
-        private bool _canCalculate;
         public bool CanCalculate
         {
             get
             {
-                _canCalculate = SelectedInput switch
+               return SelectedInput switch
                 {
                     "VSWR" => InputValue > 1,
                     "Reflection Coefficient (Γ)" => InputValue > 0 && InputValue < 1,
                     "Return Loss" => InputValue > 0,
                     _ => false,
                 };
-                return _canCalculate;
             }
         }
 

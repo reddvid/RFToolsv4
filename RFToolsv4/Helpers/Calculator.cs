@@ -81,7 +81,7 @@ namespace RFToolsv4.Helpers
                     new Result(name: "Electronvolt", value: electronvolt, units: null),
                     new Result(name: "Kilocalorie", value: kilocalorie, units: null),
                 };
-            } 
+            }
             else
             {
                 double coulomb = input;
@@ -132,6 +132,40 @@ namespace RFToolsv4.Helpers
                 new Result(name: "Reflection Coefficient (Γ)", value: reflectionCoefficient, units: null),
                 new Result(name: "Return Loss", value: returnLoss, units: "dB"),
                 new Result(name: "Mismatch Loss", value: mismatchLoss, units: "dB"),
+            });
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="firstValue"></param>
+        /// <param name="secondValue"></param>
+        /// <param name="unknown"></param>
+        /// <returns></returns>
+        public static string Resonance(double firstValue, double secondValue, string unknown)
+        {
+            double outputValue;
+            string unit;
+
+            if (unknown.Contains("Resonant Frequency"))
+            {
+                outputValue = 1 / (2 * Math.PI * Math.Sqrt(firstValue * secondValue));
+                unit = "Hz";
+            }
+            else if (unknown.Contains("Capacitance"))
+            {
+                outputValue = 1 / (2 * Math.PI * firstValue * 2 * Math.PI * firstValue * secondValue);
+                unit = "F";
+            }
+            else
+            {
+                outputValue = 1 / (2 * Math.PI * firstValue * 2 * Math.PI * firstValue * secondValue);
+                unit = "H";
+            }
+
+            return ResultsBuilder.Build(new()
+            {
+                new Result(name: unknown, value: outputValue, units: unit),
             });
         }
     }

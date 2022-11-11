@@ -60,18 +60,11 @@ namespace RFToolsv4.ViewModels
 
         private void SetSelectedMultiplier()
         {
-            switch (HeaderText)
+            SelectedMultiplier = HeaderText switch
             {
-                default:
-                case "Power:":
-                case "Energy":
-                    SelectedMultiplier = ComboSelector[0];
-                    break;
-                case "Charge":
-                    SelectedMultiplier = ComboSelector[1];
-                    break;
-            }
-
+                "Charge" => ComboSelector[1],
+                _ => ComboSelector[0],
+            };
             OnPropertyChanged(nameof(SelectedMultiplier));
         }
 

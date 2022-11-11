@@ -97,5 +97,23 @@ namespace RFToolsv4.Helpers
             new Flex("Ampere-hour (Ah)", 0.000277778),
             new Flex("mAh", 0.277778),
         };
+
+        public static List<Flex> Capacitance { get; } = new()
+        {
+            new Flex("pF", Math.Pow(10, -12)),
+            new Flex("nF", Math.Pow(10, -9)),
+            new Flex("μF", Math.Pow(10, -6)),
+            new Flex("mF", Math.Pow(10, -3)),
+            new Flex("F", 1),
+        };
+
+        public static List<Flex> Inductance { get; } = new()
+        {
+            new Flex("pH", Math.Pow(10, -12)),
+            new Flex("nH", Math.Pow(10, -9)),
+            new Flex("μH", Math.Pow(10, -6)),
+            new Flex("mH", Math.Pow(10, -3)),
+            new Flex("H", 1),
+        };
     }
 }
