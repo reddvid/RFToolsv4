@@ -52,7 +52,7 @@ namespace RFToolsv4.Helpers
             // Charge = Coulomb, electron charge, Ah
             List<Result> results = new();
 
-            if (setting.Equals("Power:"))
+            if (setting.Contains("Power"))
             {
                 double milliWatts = input;
                 double dBm = 10 * Math.Log10(milliWatts);
@@ -63,6 +63,36 @@ namespace RFToolsv4.Helpers
                     new Result(name: "Watts", value: milliWatts, units: "W"),
                     new Result(name: "dBm", value: dBm, units: "dBm"),
                     new Result(name: "dBW", value: dBW, units: "dBW"),
+                };
+            }
+            else if (setting.Contains("Energy"))
+            {
+                double wattHour = input;
+                double btu = input / Selectors.Energy[2].Multiplier;
+                double kilojoule = input / Selectors.Energy[4].Multiplier;
+                double electronvolt = input / Selectors.Energy[5].Multiplier;
+                double kilocalorie = input / Selectors.Energy[6].Multiplier;
+
+                results = new()
+                {
+                    new Result(name: "Watt-hour", value: wattHour, units: "Wh"),
+                    new Result(name: "BTU", value: btu, units: null),
+                    new Result(name: "Kilojoule", value: kilojoule, units: null),
+                    new Result(name: "Electronvolt", value: electronvolt, units: null),
+                    new Result(name: "Kilocalorie", value: kilocalorie, units: null),
+                };
+            } 
+            else
+            {
+                double coulomb = input;
+                double electronCharge = input / Selectors.Charge[3].Multiplier;
+                double ampereHour = input / Selectors.Charge[4].Multiplier;
+
+                results = new()
+                {
+                    new Result(name: "Coulomb", value: coulomb, units: "C"),
+                    new Result(name: "Electron charge", value: electronCharge, units: null),
+                    new Result(name: "Ampere-hour", value: ampereHour, units: null),
                 };
             }
 

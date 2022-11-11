@@ -81,11 +81,11 @@ namespace RFToolsv4.Helpers
         {
             new Flex("kWh", Math.Pow(10, 3)),
             new Flex("Wh", 1),
-            new Flex("BTU", 1 / 0.293071),
-            new Flex("Joule", 1 / 0.000277778),
-            new Flex("kilojoule", 1 / 0.277778),
-            new Flex("electronvolt", 1 / 4.4505 * Math.Pow(10, -23)),
-            new Flex("kilocalorie", 1/ 1.16222),
+            new Flex("BTU", 0.293071),
+            new Flex("Joule", 0.000277778),
+            new Flex("kilojoule",0.277778),
+            new Flex("electronvolt", 4.4505 * Math.Pow(10, -23)),
+            new Flex("kilocalorie", 1.16222),
         };
 
         public static List<Flex> Charge { get; } = new()
@@ -93,9 +93,9 @@ namespace RFToolsv4.Helpers
             new Flex("Microcoulomb (μC)", Math.Pow(10, -6)),
             new Flex("Millicoulomb (mC)", Math.Pow(10, -3)),
             new Flex("Coulomb (C)", 1),
-            new Flex("Electron charge (Qₑ)", 1 / 6.2415 * Math.Pow(10, -18)),
-            new Flex("Ampere-hour (Ah)", 1 / 0.000277778),
-            new Flex("mAh", 1 / 0.277778),
+            new Flex("Electron charge (Qₑ)", 6.2415 * Math.Pow(10, -18)),
+            new Flex("Ampere-hour (Ah)", 0.000277778),
+            new Flex("mAh", 0.277778),
         };
     }
 }

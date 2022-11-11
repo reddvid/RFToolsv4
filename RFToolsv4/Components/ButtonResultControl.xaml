@@ -15,7 +15,7 @@
             IsEnabled="{Binding IsButtonEnabled, ElementName=root}"
             Style="{StaticResource CalculateButtonStyle}" />
         <StackPanel
-            Background="{StaticResource CardBackgroundBrush}"
+            Background="{ThemeResource AccentAcrylicBackgroundFillColorDefaultBrush}"
             CornerRadius="6"
             Style="{StaticResource ResultsCardStyle}">
             <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Results" />
