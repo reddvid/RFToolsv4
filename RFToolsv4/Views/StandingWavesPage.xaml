@@ -2,45 +2,53 @@
     x:Class="RFToolsv4.Views.StandingWavesPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:components="using:RFToolsv4.Components"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="using:RFToolsv4.Helpers"
     xmlns:local="using:RFToolsv4.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:RFToolsv4.ViewModels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
     <Grid>
-        <ScrollViewer>
-            <StackPanel Padding="20,20,20,0" Spacing="12">
-                <TextBlock Style="{StaticResource PageTitleTextStyle}" Text="Standing Waves" />
+        <Grid.Resources>
+            <vm:StandingWavesViewModel x:Name="ViewModel" />
+        </Grid.Resources>
+        <ScrollViewer Padding="20,20,20,0">
+            <StackPanel Spacing="12">
+                <components:ToolPageTitle HeaderText="Standing Waves" />
                 <StackPanel Style="{StaticResource TwoElementStackStyle}">
-                    <ComboBox Width="240" Header="Input:" />
-                    <NumberBox Width="180" Header=" " />
+                    <ComboBox
+                        Width="220"
+                        Header="Input:"
+                        ItemsSource="{x:Bind ViewModel.InputSelection, Mode=OneWay}"
+                        SelectedItem="{x:Bind ViewModel.SelectedInput, Mode=TwoWay}" />
+                    <NumberBox
+                        Width="180"
+                        Header=" "
+                        NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+                        Value="{x:Bind ViewModel.InputValue, Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel
                     Background="#171717"
                     CornerRadius="6"
                     Spacing="0"
                     Style="{StaticResource CardStyle}">
-                    <TextBlock FontWeight="SemiBold" Text="Notes:" />
-                    <Border Height="4" />
-                    <TextBlock FontSize="12" Text="For VSWR: Enter a value greater than 1 (VSWR &gt; 1) For Return Loss: Enter a value greater than 0 (RL &gt; 0)" />
-                    <TextBlock FontSize="12" Text="For Reflection Coefficient: Enter a value between 0 and 1 (0 &gt; Γ &lt; 1) " />
-                    <TextBlock FontSize="12" Text="For Return Loss: Enter a value greater than 0 (RL &gt; 0)" />
-                </StackPanel>
-                <Button Content="Calculate VSWR &amp; Return Loss" Style="{StaticResource CalculateButtonStyle}" />
-                <!--  RESULTS CARD  -->
-                <StackPanel
-                    Grid.Row="1"
-                    Background="{StaticResource CardBackgroundBrush}"
-                    CornerRadius="6"
-                    Style="{StaticResource ResultsCardStyle}">
-                    <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Results" />
                     <TextBlock
-                        IsTextSelectionEnabled="True"
-                        SelectionHighlightColor="{ThemeResource SystemControlHighlightAccentBrush}"
-                        Style="{StaticResource CardResultTextStyle}"
-                        Text="" />
+                        FontSize="12"
+                        FontWeight="SemiBold"
+                        Text="Notes:" />
+                    <Border Height="4" />
+                    <TextBlock FontSize="11" Text="For VSWR: Enter a value greater than 1 (VSWR &gt; 1)" />
+                    <TextBlock FontSize="11" Text="For Reflection Coefficient: Enter a value between 0 and 1 (0 &gt; Γ &lt; 1) " />
+                    <TextBlock FontSize="11" Text="For Return Loss: Enter a value greater than 0 (RL &gt; 0)" />
                 </StackPanel>
+                <components:ButtonResultControl
+                    ButtonContent="Calculate"
+                    CalculateCommand="{x:Bind ViewModel.CalculateCommand}"
+                    CardResults="{x:Bind ViewModel.Results, Mode=OneWay}"
+                    IsButtonEnabled="{x:Bind ViewModel.CanCalculate, Mode=OneWay}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

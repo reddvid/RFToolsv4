@@ -26,9 +26,9 @@ namespace RFToolsv4.Helpers
             double skinDepthInMeters = Math.Sqrt(resistivity / denominator);
             Length meter = Length.FromMeters(skinDepthInMeters);
 
-            return ResultsBuilder.Build(new() 
-            { 
-                new Result(name: "Skin Depth", value: meter.Micrometers, units: "microns") 
+            return ResultsBuilder.Build(new()
+            {
+                new Result(name: "Skin Depth", value: meter.Micrometers, units: "microns")
             });
         }
 
@@ -67,6 +67,42 @@ namespace RFToolsv4.Helpers
             }
 
             return ResultsBuilder.Build(results);
+        }
+
+        public static string StandingWave(double input, string known)
+        {
+            List<Result> results = new();
+            double vswr;
+            double reflectionCoefficient;
+            double returnLoss;
+            if (known.Contains("VSWR"))
+            {
+                vswr = input;
+                reflectionCoefficient = (vswr - 1) / (vswr + 1);
+                returnLoss = -20 * Math.Log10(reflectionCoefficient);
+            }
+            else if (known.Contains("Reflection Coefficient"))
+            {
+                reflectionCoefficient = input;
+                vswr = Math.Abs((reflectionCoefficient + 1) / (reflectionCoefficient - 1));
+                returnLoss = -20 * Math.Log10(reflectionCoefficient);
+            }
+            else
+            {
+                returnLoss = input;
+                reflectionCoefficient = Math.Pow(10, (returnLoss / -20));
+                vswr = Math.Abs((reflectionCoefficient + 1) / (reflectionCoefficient - 1));
+            }
+
+            double mismatchLoss = -10 * Math.Log10(1 - reflectionCoefficient * reflectionCoefficient);
+
+            return ResultsBuilder.Build(new()
+            {
+                new Result(name: "VSWR", value: vswr, units: null),
+                new Result(name: "Reflection Coefficient (Γ)", value: reflectionCoefficient, units: null),
+                new Result(name: "Return Loss", value: returnLoss, units: "dB"),
+                new Result(name: "Mismatch Loss", value: mismatchLoss, units: "dB"),
+            });
         }
     }
 }
