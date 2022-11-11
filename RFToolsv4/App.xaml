@@ -97,6 +97,11 @@ Free-space path loss assumes ideal atmospheric conditions so that no electromagn
                 <Setter Property="Orientation" Value="Horizontal" />
                 <Setter Property="Spacing" Value="12" />
             </Style>
+            <Style BasedOn="{StaticResource DefaultHyperlinkButtonStyle}" TargetType="HyperlinkButton">
+                <Setter Property="Padding" Value="0,4" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="FontSize" Value="11" />
+            </Style>
 
         </ResourceDictionary>
     </Application.Resources>

@@ -116,12 +116,8 @@
                     </StackPanel>
                     <!--  MISC CARD  -->
                     <StackPanel Style="{StaticResource CardStyle}">
-                        <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Noteworthy" />
-                        <TextBlock
-                            IsTextSelectionEnabled="True"
-                            Style="{StaticResource CardBodyTextStyle}"
-                            Text="{StaticResource PathLossString}"
-                            TextWrapping="WrapWholeWords" />
+                        <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Useful Links" />
+                        <HyperlinkButton Content="Microsoft home page" NavigateUri="http://www.microsoft.com" />
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
