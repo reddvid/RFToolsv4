@@ -68,5 +68,34 @@ namespace RFToolsv4.Helpers
             new Preset("sound in copper", 4_600),
             new Preset("sound in aluminum", 6_320),
         };
+
+        public static List<Flex> Power { get; } = new()
+        {
+            new Flex("mW", 1),
+            new Flex("W", Math.Pow(10, 3)),
+            new Flex("dBm",  1.2589),
+            new Flex("dBW", 1_258.9254)
+        };
+
+        public static List<Flex> Energy { get; } = new()
+        {
+            new Flex("kWh", Math.Pow(10, 3)),
+            new Flex("Wh", 1),
+            new Flex("BTU", 1 / 0.293071),
+            new Flex("Joule", 1 / 0.000277778),
+            new Flex("kilojoule", 1 / 0.277778),
+            new Flex("electronvolt", 1 / 4.4505 * Math.Pow(10, -23)),
+            new Flex("kilocalorie", 1/ 1.16222),
+        };
+
+        public static List<Flex> Charge { get; } = new()
+        {
+            new Flex("Microcoulomb (μC)", Math.Pow(10, -6)),
+            new Flex("Millicoulomb (mC)", Math.Pow(10, -3)),
+            new Flex("Coulomb (C)", 1),
+            new Flex("Electron charge (Qₑ)", 1 / 6.2415 * Math.Pow(10, -18)),
+            new Flex("Ampere-hour (Ah)", 1 / 0.000277778),
+            new Flex("mAh", 1 / 0.277778),
+        };
     }
 }

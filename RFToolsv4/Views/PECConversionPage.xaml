@@ -2,43 +2,39 @@
     x:Class="RFToolsv4.Views.PECConversionPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:components="using:RFToolsv4.Components"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:RFToolsv4.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:RFToolsv4.ViewModels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
     <Grid>
-        <ScrollViewer>
-            <StackPanel Padding="20,20,20,0" Spacing="12">
+        <Grid.Resources>
+            <vm:PECViewModel x:Name="ViewModel" />
+        </Grid.Resources>
+        <ScrollViewer Padding="20,20,20,0">
+            <StackPanel Spacing="12">
                 <TextBlock Style="{StaticResource PageTitleTextStyle}" Text="Power, Energy, &amp; Charge Converter" />
                 <RadioButtons
                     x:Name="ConvertRadioButtons"
                     Header="Select conversion:"
                     HeaderTemplate="{StaticResource ControlHeaderTemplate}"
-                    MaxColumns="3">
-                    <x:String>Power</x:String>
-                    <x:String>Energy</x:String>
-                    <x:String>Charge</x:String>
-                </RadioButtons>
-                <StackPanel Style="{StaticResource TwoElementStackStyle}">
-                    <NumberBox Header="Enter Power:" />
-                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
-                </StackPanel>
-                <Button Content="Convert" Style="{StaticResource CalculateButtonStyle}" />
-                <!--  RESULTS CARD  -->
-                <StackPanel
-                    Grid.Row="1"
-                    Background="{StaticResource CardBackgroundBrush}"
-                    CornerRadius="6"
-                    Style="{StaticResource ResultsCardStyle}">
-                    <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Results" />
-                    <TextBlock
-                        IsTextSelectionEnabled="True"
-                        SelectionHighlightColor="{ThemeResource SystemControlHighlightAccentBrush}"
-                        Style="{StaticResource CardResultTextStyle}"
-                        Text="" />
-                </StackPanel>
+                    ItemsSource="{x:Bind ViewModel.ConversionInput}"
+                    MaxColumns="3"
+                    SelectedItem="{x:Bind ViewModel.SelectedInput, Mode=TwoWay}" />
+                <components:NumberBoxUnit
+                    ComboBoxItemsSource="{x:Bind ViewModel.ComboSelector, Mode=OneWay}"
+                    ComboBoxSelectedItem="{x:Bind ViewModel.SelectedMultiplier, Mode=TwoWay}"
+                    ComboBoxWidth="180"
+                    HeaderText="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
+                    NumberBoxValue="{x:Bind ViewModel.InputValue, Mode=TwoWay}" />
+                <components:ButtonResultControl
+                    ButtonContent="Convert"
+                    CalculateCommand="{x:Bind ViewModel.CalculateCommand}"
+                    CardResults="{x:Bind ViewModel.Results, Mode=OneWay}"
+                    IsButtonEnabled="{x:Bind ViewModel.CanCalculate, Mode=OneWay}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

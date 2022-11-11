@@ -44,5 +44,29 @@ namespace RFToolsv4.Helpers
                 new Result(name: unknown, value: result, units: unit),
             });
         }
+
+        public static string ConvertPEC(double input, string setting)
+        {
+            // Power = Watts, dBm, dBW
+            // Energy = Wh, BTU, kilojouls, electronvolt, kilocalorie
+            // Charge = Coulomb, electron charge, Ah
+            List<Result> results = new();
+
+            if (setting.Equals("Power:"))
+            {
+                double milliWatts = input;
+                double dBm = 10 * Math.Log10(milliWatts);
+                double dBW = 10 * Math.Log10(milliWatts / 1000);
+
+                results = new()
+                {
+                    new Result(name: "Watts", value: milliWatts, units: "W"),
+                    new Result(name: "dBm", value: dBm, units: "dBm"),
+                    new Result(name: "dBW", value: dBW, units: "dBW"),
+                };
+            }
+
+            return ResultsBuilder.Build(results);
+        }
     }
 }
