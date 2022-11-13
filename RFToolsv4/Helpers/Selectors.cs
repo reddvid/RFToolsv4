@@ -133,5 +133,15 @@ namespace RFToolsv4.Helpers
             new Flex("W",  default),
             new Flex("kW", default),
         };
+
+        public static List<Preset> DielectricConstants { get; } = new()
+        {
+            new Preset("Vacuum", 1),            
+            new Preset("Air", 1.00054),
+            new Preset("Gypsum", 2.5),
+            new Preset("Silica", 3.0),
+            new Preset("Paper", 3.5),
+            new Preset("Concrete", 4.5),
+        };
     }
 }

@@ -55,6 +55,8 @@ namespace RFToolsv4
         {
             string savedNavigation = GetLastMenuItem();
 
+            if (string.IsNullOrWhiteSpace(savedNavigation)) navigationView.SelectedItem = "Free-Space Path Loss";
+
             foreach (var menuItem in ViewModel.MenuItems)
             {
                 if (savedNavigation == menuItem.Title)
