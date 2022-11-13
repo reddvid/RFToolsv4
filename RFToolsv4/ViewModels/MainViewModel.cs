@@ -33,5 +33,17 @@ namespace RFToolsv4.ViewModels
            new MenuItem("Power, Energy, & Charge Conversion", typeof(PECConversionPage)),
         };
 
+
+        private bool _isSettingsPage;
+
+        public bool IsSettingsPage
+        {
+            get => _isSettingsPage;
+            set
+            {
+                SetProperty(ref _isSettingsPage, !value);
+            }
+        }
+
     }
 }

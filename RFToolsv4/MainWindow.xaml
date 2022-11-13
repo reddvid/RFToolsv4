@@ -57,7 +57,8 @@
                         Padding="0"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
-                        ToolTipService.ToolTip="Open new tool window">
+                        ToolTipService.ToolTip="Open new tool window"
+                        Visibility="{x:Bind ViewModel.IsSettingsPage, Mode=OneWay}">
                         <Button.Content>
                             <Viewbox Height="14">
                                 <SymbolIcon Symbol="NewWindow" />

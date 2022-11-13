@@ -24,6 +24,12 @@
                 <Setter Property="Background" Value="#202020" />
                 <Setter Property="CornerRadius" Value="6" />
             </Style>
+            <Style x:Key="DarkerCardStyle" TargetType="StackPanel">
+                <Setter Property="Spacing" Value="4" />
+                <Setter Property="Padding" Value="12" />
+                <Setter Property="Background" Value="#151515" />
+                <Setter Property="CornerRadius" Value="6" />
+            </Style>
             <Style x:Key="ResultsCardStyle" TargetType="StackPanel">
                 <Setter Property="Spacing" Value="4" />
                 <Setter Property="Padding" Value="12,12,12,16" />
@@ -39,6 +45,14 @@
             <Style x:Key="CardTitleTextStyle" TargetType="TextBlock">
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="FontSize" Value="18" />
+            </Style>
+            <Style x:Key="SettingsTitleTextStyle" TargetType="TextBlock">
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+            <Style x:Key="SettingsBodyTextStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="Foreground" Value="{StaticResource TextFillColorSecondary}" />
             </Style>
             <Style x:Key="CardBodyTextStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="12" />

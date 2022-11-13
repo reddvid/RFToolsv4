@@ -204,9 +204,12 @@ namespace RFToolsv4
             if (args.IsSettingsSelected)
             {
                 // Navigate Frame to Settings Page
+                ViewModel.IsSettingsPage = true;
+                mainFrame.Navigate(typeof(SettingsPage));
             }
             else
             {
+                ViewModel.IsSettingsPage = false;
                 string item = (nav.SelectedItem as MenuItem).Title;
                 NavigateFrame(item);
                 SaveMenuItem(item);
