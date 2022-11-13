@@ -14,8 +14,8 @@ namespace RFToolsv4.Helpers
         {
             new Flex("m", 1),
             new Flex("km", Math.Pow(10, 3)),
-            new Flex("mi",  0.000621371),
-            new Flex("ft", 3.28084)
+            new Flex("mi",  1_609.34),
+            new Flex("ft", 0.3048)
         };
 
         public static List<Flex> LargeFrequency { get; } = new()

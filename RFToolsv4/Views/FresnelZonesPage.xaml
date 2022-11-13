@@ -2,48 +2,52 @@
     x:Class="RFToolsv4.Views.FresnelZonesPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:components="using:RFToolsv4.Components"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="using:RFToolsv4.Helpers"
     xmlns:local="using:RFToolsv4.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:RFToolsv4.ViewModels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
     <Grid>
-        <ScrollViewer>
-            <StackPanel Padding="20,20,20,0" Spacing="12">
-                <TextBlock Style="{StaticResource PageTitleTextStyle}" Text="Fresnel Zone" />
-                <StackPanel Style="{StaticResource TwoElementStackStyle}">
-                    <NumberBox Header="Link Distance:" />
-                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
+        <Grid.Resources>
+            <vm:FresnelZonesViewModel x:Name="ViewModel" />
+        </Grid.Resources>
+        <ScrollViewer Padding="20,20,20,0">
+            <StackPanel Spacing="12">
+                <components:ToolPageTitle HeaderText="Fresnel Zone" />
+                <components:NumberBoxUnit
+                    ComboBoxItemsSource="{x:Bind ViewModel.Distance}"
+                    ComboBoxSelectedItem="{x:Bind ViewModel.DistanceMultiplier, Mode=TwoWay}"
+                    HeaderText="Link Distance:"
+                    NumberBoxValue="{x:Bind ViewModel.DistanceValue, Mode=TwoWay}" />
+                <components:NumberBoxUnit
+                    ComboBoxItemsSource="{x:Bind ViewModel.Frequency}"
+                    ComboBoxSelectedItem="{x:Bind ViewModel.FrequencyMultiplier, Mode=TwoWay}"
+                    HeaderText="System Frequency::"
+                    NumberBoxValue="{x:Bind ViewModel.FrequencyValue, Mode=TwoWay}" />
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <ToggleSwitch
+                        Width="180"
+                        Header="Is the system obstructed?"
+                        HeaderTemplate="{StaticResource ControlHeaderTemplate}"
+                        IsOn="{x:Bind ViewModel.IsObstructed, Mode=TwoWay}"
+                        OffContent="No"
+                        OnContent="Yes" />
+                    <components:NumberBoxUnit
+                        ComboBoxItemsSource="{x:Bind ViewModel.Distance}"
+                        ComboBoxSelectedItem="{x:Bind ViewModel.DistanceMultiplier, Mode=TwoWay}"
+                        HeaderText="Height of Obstruction:"
+                        NumberBoxValue="{x:Bind ViewModel.ObstructionValue, Mode=TwoWay}"
+                        Visibility="{x:Bind ViewModel.IsObstructed, Mode=OneWay}" />
                 </StackPanel>
-                <StackPanel Style="{StaticResource TwoElementStackStyle}">
-                    <NumberBox Header="System Frequency:" />
-                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
-                </StackPanel>
-                <NumberBox Header="Transmission Losses (dB):" />
-                <ToggleSwitch Header="Is the system obstructed?" HeaderTemplate="{StaticResource ControlHeaderTemplate}" />
-                <StackPanel Style="{StaticResource TwoElementStackStyle}">
-                    <NumberBox Header="Height of Antennas:" />
-                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
-                </StackPanel>
-                <StackPanel Style="{StaticResource TwoElementStackStyle}">
-                    <NumberBox Header="Obstruction Height:" />
-                    <ComboBox Style="{StaticResource UnheaderedComboBoxStyle}" />
-                </StackPanel>
-                <Button Content="Calculate Fresnel Zone Radius" Style="{StaticResource CalculateButtonStyle}" />
-                <!--  RESULTS CARD  -->
-                <StackPanel
-                    Grid.Row="1"
-                    Background="{StaticResource CardBackgroundBrush}"
-                    CornerRadius="6"
-                    Style="{StaticResource ResultsCardStyle}">
-                    <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Results" />
-                    <TextBlock
-                        IsTextSelectionEnabled="True"
-                        SelectionHighlightColor="{ThemeResource SystemControlHighlightAccentBrush}"
-                        Style="{StaticResource CardResultTextStyle}"
-                        Text="" />
-                </StackPanel>
+                <components:ButtonResultControl
+                    ButtonContent="Calculate"
+                    CalculateCommand="{x:Bind ViewModel.CalculateCommand}"
+                    CardResults="{x:Bind ViewModel.Results, Mode=OneWay}"
+                    IsButtonEnabled="{x:Bind ViewModel.CanCalculate, Mode=OneWay}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

@@ -1,5 +1,7 @@
-﻿using RFToolsv4.Models;
+﻿using PInvoke;
+using RFToolsv4.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnitsNet;
 using UnitsNet.Units;
+using Constants = RFToolsv4.Models.Constants;
 
 namespace RFToolsv4.Helpers
 {
@@ -265,5 +268,41 @@ namespace RFToolsv4.Helpers
                 new Result(name: "Space between Conductors", value: space, units: null),
             });
         }
+
+        public static string FresnelZone(double distance, double frequency, double obstruction = 0)
+        {
+            // Distance input is in meters
+            // Frequency input is in Hertz
+            List<Result> results = new();
+
+            double distanceInKm = distance / 1_000;
+            double frequencyInGHertz = frequency / 1_000_000_000;
+            double obstructionInKm = obstruction / 1_000;
+
+            double earthCurvature = (Math.Pow(distanceInKm, 2) / (8 * 6_378)) * 1_000;
+            double sixtyPercentClearance = 8.657 * Math.Sqrt(0.6 * distanceInKm / frequencyInGHertz);
+            double fresnelZone = 17.31 * Math.Sqrt(distanceInKm / (4 * frequencyInGHertz));
+
+            if (obstruction == 0) // Calculate Fresnel zone radius, 60% clearance, earth curv height
+            {
+                results = new()
+                {
+                    new Result(name: $"Fresnel Zone Max Radius @ { distanceInKm / 2 } km", value: fresnelZone, units: "m"),                    
+                    new Result(name: "60% Clearance Radius", value: sixtyPercentClearance, units: "m"),
+                    new Result(name: "Earth Curvature Height", value: earthCurvature, units: "m"),
+                };
+            }
+            else
+            {
+                results = new()
+                {
+                    new Result(name: $"Fresnel Zone Radius @ { obstructionInKm } km", value: fresnelZone, units: "km"),                    
+                    new Result(name: "Earth Curvature Height", value: earthCurvature, units: "m"),
+                };
+            }
+
+            return ResultsBuilder.Build(results);
+        }
+
     }
 }
