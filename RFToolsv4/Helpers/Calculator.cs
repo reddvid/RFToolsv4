@@ -194,7 +194,7 @@ namespace RFToolsv4.Helpers
             {
                 double denominator = (first * second) + (second * third) + (third * first);
                 firstConvert = denominator / first;
-                secondConvert =denominator / second;
+                secondConvert = denominator / second;
                 thirdConvert = denominator / third;
 
                 results = new()
@@ -247,6 +247,22 @@ namespace RFToolsv4.Helpers
                 new Result(name: "Transmitted Power", value: txPower, units: "dBm"),
                 new Result(name: "Received Power", value: receivedPower, units: "dBm"),
                 new Result(name: "Path Loss", value: pathLoss, units: "dB"),
+            });
+        }
+
+        public static string TwoWireLine(double impedance, double diameter, double dielectric)
+        {
+            double distance;
+            double space;
+
+            // distance = Math.Pow(Math.E, Math.Log(diameter) + ((Math.Sqrt(dielectric) * impedance) / 120)) / 2;
+            distance = diameter * Math.Cosh(Math.PI * (impedance / 376.73) * Math.Sqrt(dielectric));
+            space = distance - diameter;
+
+            return ResultsBuilder.Build(new()
+            {
+                new Result(name: "Center-to-center Distance", value: distance, units: null),
+                new Result(name: "Space between Conductors", value: space, units: null),
             });
         }
     }

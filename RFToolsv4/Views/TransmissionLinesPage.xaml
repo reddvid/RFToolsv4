@@ -18,36 +18,25 @@
         <ScrollViewer Padding="20,20,20,0">
             <StackPanel Spacing="12">
                 <components:ToolPageTitle HeaderText="Two-Wire Transmission Line" />
-                <ComboBox Header="Medium (Dielectric Constant):" />
-
-                <NumberBox Width="260" Header="Center-to-center Distance (mm):" />
-                <StackPanel Style="{StaticResource TwoElementStackStyle}">
-                    <ComboBox
-                        Width="220"
-                        Header="Dielectric Constant of Medium:"
-                        ItemsSource="{x:Bind ViewModel.DielectricConstants, Mode=OneWay}"
-                        SelectedItem="{x:Bind ViewModel.SelectedPreset, Mode=TwoWay}" />
-                    <TextBox
-                        Width="120"
-                        Header="Wave velocity (m/s):"
-                        IsReadOnly="True"
-                        Text="{x:Bind ViewModel.PresetValueText, Mode=OneWay}" />
-                </StackPanel>
-                <NumberBox Width="260" Header="Conductor Diameter (mm):" />
-                <Button Content="Calculate Impedance" Style="{StaticResource CalculateButtonStyle}" />
-                <!--  RESULTS CARD  -->
-                <StackPanel
-                    Grid.Row="1"
-                    Background="{StaticResource CardBackgroundBrush}"
-                    CornerRadius="6"
-                    Style="{StaticResource ResultsCardStyle}">
-                    <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Results" />
-                    <TextBlock
-                        IsTextSelectionEnabled="True"
-                        SelectionHighlightColor="{ThemeResource SystemControlHighlightAccentBrush}"
-                        Style="{StaticResource CardResultTextStyle}"
-                        Text="" />
-                </StackPanel>
+                <NumberBox
+                    Header="Desired Characteristic Impedance (Ω):"
+                    NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+                    Value="{x:Bind ViewModel.ImpedanceValue, Mode=TwoWay}" />
+                <ComboBox
+                    Width="240"
+                    DisplayMemberPath="Caption"
+                    Header="Dielectric Constant of Medium:"
+                    ItemsSource="{x:Bind ViewModel.DielectricConstants, Mode=OneWay}"
+                    SelectedItem="{x:Bind ViewModel.SelectedPreset, Mode=TwoWay}" />
+                <NumberBox
+                    Header="Conductor Diameter:"
+                    NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+                    Value="{x:Bind ViewModel.DiameterValue, Mode=TwoWay}" />
+                <components:ButtonResultControl
+                    ButtonContent="Calculate Cable Distance"
+                    CalculateCommand="{x:Bind ViewModel.CalculateCommand}"
+                    CardResults="{x:Bind ViewModel.Results, Mode=OneWay}"
+                    IsButtonEnabled="{x:Bind ViewModel.CanCalculate, Mode=OneWay}" />
             </StackPanel>
         </ScrollViewer>
     </Grid>
