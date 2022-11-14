@@ -10,7 +10,7 @@
     mc:Ignorable="d">
 
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource PageBackgroundColor}">
         <Grid.DataContext>
             <vm:MainViewModel x:Name="ViewModel" />
         </Grid.DataContext>
@@ -26,7 +26,7 @@
         <Grid
             x:Name="appTitleBar"
             Grid.ColumnSpan="3"
-            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            Background="{ThemeResource PageBackgroundColor}">
             <TextBlock
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
@@ -36,7 +36,7 @@
             x:Name="navigationView"
             Grid.Row="1"
             Grid.ColumnSpan="2"
-            Background="{ThemeResource SystemBaseLowColor}"
+            Background="{ThemeResource NavPaneColor}"
             IsBackButtonVisible="Collapsed"
             IsBackEnabled="False"
             IsPaneOpen="True"
@@ -47,11 +47,10 @@
             OpenPaneLength="280"
             PaneDisplayMode="Left"
             SelectionChanged="MenuListView_SelectionChanged">
-
             <NavigationView.Content>
-                <Grid>
-                    <Frame x:Name="mainFrame" CornerRadius="6,6,0,0">
-                        <StackPanel HorizontalAlignment="Center">
+                <Grid Background="{ThemeResource PageBackgroundColor}" CornerRadius="6,0,0,0">
+                    <Frame x:Name="mainFrame" Background="{ThemeResource PageBackgroundColor}">
+                        <StackPanel HorizontalAlignment="Center" Background="{ThemeResource PageBackgroundColor}">
                             <TextBlock
                                 FontSize="16"
                                 FontWeight="Bold"
@@ -67,6 +66,7 @@
                         Padding="0"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
+                        Style="{ThemeResource EllipsisButton}"
                         ToolTipService.ToolTip="Open new tool window"
                         Visibility="{x:Bind ViewModel.IsSettingsPage, Mode=OneWay}">
                         <Button.Content>
@@ -82,7 +82,7 @@
             x:Name="infoGrid"
             Grid.Row="1"
             Grid.Column="2"
-            Background="{ThemeResource SystemBaseLowColor}">
+            Background="{ThemeResource NavPaneColor}">
             <ScrollViewer Padding="16,0">
                 <StackPanel Padding="0,0,0,40" Spacing="16">
                     <!--<StackPanel

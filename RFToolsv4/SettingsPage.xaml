@@ -11,7 +11,7 @@
     xmlns:local="using:RFToolsv4"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:RFToolsv4.ViewModels"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Background="{ThemeResource PageBackgroundColor}"
     mc:Ignorable="d">
 
     <Grid>
@@ -20,7 +20,7 @@
                 <components:ToolPageTitle HeaderText="Settings &amp; About" />
                 <Grid
                     Padding="12"
-                    Background="{ThemeResource SystemAltHighColor}"
+                    Background="{ThemeResource InfoCardColor}"
                     CornerRadius="6">
                     <TextBlock
                         HorizontalAlignment="Left"
@@ -40,7 +40,7 @@
                 </Grid>
                 <Grid
                     Padding="12"
-                    Background="{ThemeResource SystemAltHighColor}"
+                    Background="{ThemeResource InfoCardColor}"
                     CornerRadius="6">
                     <TextBlock Style="{StaticResource SettingsTitleTextStyle}" Text="Keyboard Shortcuts" />
                     <StackPanel
@@ -113,7 +113,7 @@
                 </Grid>
                 <Grid
                     Padding="12"
-                    Background="{ThemeResource SystemAltHighColor}"
+                    Background="{ThemeResource InfoCardColor}"
                     CornerRadius="6">
                     <TextBlock
                         HorizontalAlignment="Left"
@@ -127,7 +127,7 @@
                 </Grid>
                 <Grid
                     Padding="12"
-                    Background="{ThemeResource SystemAltHighColor}"
+                    Background="{ThemeResource InfoCardColor}"
                     CornerRadius="6">
                     <TextBlock Style="{StaticResource SettingsTitleTextStyle}" Text="Version" />
                     <TextBlock
@@ -155,7 +155,7 @@
                 <Grid
                     Margin="0,0,0,60"
                     Padding="12"
-                    Background="{ThemeResource SystemAltHighColor}"
+                    Background="{ThemeResource InfoCardColor}"
                     CornerRadius="6">
                     <TextBlock Style="{StaticResource SettingsTitleTextStyle}" Text="Changelog" />
                     <controls:MarkdownTextBlock
