@@ -22,6 +22,10 @@ using System.Reflection;
 using RFToolsv4.Views;
 using Windows.Storage;
 using RFToolsv4.Models;
+using CommunityToolkit.WinUI.UI.Controls;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.System;
+using MenuItem = RFToolsv4.Models.MenuItem;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -43,6 +47,7 @@ namespace RFToolsv4
 
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(appTitleBar);
+            SubClassing();
         }
 
         private void MenuListView_Loaded(object sender, RoutedEventArgs e)
@@ -205,6 +210,8 @@ namespace RFToolsv4
                 // Navigate Frame to Settings Page
                 ViewModel.IsSettingsPage = true;
                 mainFrame.Navigate(typeof(SettingsPage));
+                InfoCards.Visibility = Visibility.Collapsed;
+                AboutCards.Visibility = Visibility.Visible;
             }
             else
             {
@@ -212,6 +219,8 @@ namespace RFToolsv4
                 string item = (nav.SelectedItem as MenuItem).Title;
                 NavigateFrame(item);
                 SaveMenuItem(item);
+                InfoCards.Visibility = Visibility.Visible;
+                AboutCards.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -233,6 +242,40 @@ namespace RFToolsv4
                     break;
                 }
             }
+        }
+
+        private async void MoreAppsButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("ms-windows-store://publisher/?name=Red David"));
+        }
+
+        private void ShareApp_Click(object sender, RoutedEventArgs e)
+        {
+            DataTransferManager.ShowShareUI();
+        }
+
+        private async void RateApp_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("ms-windows-store:REVIEW?PFN=32760RedDavid.RFTools_7nbw6tjv9ct6w"));
+        }
+
+        private async void RequestFeature_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("https://github.com/reddvid/RFToolsv4/issues/new?labels=enhancement"));
+        }
+
+        private async void SendFeedback_Click(object sender, RoutedEventArgs e)
+        {
+            await Launcher.LaunchUriAsync(new Uri("https://github.com/reddvid/RFToolsv4/issues/new?labels=bug"));
+        }
+
+        private async void ChangelogMD_Loaded(object sender, RoutedEventArgs e)
+        {
+            var markdown = (sender as MarkdownTextBlock);
+            var directory = AppDomain.CurrentDomain.BaseDirectory;
+            var file = @"CHANGELOG.md";
+            var path = Path.Combine(directory, file);
+            markdown.Text = await File.ReadAllTextAsync(path);
         }
     }
 

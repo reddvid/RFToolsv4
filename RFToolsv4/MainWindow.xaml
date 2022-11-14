@@ -2,6 +2,7 @@
     x:Class="RFToolsv4.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="using:RFToolsv4.Helpers"
     xmlns:local="using:RFToolsv4"
@@ -85,6 +86,9 @@
             Background="{ThemeResource NavPaneColor}">
             <ScrollViewer Padding="16,0">
                 <StackPanel Padding="0,0,0,40" Spacing="16">
+                    <StackPanel.ChildrenTransitions>
+                        <RepositionThemeTransition />
+                    </StackPanel.ChildrenTransitions>
                     <!--<StackPanel
                         Spacing="12"
                         Style="{StaticResource CardStyle}"
@@ -116,19 +120,74 @@
                             </Button.Content>
                         </Button>
                     </StackPanel>-->
-                    <!--  INFO CARD  -->
-                    <StackPanel Style="{StaticResource CardStyle}">
-                        <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Information" />
-                        <TextBlock
-                            IsTextSelectionEnabled="True"
-                            Style="{StaticResource CardBodyTextStyle}"
-                            Text="{StaticResource PathLossString}"
-                            TextWrapping="WrapWholeWords" />
+                    <StackPanel x:Name="InfoCards" Spacing="16">
+                        <!--  INFO CARD  -->
+                        <StackPanel Style="{StaticResource CardStyle}">
+                            <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Information" />
+                            <TextBlock
+                                IsTextSelectionEnabled="True"
+                                Style="{StaticResource CardBodyTextStyle}"
+                                Text="{StaticResource PathLossString}"
+                                TextWrapping="WrapWholeWords" />
+                        </StackPanel>
+                        <!--  MISC CARD  -->
+                        <StackPanel Style="{StaticResource CardStyle}">
+                            <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Useful Links" />
+                            <HyperlinkButton Content="Microsoft home page" NavigateUri="http://www.microsoft.com" />
+                        </StackPanel>
                     </StackPanel>
-                    <!--  MISC CARD  -->
-                    <StackPanel Style="{StaticResource CardStyle}">
-                        <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Useful Links" />
-                        <HyperlinkButton Content="Microsoft home page" NavigateUri="http://www.microsoft.com" />
+
+                    <StackPanel x:Name="AboutCards" Spacing="16">
+                        <Grid
+                            Padding="12"
+                            Background="{ThemeResource InfoCardColor}"
+                            CornerRadius="6">
+                            <TextBlock Style="{StaticResource SettingsTitleTextStyle}" Text="Version" />
+                            <TextBlock
+                                Margin="0,0,0,60"
+                                HorizontalAlignment="Right"
+                                IsTextSelectionEnabled="True"
+                                Style="{StaticResource SettingsBodyTextStyle}"
+                                Text="4.0.1"
+                                TextWrapping="WrapWholeWords" />
+                            <StackPanel
+                                Margin="0,0,0,30"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Orientation="Horizontal"
+                                Spacing="20">
+                                <HyperlinkButton
+                                    Click="MoreAppsButton_Click"
+                                    ClickMode="Press"
+                                    Content="More apps" />
+                                <HyperlinkButton Click="SendFeedback_Click" Content="Report a bug" />
+                                <!--<HyperlinkButton Click="ShareApp_Click" Content="Share app" />-->
+                            </StackPanel>
+                            <StackPanel
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Orientation="Horizontal"
+                                Spacing="20">
+                                <HyperlinkButton Click="RequestFeature_Click" Content="Request a feature" />
+                                <HyperlinkButton Click="RateApp_Click" Content="Rate &amp; review" />
+                            </StackPanel>
+                        </Grid>
+                        <Grid
+                            Margin="0,0,0,60"
+                            Padding="12"
+                            Background="{ThemeResource InfoCardColor}"
+                            CornerRadius="6">
+                            <TextBlock Style="{StaticResource SettingsTitleTextStyle}" Text="Changelog" />
+                            <controls:MarkdownTextBlock
+                                Margin="0,40,0,0"
+                                Background="Transparent"
+                                FontSize="12"
+                                Header4FontSize="12"
+                                Header4FontWeight="SemiBold"
+                                IsHitTestVisible="False"
+                                ListGutterWidth="15"
+                                Loaded="ChangelogMD_Loaded" />
+                        </Grid>
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
