@@ -8,6 +8,156 @@
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
             </ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark">
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary>
+                            <Color x:Key="SystemAccentColor">#FF0073CF</Color>
+                            <Color x:Key="NavPaneColor">#FF383838</Color>
+                            <Color x:Key="SystemAltHighColor">#FF000000</Color>
+                            <Color x:Key="SystemAltLowColor">#FF000000</Color>
+                            <Color x:Key="SystemAltMediumColor">#FF000000</Color>
+                            <Color x:Key="SystemAltMediumHighColor">#FF000000</Color>
+                            <Color x:Key="SystemAltMediumLowColor">#FF000000</Color>
+                            <Color x:Key="SystemBaseHighColor">#FFFFFFFF</Color>
+                            <Color x:Key="SystemBaseLowColor">#33333333</Color>
+                            <Color x:Key="SystemBaseMediumColor">#19FFFFFF</Color>
+                            <Color x:Key="SystemBaseMediumHighColor">#FF2B2B2B</Color>
+                            <Color x:Key="SystemBaseMediumLowColor">#FF676767</Color>
+                            <Color x:Key="SystemChromeAltLowColor">#FF2B2B2B</Color>
+                            <Color x:Key="SystemChromeBlackHighColor">#FF000000</Color>
+                            <Color x:Key="SystemChromeBlackLowColor">#FF2B2B2B</Color>
+                            <Color x:Key="SystemChromeBlackMediumColor">#FF000000</Color>
+                            <Color x:Key="SystemChromeBlackMediumLowColor">#FF000000</Color>
+                            <Color x:Key="SystemChromeDisabledHighColor">#FF333333</Color>
+                            <Color x:Key="SystemChromeDisabledLowColor">#19FFFFFF</Color>
+                            <Color x:Key="SystemChromeGrayColor">#FF808080</Color>
+                            <Color x:Key="SystemChromeHighColor">#FF808080</Color>
+                            <Color x:Key="SystemChromeLowColor">#66FFFFFF</Color>
+                            <Color x:Key="SystemChromeMediumColor">#FF1D1D1D</Color>
+                            <Color x:Key="SystemChromeMediumLowColor">#FF2C2C2C</Color>
+                            <Color x:Key="SystemChromeWhiteColor">#FFFFFFFF</Color>
+                            <Color x:Key="SystemListLowColor">#191D1D1D</Color>
+                            <Color x:Key="SystemListMediumColor">#FF333333</Color>
+                            <Color x:Key="SystemChromeAltMediumHighColor">#CC000000</Color>
+                            <Color x:Key="SystemChromeAltHighColor">#FF333333</Color>
+                            <Color x:Key="SystemRevealListLowColor">#FF1D1D1D</Color>
+                            <Color x:Key="SystemRevealListMediumColor">#FF333333</Color>
+                            <Color x:Key="SystemListAccentLowColor">#990073CF</Color>
+                            <Color x:Key="SystemListAccentMediumColor">#CC0073CF</Color>
+                            <Color x:Key="SystemListAccentHighColor">#E60073CF</Color>
+                            <!--  Override system shape defaults  -->
+                            <CornerRadius x:Key="ControlCornerRadius">2,2,2,2</CornerRadius>
+                            <CornerRadius x:Key="OverlayCornerRadius">4,4,4,4</CornerRadius>
+                            <!--  Override system borders  -->
+                            <Thickness x:Key="MenuBarItemBorderThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="GridViewItemMultiselectBorderThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="CheckBoxBorderThemeThickness">1</Thickness>
+                            <x:Double x:Key="GridViewItemSelectedBorderThemeThickness">1</x:Double>
+                            <x:Double x:Key="RadioButtonBorderThemeThickness">1</x:Double>
+                            <Thickness x:Key="ButtonBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="CalendarDatePickerBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="TimePickerBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="DatePickerBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="ToggleSwitchOuterBorderStrokeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="RepeatButtonBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="SearchBoxBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="ToggleButtonBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="TextControlBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="ButtonRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="RepeatButtonRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="ToggleButtonRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="AppBarEllipsisButtonRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="AppBarButtonRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="AppBarToggleButtonRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="ListViewItemRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="GridViewItemRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="ComboBoxItemRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <x:Double x:Key="PersonPictureEllipseBadgeStrokeThickness">1</x:Double>
+                            <!--  Override system generated accent colors  -->
+
+                            <Color x:Key="RegionColor">#FF000000</Color>
+                            <SolidColorBrush x:Key="RegionBrush" Color="{StaticResource RegionColor}" />
+                        </ResourceDictionary>
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Light">
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary>
+                            <Color x:Key="SystemAccentColor">#FF0073CF</Color>
+                            <Color x:Key="SystemAltHighColor">#FFFFFFFF</Color>
+                            <Color x:Key="SystemAltLowColor">#FFFFFFFF</Color>
+                            <Color x:Key="SystemAltMediumColor">#FFFFFFFF</Color>
+                            <Color x:Key="SystemAltMediumHighColor">#FFFFFFFF</Color>
+                            <Color x:Key="SystemAltMediumLowColor">#FFFFFFFF</Color>
+                            <Color x:Key="SystemBaseHighColor">#FF000000</Color>
+                            <Color x:Key="SystemBaseLowColor">#33CCCCCC</Color>
+                            <Color x:Key="SystemBaseMediumColor">#FF898989</Color>
+                            <Color x:Key="SystemBaseMediumHighColor">#FF5D5D5D</Color>
+                            <Color x:Key="SystemBaseMediumLowColor">#66000000</Color>
+                            <Color x:Key="SystemChromeAltLowColor">#FF5D5D5D</Color>
+                            <Color x:Key="SystemChromeBlackHighColor">#FF000000</Color>
+                            <Color x:Key="SystemChromeBlackLowColor">#FFCCCCCC</Color>
+                            <Color x:Key="SystemChromeBlackMediumColor">#FF5D5D5D</Color>
+                            <Color x:Key="SystemChromeBlackMediumLowColor">#FF898989</Color>
+                            <Color x:Key="SystemChromeDisabledHighColor">#FFCCCCCC</Color>
+                            <Color x:Key="SystemChromeDisabledLowColor">#FF898989</Color>
+                            <Color x:Key="SystemChromeGrayColor">#66000000</Color>
+                            <Color x:Key="SystemChromeHighColor">#FFCCCCCC</Color>
+                            <Color x:Key="SystemChromeLowColor">#FFF2F2F2</Color>
+                            <Color x:Key="SystemChromeMediumColor">#19000000</Color>
+                            <Color x:Key="SystemChromeMediumLowColor">#FFF2F2F2</Color>
+                            <Color x:Key="SystemChromeWhiteColor">#FFFFFFFF</Color>
+                            <Color x:Key="SystemListLowColor">#19000000</Color>
+                            <Color x:Key="SystemListMediumColor">#FFCCCCCC</Color>
+                            <Color x:Key="SystemChromeAltMediumHighColor">#CCFFFFFF</Color>
+                            <Color x:Key="SystemChromeAltHighColor">#FFCCCCCC</Color>
+                            <Color x:Key="SystemRevealListLowColor">#19000000</Color>
+                            <Color x:Key="SystemRevealListMediumColor">#FFCCCCCC</Color>
+                            <Color x:Key="SystemListAccentLowColor">#660073CF</Color>
+                            <Color x:Key="SystemListAccentMediumColor">#990073CF</Color>
+                            <Color x:Key="SystemListAccentHighColor">#B30073CF</Color>
+                            <!--  Override system shape defaults  -->
+                            <CornerRadius x:Key="ControlCornerRadius">2,2,2,2</CornerRadius>
+                            <CornerRadius x:Key="OverlayCornerRadius">4,4,4,4</CornerRadius>
+                            <!--  Override system borders  -->
+                            <Thickness x:Key="MenuBarItemBorderThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="GridViewItemMultiselectBorderThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="CheckBoxBorderThemeThickness">1</Thickness>
+                            <x:Double x:Key="GridViewItemSelectedBorderThemeThickness">1</x:Double>
+                            <x:Double x:Key="RadioButtonBorderThemeThickness">1</x:Double>
+                            <Thickness x:Key="ButtonBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="CalendarDatePickerBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="TimePickerBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="DatePickerBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="ToggleSwitchOuterBorderStrokeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="RepeatButtonBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="SearchBoxBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="ToggleButtonBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="TextControlBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="ButtonRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="RepeatButtonRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="ToggleButtonRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="AppBarEllipsisButtonRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="AppBarButtonRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="AppBarToggleButtonRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="ListViewItemRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="GridViewItemRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <Thickness x:Key="ComboBoxItemRevealBorderThemeThickness">1,1,1,1</Thickness>
+                            <x:Double x:Key="PersonPictureEllipseBadgeStrokeThickness">1</x:Double>
+                            <!--  Override system generated accent colors  -->
+
+                            <Color x:Key="RegionColor">#FFFFFFFF</Color>
+                            <SolidColorBrush x:Key="RegionBrush" Color="{StaticResource RegionColor}" />
+                        </ResourceDictionary>
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="HighContrast">
+                    <StaticResource x:Key="RegionColor" ResourceKey="SystemColorWindowColor" />
+                    <SolidColorBrush x:Key="RegionBrush" Color="{StaticResource RegionColor}" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+
             <ThemeShadow x:Name="SharedShadow" />
             <DataTemplate x:Key="MenuItemTemplate">
                 <NavigationViewItem Content="{Binding Title}" Tag="{Binding Tag}" />
@@ -21,21 +171,22 @@
             <Style x:Key="CardStyle" TargetType="StackPanel">
                 <Setter Property="Spacing" Value="4" />
                 <Setter Property="Padding" Value="12,12,12,16" />
-                <Setter Property="Background" Value="#202020" />
+                <Setter Property="Background" Value="{ThemeResource SystemChromeAltHighColor}" />
                 <Setter Property="CornerRadius" Value="6" />
             </Style>
             <Style x:Key="DarkerCardStyle" TargetType="StackPanel">
                 <Setter Property="Spacing" Value="4" />
                 <Setter Property="Padding" Value="12,12,12,16" />
-                <Setter Property="Background" Value="#151515" />
+                <Setter Property="Background" Value="{ThemeResource SystemChromeMediumColor}" />
                 <Setter Property="CornerRadius" Value="6" />
             </Style>
             <Style x:Key="ResultsCardStyle" TargetType="StackPanel">
                 <Setter Property="Spacing" Value="4" />
                 <Setter Property="Padding" Value="12,12,12,16" />
                 <Setter Property="Margin" Value="0,0,0,60" />
-                <Setter Property="Background" Value="#202020" />
+                <Setter Property="Background" Value="{ThemeResource SystemChromeAltLowColor}" />
             </Style>
+
             <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource SystemAccentColor}" />
             <Style x:Key="PageTitleTextStyle" TargetType="TextBlock">
                 <Setter Property="FontWeight" Value="Bold" />
@@ -52,7 +203,6 @@
             </Style>
             <Style x:Key="SettingsBodyTextStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="12" />
-                <Setter Property="Foreground" Value="{StaticResource TextFillColorSecondary}" />
             </Style>
             <Style x:Key="CardBodyTextStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="12" />
@@ -118,5 +268,7 @@ Free-space path loss assumes ideal atmospheric conditions so that no electromagn
             </Style>
 
         </ResourceDictionary>
+        <!--  Free Public License 1.0.0 Permission to use, copy, modify, and/or distribute this code for any purpose with or without fee is hereby granted.  -->
+
     </Application.Resources>
 </Application>

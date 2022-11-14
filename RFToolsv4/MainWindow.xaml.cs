@@ -43,7 +43,6 @@ namespace RFToolsv4
 
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(appTitleBar);
-            SubClassing();
         }
 
         private void MenuListView_Loaded(object sender, RoutedEventArgs e)

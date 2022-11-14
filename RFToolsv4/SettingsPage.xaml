@@ -10,6 +10,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:RFToolsv4"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:RFToolsv4.ViewModels"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
@@ -19,7 +20,7 @@
                 <components:ToolPageTitle HeaderText="Settings &amp; About" />
                 <Grid
                     Padding="12"
-                    Background="#151515"
+                    Background="{ThemeResource SystemAltHighColor}"
                     CornerRadius="6">
                     <TextBlock
                         HorizontalAlignment="Left"
@@ -29,15 +30,17 @@
                     <ComboBox
                         HorizontalAlignment="Right"
                         FontSize="12"
+                        Loaded="ThemeBox_Loaded"
+                        SelectionChanged="ThemeBox_SelectionChanged"
                         Style="{StaticResource UnheaderedComboBoxStyle}">
                         <x:String>Light</x:String>
                         <x:String>Dark</x:String>
-                        <x:String>Windows default</x:String>
+                        <x:String>Default</x:String>
                     </ComboBox>
                 </Grid>
                 <Grid
                     Padding="12"
-                    Background="#151515"
+                    Background="{ThemeResource SystemAltHighColor}"
                     CornerRadius="6">
                     <TextBlock Style="{StaticResource SettingsTitleTextStyle}" Text="Keyboard Shortcuts" />
                     <StackPanel
@@ -110,7 +113,7 @@
                 </Grid>
                 <Grid
                     Padding="12"
-                    Background="#151515"
+                    Background="{ThemeResource SystemAltHighColor}"
                     CornerRadius="6">
                     <TextBlock
                         HorizontalAlignment="Left"
@@ -124,7 +127,7 @@
                 </Grid>
                 <Grid
                     Padding="12"
-                    Background="#151515"
+                    Background="{ThemeResource SystemAltHighColor}"
                     CornerRadius="6">
                     <TextBlock Style="{StaticResource SettingsTitleTextStyle}" Text="Version" />
                     <TextBlock
@@ -152,14 +155,13 @@
                 <Grid
                     Margin="0,0,0,60"
                     Padding="12"
-                    Background="#151515"
+                    Background="{ThemeResource SystemAltHighColor}"
                     CornerRadius="6">
                     <TextBlock Style="{StaticResource SettingsTitleTextStyle}" Text="Changelog" />
                     <controls:MarkdownTextBlock
                         Margin="0,40,0,0"
                         Background="Transparent"
                         FontSize="12"
-                        Foreground="{StaticResource TextFillColorSecondary}"
                         Header4FontSize="12"
                         Header4FontWeight="SemiBold"
                         IsHitTestVisible="False"

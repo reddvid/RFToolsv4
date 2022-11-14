@@ -10,7 +10,7 @@
     mc:Ignorable="d">
 
 
-    <Grid>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.DataContext>
             <vm:MainViewModel x:Name="ViewModel" />
         </Grid.DataContext>
@@ -23,7 +23,10 @@
             <RowDefinition Height="48" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid x:Name="appTitleBar" Grid.ColumnSpan="3">
+        <Grid
+            x:Name="appTitleBar"
+            Grid.ColumnSpan="3"
+            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <TextBlock
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
@@ -33,7 +36,7 @@
             x:Name="navigationView"
             Grid.Row="1"
             Grid.ColumnSpan="2"
-            Background="#333333"
+            Background="{ThemeResource SystemBaseLowColor}"
             IsBackButtonVisible="Collapsed"
             IsBackEnabled="False"
             IsPaneOpen="True"
@@ -41,15 +44,22 @@
             IsTitleBarAutoPaddingEnabled="True"
             Loaded="MenuListView_Loaded"
             MenuItemsSource="{x:Bind ViewModel.MenuItems}"
-            OpenPaneLength="300"
+            OpenPaneLength="280"
             PaneDisplayMode="Left"
             SelectionChanged="MenuListView_SelectionChanged">
+
             <NavigationView.Content>
                 <Grid>
-                    <Frame
-                        x:Name="mainFrame"
-                        Background="#383838"
-                        CornerRadius="6,6,0,0" />
+                    <Frame x:Name="mainFrame" CornerRadius="6,6,0,0">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Text="Welcome to RF Tools"
+                                TextAlignment="Center" />
+                            <TextBlock Text="version 4" TextAlignment="Center" />
+                        </StackPanel>
+                    </Frame>
                     <Button
                         Width="32"
                         Height="32"
@@ -72,7 +82,7 @@
             x:Name="infoGrid"
             Grid.Row="1"
             Grid.Column="2"
-            Background="#333333">
+            Background="{ThemeResource SystemBaseLowColor}">
             <ScrollViewer Padding="16,0">
                 <StackPanel Padding="0,0,0,40" Spacing="16">
                     <!--<StackPanel

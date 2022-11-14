@@ -1,4 +1,6 @@
-﻿using Microsoft.UI.Xaml;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -6,6 +8,8 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
+using RFToolsv4.Helpers;
+using RFToolsv4.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +19,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using static PInvoke.User32;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -27,6 +32,7 @@ namespace RFToolsv4
     /// </summary>
     public partial class App : Application
     {
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -34,6 +40,41 @@ namespace RFToolsv4
         public App()
         {
             this.InitializeComponent();
+            Ioc.Default.ConfigureServices(ConfigureServices());
+        }
+
+        private IServiceProvider ConfigureServices()
+        {
+            var services = new ServiceCollection();
+            services.AddSingleton<IThemeSelectorService, ThemeSelectorService>(); 
+            services.AddSingleton<SettingsViewModel>();
+            return services.BuildServiceProvider();
+        }
+
+        private void InitializeTheme()
+        {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            var theme = localSettings.Values["theme"] as string;
+
+            if (string.IsNullOrWhiteSpace(theme))
+            {
+                localSettings.Values["theme"] = "Default";
+            }
+
+            SetTheme(theme);
+        }
+
+        private void SetTheme(string theme) 
+        {
+            if (App.Window?.Content is FrameworkElement frameworkElement)
+            {
+                frameworkElement.RequestedTheme = theme switch
+                {
+                    "Dark" => ElementTheme.Dark,
+                    "Light" => ElementTheme.Light,
+                    _ => ElementTheme.Default,
+                }; 
+            };
         }
 
         /// <summary>
@@ -43,16 +84,19 @@ namespace RFToolsv4
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            m_window = new MainWindow();
+            Window = new MainWindow();
 
-            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(m_window);
+            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(Window);
 
             SetWindowDetails(hwnd, 1200, 600);
 
-            m_window.Activate();
+            InitializeTheme();
+
+            Window.Activate();
         }
 
-        private Window m_window;
+
+        public static Window? Window { get; private set; }
 
         private static void SetWindowDetails(IntPtr hwnd, int width, int height)
         {
