@@ -38,6 +38,7 @@
             Grid.Row="1"
             Grid.ColumnSpan="2"
             Background="{ThemeResource NavPaneColor}"
+            CornerRadius="6,6,0,0"
             IsBackButtonVisible="Collapsed"
             IsBackEnabled="False"
             IsPaneOpen="True"
@@ -49,8 +50,11 @@
             PaneDisplayMode="Left"
             SelectionChanged="MenuListView_SelectionChanged">
             <NavigationView.Content>
-                <Grid Background="{ThemeResource PageBackgroundColor}" CornerRadius="6,0,0,0">
-                    <Frame x:Name="mainFrame" Background="{ThemeResource PageBackgroundColor}">
+                <Grid Background="{ThemeResource PageBackgroundColor}" CornerRadius="6,6,0,0">
+                    <Frame
+                        x:Name="mainFrame"
+                        Background="{ThemeResource PageBackgroundColor}"
+                        CornerRadius="6,6,0,0">
                         <StackPanel HorizontalAlignment="Center" Background="{ThemeResource PageBackgroundColor}">
                             <TextBlock
                                 FontSize="16"

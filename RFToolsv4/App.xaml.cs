@@ -96,7 +96,7 @@ namespace RFToolsv4
         }
 
 
-        public static Window? Window { get; private set; }
+        public static Window Window { get; private set; }
 
         private static void SetWindowDetails(IntPtr hwnd, int width, int height)
         {

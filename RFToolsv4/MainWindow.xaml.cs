@@ -45,6 +45,7 @@ namespace RFToolsv4
         {
             this.InitializeComponent();
 
+            Title = "RF Tools";
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(appTitleBar);
             SubClassing();
