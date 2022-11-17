@@ -48,7 +48,7 @@ namespace RFToolsv4
             Title = "RF Tools";
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(appTitleBar);
-            SubClassing();
+            // SubClassing();
         }
 
         private void MenuListView_Loaded(object sender, RoutedEventArgs e)
@@ -245,30 +245,7 @@ namespace RFToolsv4
             }
         }
 
-        private async void MoreAppsButton_Click(object sender, RoutedEventArgs e)
-        {
-            await Launcher.LaunchUriAsync(new Uri("ms-windows-store://publisher/?name=Red David"));
-        }
-
-        private void ShareApp_Click(object sender, RoutedEventArgs e)
-        {
-            DataTransferManager.ShowShareUI();
-        }
-
-        private async void RateApp_Click(object sender, RoutedEventArgs e)
-        {
-            await Launcher.LaunchUriAsync(new Uri("ms-windows-store:REVIEW?PFN=32760RedDavid.RFTools_7nbw6tjv9ct6w"));
-        }
-
-        private async void RequestFeature_Click(object sender, RoutedEventArgs e)
-        {
-            await Launcher.LaunchUriAsync(new Uri("https://github.com/reddvid/RFToolsv4/issues/new?labels=enhancement"));
-        }
-
-        private async void SendFeedback_Click(object sender, RoutedEventArgs e)
-        {
-            await Launcher.LaunchUriAsync(new Uri("https://github.com/reddvid/RFToolsv4/issues/new?labels=bug"));
-        }
+      
 
         private async void ChangelogMD_Loaded(object sender, RoutedEventArgs e)
         {

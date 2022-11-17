@@ -22,6 +22,7 @@
     <None Remove="Views\FreeSpacePathLossPage.xaml" />
     <None Remove="Views\FresnelZonesPage.xaml" />
     <None Remove="Views\LinkBudgetPage.xaml" />
+    <None Remove="Views\NoiseFactorFigure.xaml" />
     <None Remove="Views\PECConversionPage.xaml" />
     <None Remove="Views\ResonancePage.xaml" />
     <None Remove="Views\SkinDepthPage.xaml" />
@@ -60,6 +61,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\NoiseFactorFigure.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="SettingsPage.xaml">

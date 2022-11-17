@@ -87,12 +87,11 @@
             x:Name="infoGrid"
             Grid.Row="1"
             Grid.Column="2"
+            Margin="0"
             Background="{ThemeResource NavPaneColor}">
-            <ScrollViewer Padding="16,0">
-                <StackPanel Padding="0,0,0,40" Spacing="16">
-                    <StackPanel.ChildrenTransitions>
-                        <RepositionThemeTransition />
-                    </StackPanel.ChildrenTransitions>
+            <ScrollViewer Margin="0" Padding="16,0">
+                <StackPanel Padding="0,0,0,40">
+
                     <!--<StackPanel
                         Spacing="12"
                         Style="{StaticResource CardStyle}"
@@ -141,41 +140,10 @@
                         </StackPanel>
                     </StackPanel>
 
-                    <StackPanel x:Name="AboutCards" Spacing="16">
-                        <Grid
-                            Padding="12"
-                            Background="{ThemeResource InfoCardColor}"
-                            CornerRadius="6">
-                            <TextBlock Style="{StaticResource SettingsTitleTextStyle}" Text="Version" />
-                            <TextBlock
-                                Margin="0,0,0,60"
-                                HorizontalAlignment="Right"
-                                IsTextSelectionEnabled="True"
-                                Style="{StaticResource SettingsBodyTextStyle}"
-                                Text="4.0.1"
-                                TextWrapping="WrapWholeWords" />
-                            <StackPanel
-                                Margin="0,0,0,30"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Bottom"
-                                Orientation="Horizontal"
-                                Spacing="20">
-                                <HyperlinkButton
-                                    Click="MoreAppsButton_Click"
-                                    ClickMode="Press"
-                                    Content="More apps" />
-                                <HyperlinkButton Click="SendFeedback_Click" Content="Report a bug" />
-                                <!--<HyperlinkButton Click="ShareApp_Click" Content="Share app" />-->
-                            </StackPanel>
-                            <StackPanel
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Bottom"
-                                Orientation="Horizontal"
-                                Spacing="20">
-                                <HyperlinkButton Click="RequestFeature_Click" Content="Request a feature" />
-                                <HyperlinkButton Click="RateApp_Click" Content="Rate &amp; review" />
-                            </StackPanel>
-                        </Grid>
+                    <StackPanel
+                        x:Name="AboutCards"
+                        Margin="0"
+                        Spacing="16">
                         <Grid
                             Margin="0,0,0,60"
                             Padding="12"

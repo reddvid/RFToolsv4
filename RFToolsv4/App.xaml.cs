@@ -86,10 +86,6 @@ namespace RFToolsv4
         {
             Window = new MainWindow();
 
-            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(Window);
-
-            SetWindowDetails(hwnd, 1200, 600);
-
             InitializeTheme();
 
             Window.Activate();
