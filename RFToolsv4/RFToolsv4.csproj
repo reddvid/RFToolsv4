@@ -22,6 +22,7 @@
     <None Remove="Views\FreeSpacePathLossPage.xaml" />
     <None Remove="Views\FresnelZonesPage.xaml" />
     <None Remove="Views\LinkBudgetPage.xaml" />
+    <None Remove="Views\NoiseFactorFigure.xaml" />
     <None Remove="Views\PECConversionPage.xaml" />
     <None Remove="Views\ResonancePage.xaml" />
     <None Remove="Views\SkinDepthPage.xaml" />
@@ -46,7 +47,7 @@
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Markdown" Version="7.1.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls" Version="7.1.3" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.5" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221109.1" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
     <PackageReference Include="PInvoke.User32" Version="0.7.124" />
     <PackageReference Include="UnitsNet" Version="4.148.0" />
@@ -60,6 +61,11 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\NoiseFactorFigure.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="SettingsPage.xaml">

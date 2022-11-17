@@ -24,7 +24,7 @@ namespace RFToolsv4.ViewModels
            new MenuItem("Link Budget", typeof(LinkBudgetPage)),
            new MenuItem("Standing Waves", typeof(StandingWavesPage)),
            new MenuItem("Fresnel Zones", typeof(FresnelZonesPage)),
-           new MenuItem("Coaxial Cable Loss", typeof(CoaxialCableLossPage)),
+           //new MenuItem("Coaxial Cable Loss", typeof(CoaxialCableLossPage)),
            new MenuItem("Resonance", typeof(ResonancePage)),
            new MenuItem("Two-Wire Transmission Lines", typeof(TransmissionLinesPage)),
            new MenuItem("Skin Depth", typeof(SkinDepthPage)),
