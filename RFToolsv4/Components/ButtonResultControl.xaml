@@ -9,6 +9,11 @@
     mc:Ignorable="d">
 
     <StackPanel>
+        <StackPanel.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition IsStaggeringEnabled="True" />
+            </TransitionCollection>
+        </StackPanel.ChildrenTransitions>
         <Button
             Command="{Binding CalculateCommand, ElementName=root}"
             Content="{Binding ButtonContent, ElementName=root}"
@@ -17,7 +22,8 @@
         <StackPanel
             Background="{ThemeResource AccentAcrylicBackgroundFillColorDefaultBrush}"
             CornerRadius="6"
-            Style="{StaticResource ResultsCardStyle}">
+            Style="{StaticResource ResultsCardStyle}"
+            Visibility="{Binding ResultsVisibility, ElementName=root}">
             <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Results" />
             <TextBlock
                 IsTextSelectionEnabled="True"

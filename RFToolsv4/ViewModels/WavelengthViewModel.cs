@@ -15,6 +15,7 @@ namespace RFToolsv4.ViewModels
     public class WavelengthViewModel : ObservableObject
     {
         public List<string> ConversionInput { get; private set; }
+        public ToggleResultsViewModel ToggleResultsViewModel { get; } = new ToggleResultsViewModel();
         public WavelengthViewModel()
         {
             ConversionInput = new()
@@ -50,6 +51,9 @@ namespace RFToolsv4.ViewModels
                     OnPropertyChanged(nameof(ComboSelector));
                     SelectedMultiplier = HeaderText.Equals("Wavelength:") ? ComboSelector[2] : ComboSelector[1];
                     OnPropertyChanged(nameof(SelectedMultiplier));
+                    OnPropertyChanged(nameof(CanCalculate));
+
+                    ToggleResultsViewModel.ToggleVisibility();
                 }
             }
         }
@@ -63,11 +67,13 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _selectedPreset, value);
                 OnPropertyChanged(nameof(PresetValueText));
+                OnPropertyChanged(nameof(CanCalculate));
+
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
         public string PresetValueText => SelectedPreset.Value.ToString("N0");
-
 
         private Flex _selectedMultiplier;
 
@@ -93,7 +99,13 @@ namespace RFToolsv4.ViewModels
         }
 
 
-        public bool CanCalculate => InputValue != 0;
+        public bool CanCalculate
+        {
+            get
+            {
+                return InputValue != 0;
+            }
+        }
 
         public ICommand CalculateCommand { get; }
 
@@ -103,6 +115,8 @@ namespace RFToolsv4.ViewModels
                 input: InputValue * SelectedMultiplier.Multiplier,
                 velocity: SelectedPreset.Value,
                 unknown: HeaderText.Equals("Wavelength:") ? "Frequency" : "Wavelength");
+
+            ToggleResultsViewModel.ToggleVisibility(true);
         }
 
         private string _results;
@@ -115,6 +129,9 @@ namespace RFToolsv4.ViewModels
                 SetProperty(ref _results, value);
             }
         }
+
+      
+
 
     }
 }

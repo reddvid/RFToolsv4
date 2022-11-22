@@ -39,6 +39,19 @@ namespace RFToolsv4.Components
             }
         }
 
+        public static readonly DependencyProperty ResultsVisibilityProperty =
+            DependencyProperty.Register(nameof(ResultsVisibility), typeof(bool), typeof(ButtonResultControl), new PropertyMetadata(false));
+
+
+        public bool ResultsVisibility
+        {
+            get => (bool)GetValue(ResultsVisibilityProperty);
+            set
+            {
+                SetValue(ResultsVisibilityProperty, value);
+            }
+        }
+
         public static readonly DependencyProperty IsButtonEnabledProperty =
             DependencyProperty.Register(nameof(IsButtonEnabled), typeof(bool), typeof(ButtonResultControl), new PropertyMetadata(true));
 
