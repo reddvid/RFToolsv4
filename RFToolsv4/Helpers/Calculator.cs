@@ -36,12 +36,13 @@ namespace RFToolsv4.Helpers
             });
         }
 
-        public static string WavelengthFrequency(double input, string unknown)
+        public static string WavelengthFrequency(double input, double velocity, string unknown)
         {
             // Wavelength formula
             // w = c / f
-            double result = Constants.SPEED_OF_LIGHT / input;
-            string unit = unknown.Equals("Wavelength") ? "MHz" : "m";
+            double result = velocity / input;
+            string unit = SINumber.GetSI(result).Unit + (unknown.Equals("Wavelength") ? "m" : "Hz");
+            result = SINumber.GetSI(result).Value;
 
             return ResultsBuilder.Build(new()
             {

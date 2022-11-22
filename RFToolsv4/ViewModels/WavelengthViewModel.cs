@@ -101,6 +101,7 @@ namespace RFToolsv4.ViewModels
         {
             Results = Calculator.WavelengthFrequency(
                 input: InputValue * SelectedMultiplier.Multiplier,
+                velocity: SelectedPreset.Value,
                 unknown: HeaderText.Equals("Wavelength:") ? "Frequency" : "Wavelength");
         }
 

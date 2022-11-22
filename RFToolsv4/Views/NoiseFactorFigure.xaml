@@ -9,10 +9,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:RFToolsv4.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:RFToolsv4.ViewModels"
     Background="{ThemeResource PageBackgroundColor}"
     mc:Ignorable="d">
 
     <Grid>
+        <Grid.Resources>
+            <vm:DeltaWyeViewModel x:Name="ViewModel" />
+        </Grid.Resources>
         <ScrollViewer Padding="20,20,20,0">
             <StackPanel Spacing="12">
                 <components:ToolPageTitle HeaderText="Noise Factor &amp; Noise Figure Converter" />
