@@ -28,11 +28,12 @@ namespace RFToolsv4.Helpers
 
             double denominator = Math.PI * frequency * permeability * 4 * Math.PI * Math.Pow(10, -7);
             double skinDepthInMeters = Math.Sqrt(resistivity / denominator);
-            Length meter = Length.FromMeters(skinDepthInMeters);
+            var result = SINumber.GetSI(skinDepthInMeters).Value;
+            var unit = SINumber.GetSI(skinDepthInMeters).Unit + "m";
 
             return ResultsBuilder.Build(new()
             {
-                new Result(name: "Skin Depth", value: meter.Micrometers, units: "microns")
+                new Result(name: "Skin Depth", value: result, units: unit)
             });
         }
 
@@ -167,6 +168,9 @@ namespace RFToolsv4.Helpers
                 unit = "H";
             }
 
+            outputValue = SINumber.GetSI(outputValue).Value;
+            unit = SINumber.GetSI(outputValue).Unit + unit;
+
             return ResultsBuilder.Build(new()
             {
                 new Result(name: unknown, value: outputValue, units: unit),
@@ -179,6 +183,9 @@ namespace RFToolsv4.Helpers
             double firstConvert;
             double secondConvert;
             double thirdConvert;
+            string firstUnit;
+            string secondUnit;
+            string thirdUnit;
 
             if (setting.Equals("Delta to Wye"))
             {
@@ -187,11 +194,19 @@ namespace RFToolsv4.Helpers
                 secondConvert = first * third / denominator;
                 thirdConvert = first * second / denominator;
 
+                firstConvert = SINumber.GetSI(firstConvert).Value;
+                secondConvert = SINumber.GetSI(secondConvert).Value;
+                thirdConvert = SINumber.GetSI(thirdConvert).Value;
+
+                firstUnit = SINumber.GetSI(firstConvert).Unit + "Ω";
+                secondUnit = SINumber.GetSI(secondConvert).Unit + "Ω";
+                thirdUnit = SINumber.GetSI(thirdConvert).Unit + "Ω";
+
                 results = new()
                 {
-                    new Result(name: "R₁", value: firstConvert, units: "Ω"),
-                    new Result(name: "R₂", value: secondConvert, units: "Ω"),
-                    new Result(name: "R₃", value: thirdConvert, units: "Ω"),
+                    new Result(name: "R₁", value: firstConvert, units: firstUnit),
+                    new Result(name: "R₂", value: secondConvert, units: secondUnit),
+                    new Result(name: "R₃", value: thirdConvert, units: thirdUnit),
                 };
             }
             else
@@ -201,11 +216,19 @@ namespace RFToolsv4.Helpers
                 secondConvert = denominator / second;
                 thirdConvert = denominator / third;
 
+                firstConvert = SINumber.GetSI(firstConvert).Value;
+                secondConvert = SINumber.GetSI(secondConvert).Value;
+                thirdConvert = SINumber.GetSI(thirdConvert).Value;
+
+                firstUnit = SINumber.GetSI(firstConvert).Unit + "Ω";
+                secondUnit = SINumber.GetSI(secondConvert).Unit + "Ω";
+                thirdUnit = SINumber.GetSI(thirdConvert).Unit + "Ω";
+
                 results = new()
                 {
-                    new Result(name: "Rᴀ", value: firstConvert, units: "Ω"),
-                    new Result(name: "Rʙ", value: secondConvert, units: "Ω"),
-                    new Result(name: "Rᴄ", value: thirdConvert, units: "Ω"),
+                    new Result(name: "Rᴀ", value: firstConvert, units: firstUnit),
+                    new Result(name: "Rʙ", value: secondConvert, units: secondUnit),
+                    new Result(name: "Rᴄ", value: thirdConvert, units: thirdUnit),
                 };
             }
 
