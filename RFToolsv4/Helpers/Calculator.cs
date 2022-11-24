@@ -28,12 +28,10 @@ namespace RFToolsv4.Helpers
 
             double denominator = Math.PI * frequency * permeability * 4 * Math.PI * Math.Pow(10, -7);
             double skinDepthInMeters = Math.Sqrt(resistivity / denominator);
-            var result = SINumber.GetSI(skinDepthInMeters).Value;
-            var unit = SINumber.GetSI(skinDepthInMeters).Unit + "m";
-
+           
             return ResultsBuilder.Build(new()
             {
-                new Result(name: "Skin Depth", value: result, units: unit)
+                new Result(name: "Skin Depth", value: skinDepthInMeters, units: "m", isSI: true)
             });
         }
 
@@ -42,12 +40,10 @@ namespace RFToolsv4.Helpers
             // Wavelength formula
             // w = c / f
             double result = velocity / input;
-            string unit = SINumber.GetSI(result).Unit + (unknown.Equals("Wavelength") ? "m" : "Hz");
-            result = SINumber.GetSI(result).Value;
 
             return ResultsBuilder.Build(new()
             {
-                new Result(name: unknown, value: result, units: unit),
+                new Result(name: unknown, value: result, units: unknown.Equals("Wavelength") ? "m" : "Hz", isSI: true),
             });
         }
 
@@ -60,15 +56,16 @@ namespace RFToolsv4.Helpers
 
             if (setting.Contains("Power"))
             {
-                double milliWatts = input;
-                double dBm = 10 * Math.Log10(milliWatts);
-                double dBW = 10 * Math.Log10(milliWatts / 1000);
+                double dBm = input;
+                double milliWatts = Math.Pow(10, dBm / 10);
+                double watts = milliWatts / 1_000;
+                double dBW = dBm - 30;
 
                 results = new()
                 {
-                    new Result(name: "Watts", value: milliWatts, units: "W"),
-                    new Result(name: "dBm", value: dBm, units: "dBm"),
-                    new Result(name: "dBW", value: dBW, units: "dBW"),
+                    new Result(name: "Watts", value: watts, units: "W", isSI: true),
+                    new Result(name: "dBm", value:  dBm, units: "dBm"),
+                    new Result(name: "dBW", value:  dBW, units: "dBW"),
                 };
             }
             else if (setting.Contains("Energy"))
@@ -79,12 +76,14 @@ namespace RFToolsv4.Helpers
                 double electronvolt = input / Selectors.Energy[5].Multiplier;
                 double kilocalorie = input / Selectors.Energy[6].Multiplier;
 
+                var siWattHour = SINumber.GetSI(wattHour, "Wh");
+
                 results = new()
                 {
-                    new Result(name: "Watt-hour", value: wattHour, units: "Wh"),
-                    new Result(name: "BTU", value: btu, units: null),
-                    new Result(name: "Kilojoule", value: kilojoule, units: null),
-                    new Result(name: "Electronvolt", value: electronvolt, units: null),
+                    new Result(name: "Watt-hour", value: siWattHour.Value, units: siWattHour.Unit),
+                    new Result(name: "BTU", value: btu, units: "BTU", isSI: true),
+                    new Result(name: "Kilojoule", value: kilojoule, units: "kJ"),
+                    new Result(name: "Electronvolt", value: electronvolt, units: "eV", isSI: true),
                     new Result(name: "Kilocalorie", value: kilocalorie, units: null),
                 };
             }
@@ -311,7 +310,7 @@ namespace RFToolsv4.Helpers
             {
                 results = new()
                 {
-                    new Result(name: $"Fresnel Zone Max Radius @ { distanceInKm / 2 } km", value: fresnelZone, units: "m"),                    
+                    new Result(name: $"Fresnel Zone Max Radius @ { distanceInKm / 2 } km", value: fresnelZone, units: "m"),
                     new Result(name: "60% Clearance Radius", value: sixtyPercentClearance, units: "m"),
                     new Result(name: "Earth Curvature Height", value: earthCurvature, units: "m"),
                 };
@@ -320,7 +319,7 @@ namespace RFToolsv4.Helpers
             {
                 results = new()
                 {
-                    new Result(name: $"Fresnel Zone Radius @ { obstructionInKm } km", value: fresnelZone, units: "km"),                    
+                    new Result(name: $"Fresnel Zone Radius @ { obstructionInKm } km", value: fresnelZone, units: "km"),
                     new Result(name: "Earth Curvature Height", value: earthCurvature, units: "m"),
                 };
             }

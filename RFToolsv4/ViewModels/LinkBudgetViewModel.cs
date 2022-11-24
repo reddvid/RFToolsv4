@@ -16,6 +16,7 @@ namespace RFToolsv4.ViewModels
         public List<Flex> OutputPower { get; private set; } = Selectors.OutputPower;
         public List<Flex> Distance { get; private set; } = Selectors.Distance;
         public List<Flex> Frequency { get; private set; } = Selectors.LargeFrequency;
+        public ToggleResultsViewModel ToggleResultsViewModel { get; } = new ToggleResultsViewModel();
 
         public LinkBudgetViewModel()
         {
@@ -44,6 +45,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _powerMultiplier, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -56,6 +58,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _distanceMultiplier, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -68,6 +71,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _frequencyMultiplier, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -80,6 +84,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _distanceValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -92,6 +97,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _frequencyValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -104,6 +110,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _outputPowerValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -116,6 +123,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _transmitLossValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -128,6 +136,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _receiveLossValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -140,6 +149,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _transmitterGainValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -152,6 +162,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _receiverGainValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -174,16 +185,19 @@ namespace RFToolsv4.ViewModels
                                             rxLoss: ReceiveLossValue,
                                             distance: DistanceValue * DistanceMultiplier.Multiplier / 1_000,
                                             frequency: FrequencyValue * FrequencyMultiplier.Multiplier / 1_000_000);
+
+            ToggleResultsViewModel.ToggleVisibility(true);
         }
+
 
         private double ConvertTodBm(double outputPowerValue)
         {
             return PowerMultiplier.Caption switch
             {
                 "dBm" => outputPowerValue * 1,
-                "mW" => 10 * Math.Log10(outputPowerValue / 1_000_000),
-                "W" => 10 * Math.Log10(outputPowerValue / 1_000),
-                "kW" => 10 * Math.Log10(outputPowerValue),
+                "mW" => 10 * Math.Log10(outputPowerValue),
+                "W" => 10 * Math.Log10(1_000 * outputPowerValue),
+                "kW" => 10 * Math.Log10(outputPowerValue * 1_000_000),
                 _ => outputPowerValue,
             };
         }

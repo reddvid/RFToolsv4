@@ -73,10 +73,10 @@ namespace RFToolsv4.Helpers
 
         public static List<Flex> Power { get; } = new()
         {
-            new Flex("mW", 1),
-            new Flex("W", Math.Pow(10, 3)),
-            new Flex("dBm",  1.2589),
-            new Flex("dBW", 1_258.9254)
+            new Flex("mW", default),
+            new Flex("W", default),
+            new Flex("dBm",  1),
+            new Flex("dBW", default)
         };
 
         public static List<Flex> Energy { get; } = new()

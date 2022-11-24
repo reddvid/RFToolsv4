@@ -22,7 +22,7 @@ namespace RFToolsv4.Components
 {
     public sealed partial class NumberBoxUnit : UserControl
     {
-       
+
 
         public static readonly DependencyProperty HeaderTextProperty =
             DependencyProperty.Register(nameof(HeaderText), typeof(string), typeof(NumberBoxUnit), new PropertyMetadata(string.Empty));
@@ -113,5 +113,10 @@ namespace RFToolsv4.Components
             this.InitializeComponent();
         }
 
+        private void NumberBox_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
+        {
+            var binding = (sender as NumberBox).GetBindingExpression(NumberBox.ValueProperty);
+            if (binding != null) binding.UpdateSource();
+        }
     }
 }

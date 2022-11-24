@@ -14,6 +14,7 @@ namespace RFToolsv4.ViewModels
     public class PECViewModel : ObservableObject
     {
         public List<string> ConversionInput { get; private set; }
+        public ToggleResultsViewModel ToggleResultsViewModel { get; } = new ToggleResultsViewModel();
         public PECViewModel()
         {
             ConversionInput = new()
@@ -42,6 +43,7 @@ namespace RFToolsv4.ViewModels
                     OnPropertyChanged(nameof(HeaderText));
                     SetComboSelector();
                     SetSelectedMultiplier();
+                    ToggleResultsViewModel.ToggleVisibility();
                 }
             }
         }
@@ -56,16 +58,18 @@ namespace RFToolsv4.ViewModels
                 _ => Selectors.Power
             };
             OnPropertyChanged(nameof(ComboSelector));
+            ToggleResultsViewModel.ToggleVisibility();
         }
 
         private void SetSelectedMultiplier()
         {
             SelectedMultiplier = HeaderText switch
             {
-                "Charge" => ComboSelector[1],
+                "Charge:" => ComboSelector[1],
                 _ => ComboSelector[0],
             };
             OnPropertyChanged(nameof(SelectedMultiplier));
+            ToggleResultsViewModel.ToggleVisibility();
         }
 
         private Flex _selectedMultiplier;
@@ -76,6 +80,7 @@ namespace RFToolsv4.ViewModels
             set
             {
                 SetProperty(ref _selectedMultiplier, value);
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -87,6 +92,7 @@ namespace RFToolsv4.ViewModels
             set
             {
                 SetProperty(ref _comboSelector, value);
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -99,6 +105,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _inputValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -110,8 +117,24 @@ namespace RFToolsv4.ViewModels
         private void Calculate()
         {
             Results = Calculator.ConvertPEC(
-                input: InputValue * SelectedMultiplier.Multiplier,
+                input: HeaderText.Contains("Power") 
+                ? ConvertTodBm(InputValue)
+                : InputValue * SelectedMultiplier.Multiplier,
                 setting: HeaderText);
+
+            ToggleResultsViewModel.ToggleVisibility(true);
+        }
+
+        private double ConvertTodBm(double inputPower)
+        {
+            return SelectedMultiplier.Caption switch
+            {
+                "mW" => 10 * Math.Log10(inputPower),
+                "W" => 10 * Math.Log10(1_000 * inputPower),
+                "dBm" => inputPower * 1,
+                "dBW" => inputPower + 30,
+                _ => inputPower
+            };
         }
 
         private string _results;

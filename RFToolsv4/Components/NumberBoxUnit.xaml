@@ -13,7 +13,8 @@
         <NumberBox
             Header="{Binding HeaderText, ElementName=root}"
             NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
-            Value="{Binding NumberBoxValue, ElementName=root, Mode=TwoWay}" />
+            ValueChanged="NumberBox_ValueChanged"
+            Value="{Binding NumberBoxValue, ElementName=root, Mode=TwoWay, UpdateSourceTrigger=Explicit}" />
         <ComboBox
             Width="{Binding ComboBoxWidth, ElementName=root}"
             DisplayMemberPath="Caption"

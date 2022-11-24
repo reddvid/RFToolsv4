@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RFToolsv4.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,11 +13,13 @@ namespace RFToolsv4.Models
         public double Value { get; set; }
         public string Units { get; set; }
 
-        public Result(string name, double value, string units)
+        public Result(string name, double value, string units, bool isSI = false)
         {
+            var valueSI = SINumber.GetSI(value, units);
+
             Name = name;
-            Value = value;
-            Units = units;
+            Value = ValueFormat.ToLimitedDouble(isSI ? valueSI.Value : value);
+            Units = isSI ? valueSI.Unit : units;
         }
     }
 }

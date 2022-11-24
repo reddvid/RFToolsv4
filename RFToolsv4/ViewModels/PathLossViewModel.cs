@@ -15,6 +15,7 @@ namespace RFToolsv4.ViewModels
     {
         public List<Flex> Distance { get; private set; } = Selectors.Distance;
         public List<Flex> Frequency { get; private set; } = Selectors.LargeFrequency;
+        public ToggleResultsViewModel ToggleResultsViewModel { get; } = new ToggleResultsViewModel();
 
         public PathLossViewModel()
         {
@@ -41,6 +42,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _distanceMultiplier, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -53,6 +55,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _frequencyMultiplier, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -65,6 +68,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _distanceValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -77,6 +81,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _frequencyValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -90,6 +95,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _transmitterGainValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -102,6 +108,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _receiverGainValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -118,6 +125,8 @@ namespace RFToolsv4.ViewModels
                                           rxGain: ReceiverGainValue,
                                           distance: DistanceValue * DistanceMultiplier.Multiplier / 1_000,
                                           frequency: FrequencyValue * FrequencyMultiplier.Multiplier / 1_000_000);
+            
+            ToggleResultsViewModel.ToggleVisibility(true);
         }
 
         private string _results;
