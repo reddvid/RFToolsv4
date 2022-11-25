@@ -55,9 +55,12 @@
                         x:Name="mainFrame"
                         Background="{ThemeResource PageBackgroundColor}"
                         CornerRadius="6,6,0,0">
-                        <StackPanel HorizontalAlignment="Center" Background="{ThemeResource PageBackgroundColor}">
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="{ThemeResource PageBackgroundColor}">
                             <TextBlock
-                                FontSize="16"
+                                FontSize="24"
                                 FontWeight="Bold"
                                 Text="Welcome to RF Tools"
                                 TextAlignment="Center" />

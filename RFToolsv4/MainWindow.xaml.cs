@@ -217,6 +217,13 @@ namespace RFToolsv4
             else
             {
                 ViewModel.IsSettingsPage = false;
+                if (nav.SelectedItem as MenuItem == null)
+                {
+                    ViewModel.IsSettingsPage = true;
+                    InfoCards.Visibility = Visibility.Collapsed;
+                    AboutCards.Visibility = Visibility.Visible;
+                    return;
+                }
                 string item = (nav.SelectedItem as MenuItem).Title;
                 NavigateFrame(item);
                 SaveMenuItem(item);
@@ -245,7 +252,7 @@ namespace RFToolsv4
             }
         }
 
-      
+
 
         private async void ChangelogMD_Loaded(object sender, RoutedEventArgs e)
         {

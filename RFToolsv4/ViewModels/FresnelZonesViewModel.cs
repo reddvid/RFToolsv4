@@ -15,6 +15,7 @@ namespace RFToolsv4.ViewModels
     {
         public List<Flex> Distance { get; private set; } = Selectors.Distance;
         public List<Flex> Frequency { get; private set; } = Selectors.LargeFrequency;
+        public ToggleResultsViewModel ToggleResultsViewModel { get; } = new ToggleResultsViewModel();
 
         public FresnelZonesViewModel()
         {
@@ -41,6 +42,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _distanceMultiplier, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -53,6 +55,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _frequencyMultiplier, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -65,6 +68,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _distanceValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -77,6 +81,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _frequencyValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -89,6 +94,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _obstructionValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -101,6 +107,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _antennaeHeightValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -111,23 +118,26 @@ namespace RFToolsv4.ViewModels
             get => _isObstructed;
             set
             {
-                SetProperty(ref _isObstructed, value); 
+                SetProperty(ref _isObstructed, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
 
 
-        public bool CanCalculate => (!IsObstructed) 
+        public bool CanCalculate => (!IsObstructed)
                                     ? DistanceValue != 0 && FrequencyValue != 0
                                     : DistanceValue != 0 && FrequencyValue != 0
-                                    && ObstructionValue <= DistanceValue  && ObstructionValue >= 0;
+                                    && ObstructionValue <= DistanceValue && ObstructionValue >= 0;
 
         public ICommand CalculateCommand { get; }
 
         private void Calculate()
         {
             Results = Calculator.FresnelZone(DistanceValue * DistanceMultiplier.Multiplier, FrequencyValue * FrequencyMultiplier.Multiplier, ObstructionValue * DistanceMultiplier.Multiplier);
+
+            ToggleResultsViewModel.ToggleVisibility(true);
         }
 
         private string _results;

@@ -13,6 +13,7 @@ namespace RFToolsv4.ViewModels
     public class StandingWavesViewModel : ObservableObject
     {
         public List<string> InputSelection { get; private set; }
+        public ToggleResultsViewModel ToggleResultsViewModel { get; } = new ToggleResultsViewModel();
 
         public StandingWavesViewModel()
         {
@@ -37,6 +38,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _selectedInput, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -49,6 +51,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _inputValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -57,7 +60,7 @@ namespace RFToolsv4.ViewModels
         {
             get
             {
-               return SelectedInput switch
+                return SelectedInput switch
                 {
                     "VSWR" => InputValue > 1,
                     "Reflection Coefficient (Γ)" => InputValue > 0 && InputValue < 1,
@@ -72,6 +75,7 @@ namespace RFToolsv4.ViewModels
         private void Calculate()
         {
             Results = Calculator.StandingWave(InputValue, SelectedInput);
+            ToggleResultsViewModel.ToggleVisibility(true);
         }
 
         private string _results;

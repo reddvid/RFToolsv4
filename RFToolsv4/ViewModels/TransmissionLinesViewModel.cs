@@ -14,12 +14,16 @@ namespace RFToolsv4.ViewModels
     public class TransmissionLinesViewModel : ObservableObject
     {
         public List<Preset> DielectricConstants { get; private set; }
+        public List<Flex> Diameters { get; private set; }
+        public ToggleResultsViewModel ToggleResultsViewModel { get; } = new ToggleResultsViewModel();
 
         public TransmissionLinesViewModel()
         {
             DielectricConstants = Selectors.DielectricConstants;
+            Diameters = Selectors.Diamters;
 
             SelectedPreset = DielectricConstants[1];
+            DiameterMultiplier = Diameters[2];
 
             CalculateCommand = new RelayCommand(Calculate);
         }
@@ -35,6 +39,25 @@ namespace RFToolsv4.ViewModels
                 if (_selectedPreset != null)
                 {
                     OnPropertyChanged(nameof(PresetValueText));
+                    OnPropertyChanged(nameof(CanCalculate));
+                    ToggleResultsViewModel.ToggleVisibility();
+                }
+            }
+        }
+
+        private Flex _diameterMultiplier;
+
+        public Flex DiameterMultiplier
+        {
+            get => _diameterMultiplier;
+            set
+            {
+                SetProperty(ref _diameterMultiplier, value);
+                if (_diameterMultiplier != null)
+                {
+                    OnPropertyChanged(nameof(PresetValueText));
+                    OnPropertyChanged(nameof(CanCalculate));
+                    ToggleResultsViewModel.ToggleVisibility();
                 }
             }
         }
@@ -53,6 +76,7 @@ namespace RFToolsv4.ViewModels
                 {
                     OnPropertyChanged(nameof(ImpedanceValue));
                     OnPropertyChanged(nameof(CanCalculate));
+                    ToggleResultsViewModel.ToggleVisibility();
                 }
             }
         }
@@ -69,6 +93,7 @@ namespace RFToolsv4.ViewModels
                 {
                     OnPropertyChanged(nameof(DiameterValue));
                     OnPropertyChanged(nameof(CanCalculate));
+                    ToggleResultsViewModel.ToggleVisibility();
                 }
             }
         }
@@ -78,7 +103,9 @@ namespace RFToolsv4.ViewModels
 
         private void Calculate()
         {
-            Results = Calculator.TwoWireLine(ImpedanceValue, DiameterValue, SelectedPreset.Value);
+            Results = Calculator.TwoWireLine(ImpedanceValue, DiameterValue, SelectedPreset.Value, DiameterMultiplier.Caption);
+
+            ToggleResultsViewModel.ToggleVisibility(true);
         }
 
         private string _results;

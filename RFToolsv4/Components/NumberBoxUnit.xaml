@@ -12,9 +12,8 @@
     <StackPanel Style="{StaticResource TwoElementStackStyle}">
         <NumberBox
             Header="{Binding HeaderText, ElementName=root}"
-            NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
-            ValueChanged="NumberBox_ValueChanged"
-            Value="{Binding NumberBoxValue, ElementName=root, Mode=TwoWay, UpdateSourceTrigger=Explicit}" />
+            NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat, Mode=OneWay}"
+            Value="{Binding NumberBoxValue, ElementName=root, Mode=TwoWay, FallbackValue=0}" />
         <ComboBox
             Width="{Binding ComboBoxWidth, ElementName=root}"
             DisplayMemberPath="Caption"

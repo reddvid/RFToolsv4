@@ -276,7 +276,7 @@ namespace RFToolsv4.Helpers
             });
         }
 
-        public static string TwoWireLine(double impedance, double diameter, double dielectric)
+        public static string TwoWireLine(double impedance, double diameter, double dielectric, string unit = "")
         {
             double distance;
             double space;
@@ -287,8 +287,8 @@ namespace RFToolsv4.Helpers
 
             return ResultsBuilder.Build(new()
             {
-                new Result(name: "Center-to-center Distance", value: distance, units: null),
-                new Result(name: "Space between Conductors", value: space, units: null),
+                new Result(name: "Center-to-center Distance", value: distance, units: unit),
+                new Result(name: "Space between Conductors", value: space, units: unit),
             });
         }
 

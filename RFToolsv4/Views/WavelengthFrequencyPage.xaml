@@ -34,6 +34,7 @@
                     <TextBox
                         Width="120"
                         Header="Wave velocity (m/s):"
+                        IsEnabled="False"
                         IsReadOnly="True"
                         Text="{x:Bind ViewModel.PresetValueText, Mode=OneWay}" />
                 </StackPanel>

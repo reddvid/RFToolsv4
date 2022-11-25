@@ -14,6 +14,7 @@ namespace RFToolsv4.ViewModels
     public class ResonanceViewModel : ObservableObject
     {
         public List<string> InputSelector { get; private set; }
+        public ToggleResultsViewModel ToggleResultsViewModel { get; } = new ToggleResultsViewModel();
 
         public ResonanceViewModel()
         {
@@ -44,6 +45,7 @@ namespace RFToolsv4.ViewModels
                     SetSelectedMultipliers();
                     OnPropertyChanged(nameof(CalculateButtonText));
                     OnPropertyChanged(nameof(CanCalculate));
+                    ToggleResultsViewModel.ToggleVisibility();
                 }
             }
         }
@@ -108,6 +110,7 @@ namespace RFToolsv4.ViewModels
             set
             {
                 SetProperty(ref _firstSelectedMultiplier, value);
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -120,6 +123,7 @@ namespace RFToolsv4.ViewModels
             set
             {
                 SetProperty(ref _firstComboSelector, value);
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -145,6 +149,7 @@ namespace RFToolsv4.ViewModels
             set
             {
                 SetProperty(ref _secondSelectedMultiplier, value);
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -156,6 +161,7 @@ namespace RFToolsv4.ViewModels
             set
             {
                 SetProperty(ref _secondComboSelector, value);
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -182,6 +188,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _firstInputValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -194,6 +201,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _secondInputValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -207,6 +215,8 @@ namespace RFToolsv4.ViewModels
                 firstValue: FirstInputValue * FirstSelectedMultiplier.Multiplier,
                 secondValue: SecondInputValue * SecondSelectedMultiplier.Multiplier,
                 unknown: SelectedInput);
+
+            ToggleResultsViewModel.ToggleVisibility(true);
         }
 
         private string _results;

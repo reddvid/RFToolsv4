@@ -38,7 +38,8 @@
                     ButtonContent="{x:Bind ViewModel.CalculateButtonText, Mode=OneWay}"
                     CalculateCommand="{x:Bind ViewModel.CalculateCommand}"
                     CardResults="{x:Bind ViewModel.Results, Mode=OneWay}"
-                    IsButtonEnabled="{x:Bind ViewModel.CanCalculate, Mode=OneWay}" />
+                    IsButtonEnabled="{x:Bind ViewModel.CanCalculate, Mode=OneWay}"
+                    ResultsVisibility="{x:Bind ViewModel.ToggleResultsViewModel.IsResultsVisible, Mode=OneWay}" />
             </StackPanel>
         </ScrollViewer>
 

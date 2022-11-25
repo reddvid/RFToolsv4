@@ -143,5 +143,14 @@ namespace RFToolsv4.Helpers
             new Preset("Paper (≥3.5)", 3.5),
             new Preset("Concrete (4.5)", 4.5),
         };
+
+        public static List<Flex> Diamters { get; } = new()
+        {
+            new Flex("nm", Math.Pow(10, -9)),
+            new Flex("μm", Math.Pow(10, -5)),
+            new Flex("mm", Math.Pow(10, -3)),
+            new Flex("cm", Math.Pow(10, -2)),
+            new Flex("in", 0.0254),
+        };
     }
 }
