@@ -40,7 +40,7 @@
                 </StackPanel>
                 <components:NumberBoxUnit
                     ComboBoxItemsSource="{x:Bind ViewModel.ComboSelector, Mode=OneWay}"
-                    ComboBoxSelectedItem="{x:Bind ViewModel.SelectedMultiplier, Mode=TwoWay}"
+                    ComboBoxSelectedItem="{x:Bind ViewModel.SelectedMultiplier, Mode=TwoWay}" 
                     HeaderText="{x:Bind ViewModel.HeaderText, Mode=OneWay}"
                     NumberBoxValue="{x:Bind ViewModel.InputValue, Mode=TwoWay}" />
                 <components:ButtonResultControl

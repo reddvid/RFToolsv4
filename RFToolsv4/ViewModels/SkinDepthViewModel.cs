@@ -13,8 +13,9 @@ namespace RFToolsv4.ViewModels
 {
     public class SkinDepthViewModel : ObservableObject
     {
-        public List<Material> Materials;
-        public List<Flex> LargeFrequency;
+        public List<Material> Materials { get; private set; }
+        public List<Flex> LargeFrequency { get; private set; }
+        public ToggleResultsViewModel ToggleResultsViewModel { get; } = new ToggleResultsViewModel();
 
         public SkinDepthViewModel()
         {
@@ -34,6 +35,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _selectedFrequency, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -50,6 +52,7 @@ namespace RFToolsv4.ViewModels
                 OnPropertyChanged(nameof(ResistivityValue));
                 PermeabilityValue = _selectedMaterial.Permeability;
                 OnPropertyChanged(nameof(PermeabilityValue));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -67,6 +70,7 @@ namespace RFToolsv4.ViewModels
                 {
                     OnPropertyChanged(nameof(ResistivityValue));
                     OnPropertyChanged(nameof(CanCalculate));
+                    ToggleResultsViewModel.ToggleVisibility();
                 }
             }
         }
@@ -83,6 +87,7 @@ namespace RFToolsv4.ViewModels
                 {
                     OnPropertyChanged(nameof(PermeabilityValue));
                     OnPropertyChanged(nameof(CanCalculate));
+                    ToggleResultsViewModel.ToggleVisibility();
                 }
             }
         }
@@ -98,6 +103,7 @@ namespace RFToolsv4.ViewModels
                 {
                     OnPropertyChanged(nameof(FrequencyValue));
                     OnPropertyChanged(nameof(CanCalculate));
+                    ToggleResultsViewModel.ToggleVisibility();
                 }
             }
         }
@@ -106,7 +112,7 @@ namespace RFToolsv4.ViewModels
         //public double PermeabilityValue => double.Parse(Permeability);
         //public double FrequencyValue => double.Parse(Frequency);
 
-        public bool CanCalculate => (PermeabilityValue != 0 && ResistivityValue != 0 && FrequencyValue != 0);
+        public bool CanCalculate => ValueTester.NaNTest(new double[] { PermeabilityValue, ResistivityValue, FrequencyValue });
 
         public ICommand CalculateCommand { get; }
 
@@ -116,6 +122,8 @@ namespace RFToolsv4.ViewModels
                 resistivity: ResistivityValue * Math.Pow(10, -8),
                 permeability: PermeabilityValue,
                 frequency: FrequencyValue * SelectedFrequency.Multiplier);
+
+            ToggleResultsViewModel.ToggleVisibility(true);
         }
 
         private string _results;

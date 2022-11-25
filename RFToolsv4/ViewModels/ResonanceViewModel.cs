@@ -205,7 +205,7 @@ namespace RFToolsv4.ViewModels
             }
         }
 
-        public bool CanCalculate => (FirstInputValue != 0 && SecondInputValue != 0);
+        public bool CanCalculate => ValueTester.NaNTest(new double[] { FirstInputValue, SecondInputValue });
 
         public ICommand CalculateCommand { get; }
 

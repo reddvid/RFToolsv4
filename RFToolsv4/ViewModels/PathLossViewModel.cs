@@ -114,8 +114,9 @@ namespace RFToolsv4.ViewModels
 
         public bool CanCalculate => TransmitterGainValue >= 0
                                     && ReceiverGainValue >= 0
-                                    && DistanceValue != 0
-                                    && FrequencyValue != 0;
+                                    && ValueTester.NaNTest(new double[] {
+                                        DistanceValue, FrequencyValue
+                                    });
 
         public ICommand CalculateCommand { get; }
 
@@ -125,7 +126,7 @@ namespace RFToolsv4.ViewModels
                                           rxGain: ReceiverGainValue,
                                           distance: DistanceValue * DistanceMultiplier.Multiplier / 1_000,
                                           frequency: FrequencyValue * FrequencyMultiplier.Multiplier / 1_000_000);
-            
+
             ToggleResultsViewModel.ToggleVisibility(true);
         }
 

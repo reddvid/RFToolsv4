@@ -15,7 +15,7 @@ namespace RFToolsv4.Helpers
             StringBuilder builder = new();
             foreach (var result in results)
             {
-                if (result.Units.Contains("too small"))
+                if (result.Units != null && result.Units.Contains("too small"))
                 {
                     builder.AppendLine($"{result.Name}: Value is too small!");
                 }

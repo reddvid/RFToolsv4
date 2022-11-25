@@ -166,13 +166,15 @@ namespace RFToolsv4.ViewModels
             }
         }
 
-        public bool CanCalculate => OutputPowerValue != 0.0
+        public bool CanCalculate => ValueTester.NaNTest(new double[] { 
+                                        OutputPowerValue, 
+                                        DistanceValue, 
+                                        FrequencyValue 
+                                    })
                                     && TransmitterGainValue >= 0
                                     && TransmitLossValue >= 0
                                     && ReceiverGainValue >= 0
-                                    && ReceiveLossValue >= 0
-                                    && DistanceValue != 0
-                                    && FrequencyValue != 0;
+                                    && ReceiveLossValue >= 0;
 
         public ICommand CalculateCommand { get; }
 

@@ -127,8 +127,8 @@ namespace RFToolsv4.ViewModels
 
 
         public bool CanCalculate => (!IsObstructed)
-                                    ? DistanceValue != 0 && FrequencyValue != 0
-                                    : DistanceValue != 0 && FrequencyValue != 0
+                                    ? ValueTester.NaNTest(new double[] { DistanceValue, FrequencyValue })
+                                    : ValueTester.NaNTest(new double[] { DistanceValue, FrequencyValue })
                                     && ObstructionValue <= DistanceValue && ObstructionValue >= 0;
 
         public ICommand CalculateCommand { get; }

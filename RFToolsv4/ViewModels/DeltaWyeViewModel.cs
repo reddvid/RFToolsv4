@@ -14,6 +14,7 @@ namespace RFToolsv4.ViewModels
     public class DeltaWyeViewModel : ObservableObject
     {
         public List<string> ConversionInput { get; private set; }
+        public ToggleResultsViewModel ToggleResultsViewModel { get; } = new ToggleResultsViewModel();
 
         public DeltaWyeViewModel()
         {
@@ -42,6 +43,7 @@ namespace RFToolsv4.ViewModels
                     SetInputBoxHeaders();
                     OnPropertyChanged(nameof(ComboSelector));
                     OnPropertyChanged(nameof(CanCalculate));
+                    ToggleResultsViewModel.ToggleVisibility();
                 }
             }
         }
@@ -67,6 +69,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _firstSelectedMultiplier, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -78,6 +81,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _secondSelectedMultiplier, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -89,6 +93,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _thirdSelectedMultiplier, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -112,6 +117,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _firstInputValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -124,6 +130,7 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _secondInputValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
@@ -136,10 +143,11 @@ namespace RFToolsv4.ViewModels
             {
                 SetProperty(ref _thirdInputValue, value);
                 OnPropertyChanged(nameof(CanCalculate));
+                ToggleResultsViewModel.ToggleVisibility();
             }
         }
 
-        public bool CanCalculate => (FirstInputValue != 0 && SecondInputValue != 0 && ThirdInputValue != 0);
+        public bool CanCalculate => ValueTester.NaNTest(new double[] { FirstInputValue, SecondInputValue, ThirdInputValue });
 
         public ICommand CalculateCommand { get; }
 
@@ -150,6 +158,8 @@ namespace RFToolsv4.ViewModels
                 second: SecondInputValue * SecondSelectedMultiplier.Multiplier,
                 third: ThirdInputValue * ThirdSelectedMultiplier.Multiplier,
                 setting: SelectedInput);
+
+            ToggleResultsViewModel.ToggleVisibility(true);
         }
 
         private string _results;

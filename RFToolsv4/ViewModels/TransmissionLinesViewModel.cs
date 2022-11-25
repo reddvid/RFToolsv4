@@ -97,7 +97,7 @@ namespace RFToolsv4.ViewModels
                 }
             }
         }
-        public bool CanCalculate => ImpedanceValue != 0 && DiameterValue != 0;
+        public bool CanCalculate => ValueTester.NaNTest(new double[] { ImpedanceValue, DiameterValue });
 
         public ICommand CalculateCommand { get; }
 

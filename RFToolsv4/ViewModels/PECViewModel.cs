@@ -110,7 +110,7 @@ namespace RFToolsv4.ViewModels
         }
 
 
-        public bool CanCalculate => InputValue != 0;
+        public bool CanCalculate => ValueTester.NaNTest(InputValue);
 
         public ICommand CalculateCommand { get; }
 
