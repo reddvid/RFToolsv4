@@ -227,9 +227,30 @@ namespace RFToolsv4
                 string item = (nav.SelectedItem as MenuItem).Title;
                 NavigateFrame(item);
                 SaveMenuItem(item);
+                SetInfoCards(item);
                 InfoCards.Visibility = Visibility.Visible;
                 AboutCards.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void SetInfoCards(string item)
+        {
+            string resourceName = item switch
+            {
+                "Free-Space Path Loss" => "PathLoss",
+                "Link Budget" => "LinkBudget",
+                "Standing Waves" => "VSWR",
+                "Fresnel Zones" => "FresnelZone",
+                "Resonance" => "Resonance",
+                "Skin Depth" => "SkinDepth",
+                "Wavelength & Frequency Conversion" => "Wavelength",
+                "Delta-Wye Conversion" => "DeltaWye",
+                "Power, Energy, & Charge Conversion" => "PEC",
+                _ => "PathLoss"
+            };
+
+            string localizedMessage = (string)Application.Current.Resources[resourceName];
+            txbDefinition.Text = localizedMessage;
         }
 
         private static void SaveMenuItem(string item)

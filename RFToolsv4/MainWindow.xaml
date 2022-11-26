@@ -127,15 +127,18 @@
                         <StackPanel Style="{StaticResource CardStyle}">
                             <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Information" />
                             <TextBlock
+                                x:Name="txbDefinition"
                                 IsTextSelectionEnabled="True"
                                 Style="{StaticResource CardBodyTextStyle}"
-                                Text="{StaticResource PathLossString}"
                                 TextWrapping="WrapWholeWords" />
                         </StackPanel>
                         <!--  MISC CARD  -->
                         <StackPanel Style="{StaticResource CardStyle}">
                             <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Useful Links" />
-                            <HyperlinkButton Content="Microsoft home page" NavigateUri="http://www.microsoft.com" />
+                            <HyperlinkButton
+                                x:Name="hLink"
+                                Content="Microsoft home page"
+                                NavigateUri="http://www.microsoft.com" />
                         </StackPanel>
                     </StackPanel>
 

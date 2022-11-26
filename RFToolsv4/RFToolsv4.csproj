@@ -12,10 +12,17 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Resources\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <None Remove="Resources\**" />
+    <Page Remove="Resources\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="CHANGELOG.md" />
     <None Remove="Components\ButtonResultControl.xaml" />
     <None Remove="Components\NumberBoxUnit.xaml" />
     <None Remove="Components\ToolPageTitle.xaml" />
+    <None Remove="Constants\Definitions.xaml" />
     <None Remove="SettingsPage.xaml" />
     <None Remove="Views\CoaxialCableLossPage.xaml" />
     <None Remove="Views\DeltaWyePage.xaml" />
@@ -151,4 +158,13 @@
   <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
   </PropertyGroup>
+  <ItemGroup>
+    <CustomAdditionalCompileInputs Remove="Constants\Definitions.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Remove="Constants\Definitions.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Remove="Resources\**" />
+  </ItemGroup>
 </Project>

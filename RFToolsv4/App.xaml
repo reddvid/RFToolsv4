@@ -7,17 +7,18 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <ResourceDictionary Source="Constants/Definitions.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Dark">
                     <ResourceDictionary.MergedDictionaries>
                         <ResourceDictionary>
                             <Color x:Key="ApplicationPageBackgroundThemeBrush">#FF202020</Color>
-                            <Color x:Key="PageBackgroundColor">#FF202020</Color>
-                            <Color x:Key="NavPaneColor">#FF4D4D4D</Color>
-                            <Color x:Key="InfoCardColor">#FF151515</Color>
-                            <Color x:Key="InfoCardDarkColor">#FF101010</Color>
-                            <Color x:Key="RegionColor">#FF000000</Color>
+                            <Color x:Key="PageBackgroundColor">#202020</Color>
+                            <Color x:Key="NavPaneColor">#4D4D4D</Color>
+                            <Color x:Key="InfoCardColor">#151515</Color>
+                            <Color x:Key="InfoCardDarkColor">#101010</Color>
+                            <Color x:Key="RegionColor">#000000</Color>
                             <SolidColorBrush x:Key="RegionBrush" Color="{StaticResource RegionColor}" />
                         </ResourceDictionary>
                     </ResourceDictionary.MergedDictionaries>
@@ -26,11 +27,11 @@
                     <ResourceDictionary.MergedDictionaries>
                         <ResourceDictionary>
                             <Color x:Key="ApplicationPageBackgroundThemeBrush">#FFd6d6d6</Color>
-                            <Color x:Key="NavPaneColor">#FFDEDEDE</Color>
-                            <Color x:Key="PageBackgroundColor">#FFd6d6d6</Color>
-                            <Color x:Key="InfoCardColor">#FFF3F3F3</Color>
-                            <Color x:Key="InfoCardDarkColor">#FFB4B4B4</Color>
-                            <Color x:Key="RegionColor">#FFFFFFFF</Color>
+                            <Color x:Key="NavPaneColor">#DEDEDE</Color>
+                            <Color x:Key="PageBackgroundColor">#d6d6d6</Color>
+                            <Color x:Key="InfoCardColor">#F3F3F3</Color>
+                            <Color x:Key="InfoCardDarkColor">#B4B4B4</Color>
+                            <Color x:Key="RegionColor">#FFFFFF</Color>
                             <SolidColorBrush x:Key="RegionBrush" Color="{StaticResource RegionColor}" />
                         </ResourceDictionary>
                     </ResourceDictionary.MergedDictionaries>
@@ -94,11 +95,7 @@
                 <Setter Property="FontWeight" Value="SemiBold" />
                 <Setter Property="FontSize" Value="16" />
             </Style>
-            <x:String x:Key="PathLossString" xml:space="preserve">
-Free-space path loss is often defined as the loss incurred by an electromagnetic wave as it pro[agates in a straight line through a vacuum with no absor[tion or reflection of energy from nearby objects.
-               
-Free-space path loss assumes ideal atmospheric conditions so that no electromagnetic energy is actually lost or dissipated - it merely spreads out as it propagates away from the source, resulting in lower relative power densities.
-            </x:String>
+
             <Style x:Key="ContainerPanel" TargetType="StackPanel">
                 <Setter Property="HorizontalAlignment" Value="Left" />
             </Style>

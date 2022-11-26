@@ -18,7 +18,7 @@ namespace RFToolsv4.Models
             var valueSI = SINumber.GetSI(value, units);
 
             Name = name;
-            Value = isEngineering ? Convert.ToDouble(value.ToString("G4")) : ValueFormat.ToLimitedDouble(isSI ? valueSI.Value : value);
+            Value = isEngineering ? value : ValueFormat.ToLimitedDouble(isSI ? valueSI.Value : value);
             Units = isSI ? valueSI.Unit : units;
         }
     }
