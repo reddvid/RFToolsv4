@@ -13,12 +13,12 @@ namespace RFToolsv4.Models
         public double Value { get; set; }
         public string Units { get; set; }
 
-        public Result(string name, double value, string units, bool isSI = false)
+        public Result(string name, double value, string units, bool isSI = false, bool isEngineering = false)
         {
             var valueSI = SINumber.GetSI(value, units);
 
             Name = name;
-            Value = ValueFormat.ToLimitedDouble(isSI ? valueSI.Value : value);
+            Value = isEngineering ? Convert.ToDouble(value.ToString("G4")) : ValueFormat.ToLimitedDouble(isSI ? valueSI.Value : value);
             Units = isSI ? valueSI.Unit : units;
         }
     }

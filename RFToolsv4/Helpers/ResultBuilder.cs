@@ -19,9 +19,13 @@ namespace RFToolsv4.Helpers
                 {
                     builder.AppendLine($"{result.Name}: Value is too small!");
                 }
+                else if (result.Value.ToString().ToUpper().Contains("E"))
+                {
+                    builder.AppendLine($"{result.Name}: {result.Value.ToString("G4")} {result.Units}");
+                }
                 else
                 {
-                    builder.AppendLine($"{result.Name}: {result.Value} {result.Units}");
+                    builder.AppendLine($"{result.Name}: {result.Value.ToString("N")} {result.Units}");
                 }
             }
 

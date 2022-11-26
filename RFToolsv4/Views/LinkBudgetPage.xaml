@@ -26,21 +26,21 @@
                 <StackPanel Style="{StaticResource TwoElementStackStyle}">
                     <NumberBox
                         Header="Transmitter Gain (dBi):"
-                        NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+                        NumberFormatter="{x:Bind helpers:NumFormatter.FrequencyNumberFormat}"
                         Value="{x:Bind ViewModel.TransmitterGainValue, Mode=TwoWay}" />
                     <NumberBox
                         Header="Transmitter Losses (dB):"
-                        NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+                        NumberFormatter="{x:Bind helpers:NumFormatter.FrequencyNumberFormat}"
                         Value="{x:Bind ViewModel.TransmitLossValue, Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel Style="{StaticResource TwoElementStackStyle}">
                     <NumberBox
                         Header="Receiver Gain (dBi):"
-                        NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+                        NumberFormatter="{x:Bind helpers:NumFormatter.FrequencyNumberFormat}"
                         Value="{x:Bind ViewModel.ReceiverGainValue, Mode=TwoWay}" />
                     <NumberBox
                         Header="Receiver Losses (dB):"
-                        NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+                        NumberFormatter="{x:Bind helpers:NumFormatter.FrequencyNumberFormat}"
                         Value="{x:Bind ViewModel.ReceiveLossValue, Mode=TwoWay}" />
                 </StackPanel>
                 <components:NumberBoxUnit

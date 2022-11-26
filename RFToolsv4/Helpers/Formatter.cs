@@ -8,7 +8,7 @@ using Windows.Globalization.NumberFormatting;
 
 namespace RFToolsv4.Helpers
 {
-    public class Formatter
+    public class NumFormatter
     {
         public static DecimalFormatter FrequencyNumberFormat => new() { FractionDigits = 2 };
     }

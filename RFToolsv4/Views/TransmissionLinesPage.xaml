@@ -20,7 +20,7 @@
                 <components:ToolPageTitle HeaderText="Two-Wire Transmission Line" />
                 <NumberBox
                     Header="Desired Characteristic Impedance (Ω):"
-                    NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+                    NumberFormatter="{x:Bind helpers:NumFormatter.FrequencyNumberFormat}"
                     Value="{x:Bind ViewModel.ImpedanceValue, Mode=TwoWay}" />
                 <ComboBox
                     Width="240"
@@ -32,7 +32,7 @@
                     ComboBoxItemsSource="{x:Bind ViewModel.Diameters, Mode=OneWay}"
                     ComboBoxSelectedItem="{x:Bind ViewModel.DiameterMultiplier, Mode=TwoWay}"
                     HeaderText="Conductor Diameter:"
-                    NumberBoxFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+                    NumberBoxFormatter="{x:Bind helpers:NumFormatter.FrequencyNumberFormat}"
                     NumberBoxValue="{x:Bind ViewModel.DiameterValue, Mode=TwoWay}" />
                 <components:ButtonResultControl
                     ButtonContent="Calculate Cable Distance"

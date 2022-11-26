@@ -17,7 +17,7 @@ namespace RFToolsv4.Helpers
                 2 => value.ToString("N2"),
                 3 => value.ToString("N3"),
                 4 => value.ToString("N4"),
-                _ => value.ToString(),
+                _ => value.ToString("N"),
             };
 
             return Convert.ToDouble(newValue);

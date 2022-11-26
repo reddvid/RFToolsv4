@@ -20,11 +20,11 @@
                 <components:ToolPageTitle HeaderText="Free-Space Path Loss" />
                 <NumberBox
                     Header="Transmitter Gain (dBi):"
-                    NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+                    NumberFormatter="{x:Bind helpers:NumFormatter.FrequencyNumberFormat}"
                     Value="{x:Bind ViewModel.TransmitterGainValue, Mode=TwoWay}" />
                 <NumberBox
                     Header="Receiver Gain (dBi):"
-                    NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+                    NumberFormatter="{x:Bind helpers:NumFormatter.FrequencyNumberFormat}"
                     Value="{x:Bind ViewModel.ReceiverGainValue, Mode=TwoWay}" />
                 <components:NumberBoxUnit
                     ComboBoxItemsSource="{x:Bind ViewModel.Distance}"

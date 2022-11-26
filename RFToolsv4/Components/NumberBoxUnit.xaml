@@ -12,7 +12,7 @@
     <StackPanel Style="{StaticResource TwoElementStackStyle}">
         <NumberBox
             Header="{Binding HeaderText, ElementName=root}"
-            NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat, Mode=OneWay}"
+            NumberFormatter="{x:Bind helpers:NumFormatter.FrequencyNumberFormat}"
             Value="{Binding NumberBoxValue, ElementName=root, Mode=TwoWay}" />
         <ComboBox
             Width="{Binding ComboBoxWidth, ElementName=root}"

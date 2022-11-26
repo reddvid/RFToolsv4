@@ -76,14 +76,12 @@ namespace RFToolsv4.Helpers
                 double electronvolt = input / Selectors.Energy[5].Multiplier;
                 double kilocalorie = input / Selectors.Energy[6].Multiplier;
 
-                var siWattHour = SINumber.GetSI(wattHour, "Wh");
-
                 results = new()
                 {
-                    new Result(name: "Watt-hour", value: siWattHour.Value, units: siWattHour.Unit),
+                    new Result(name: "Watt-hour", value: wattHour, units: "Wh", isSI: true),
                     new Result(name: "BTU", value: btu, units: "BTU", isSI: true),
                     new Result(name: "Kilojoule", value: kilojoule, units: "kJ"),
-                    new Result(name: "Electronvolt", value: electronvolt, units: "eV", isSI: true),
+                    new Result(name: "Electronvolt", value: electronvolt, units: "eV", isEngineering: true),
                     new Result(name: "Kilocalorie", value: kilocalorie, units: null),
                 };
             }
@@ -95,9 +93,9 @@ namespace RFToolsv4.Helpers
 
                 results = new()
                 {
-                    new Result(name: "Coulomb", value: coulomb, units: "C"),
-                    new Result(name: "Electron charge", value: electronCharge, units: null),
-                    new Result(name: "Ampere-hour", value: ampereHour, units: null),
+                    new Result(name: "Coulomb", value: coulomb, units: "C", isSI: true),
+                    new Result(name: "Electron charge", value: electronCharge, units: "Cₑ", isEngineering: true),
+                    new Result(name: "Ampere-hour", value: ampereHour, units: "Ah"),
                 };
             }
 

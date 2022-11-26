@@ -27,7 +27,7 @@
                     <NumberBox
                         Width="180"
                         Header=" "
-                        NumberFormatter="{x:Bind helpers:Formatter.FrequencyNumberFormat}"
+                        NumberFormatter="{x:Bind helpers:NumFormatter.FrequencyNumberFormat}"
                         Value="{x:Bind ViewModel.InputValue, Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel
