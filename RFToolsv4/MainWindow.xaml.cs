@@ -26,6 +26,9 @@ using CommunityToolkit.WinUI.UI.Controls;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
 using MenuItem = RFToolsv4.Models.MenuItem;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -64,7 +67,7 @@ namespace RFToolsv4
 
             foreach (var menuItem in ViewModel.MenuItems)
             {
-                if (savedNavigation == menuItem.Title)
+                if (savedNavigation == menuItem.Content)
                 {
                     navigationView.SelectedItem = menuItem;
                     break;
@@ -78,132 +81,7 @@ namespace RFToolsv4
             return localSettings.Values["navigation"] as string;
         }
 
-        #region WINDOW_CONTROL
-        private delegate IntPtr WinProc(IntPtr hWnd, PInvoke.User32.WindowMessage Msg, IntPtr wParam, IntPtr lParam);
-        private WinProc newWndProc = null;
-        private IntPtr oldWndProc = IntPtr.Zero;
-        [DllImport("user32")]
-        private static extern IntPtr SetWindowLong(IntPtr hWnd, PInvoke.User32.WindowLongIndexFlags nIndex, WinProc newProc);
-        [DllImport("user32.dll")]
-        static extern IntPtr CallWindowProc(IntPtr lpPrevWndFunc, IntPtr hWnd, PInvoke.User32.WindowMessage Msg, IntPtr wParam, IntPtr lParam);
-
-        private void SubClassing()
-        {
-            //Get the Window's HWND
-            var hwnd = this.As<IWindowNative>().WindowHandle;
-
-            newWndProc = new WinProc(NewWindowProc);
-            oldWndProc = SetWindowLong(hwnd, PInvoke.User32.WindowLongIndexFlags.GWL_WNDPROC, newWndProc);
-        }
-
-        int MinWidth = 1200;
-        int MinHeight = 600;
-
-        [StructLayout(LayoutKind.Sequential)]
-        struct MINMAXINFO
-        {
-            public PInvoke.POINT ptReserved;
-            public PInvoke.POINT ptMaxSize;
-            public PInvoke.POINT ptMaxPosition;
-            public PInvoke.POINT ptMinTrackSize;
-            public PInvoke.POINT ptMaxTrackSize;
-        }
-
-        private IntPtr NewWindowProc(IntPtr hWnd, PInvoke.User32.WindowMessage Msg, IntPtr wParam, IntPtr lParam)
-        {
-            switch (Msg)
-            {
-                case PInvoke.User32.WindowMessage.WM_GETMINMAXINFO:
-                    var dpi = PInvoke.User32.GetDpiForWindow(hWnd);
-                    float scalingFactor = (float)dpi / 96;
-
-                    MINMAXINFO minMaxInfo = Marshal.PtrToStructure<MINMAXINFO>(lParam);
-                    minMaxInfo.ptMinTrackSize.x = (int)(MinWidth * scalingFactor);
-                    minMaxInfo.ptMinTrackSize.y = (int)(MinHeight * scalingFactor);
-                    Marshal.StructureToPtr(minMaxInfo, lParam, true);
-                    break;
-
-            }
-            return CallWindowProc(oldWndProc, hWnd, Msg, wParam, lParam);
-        }
-
-
-        [ComImport]
-        [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-        [Guid("EECDBF0E-BAE9-4CB6-A68E-9598E1CB57BB")]
-        internal interface IWindowNative
-        {
-            IntPtr WindowHandle { get; }
-        }
-
-        bool TrySetSystemBackdrop()
-        {
-            if (Microsoft.UI.Composition.SystemBackdrops.MicaController.IsSupported())
-            {
-                m_wsdqHelper = new WindowsSystemDispatcherQueueHelper();
-                m_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
-
-                // Create the policy object.
-                m_configurationSource = new SystemBackdropConfiguration();
-                this.Activated += Window_Activated;
-                this.Closed += Window_Closed;
-                ((FrameworkElement)this.Content).ActualThemeChanged += Window_ThemeChanged;
-
-                // Initial configuration state.
-                m_configurationSource.IsInputActive = true;
-                SetConfigurationSourceTheme();
-
-                m_backdropController = new Microsoft.UI.Composition.SystemBackdrops.MicaController();
-
-                // Enable the system backdrop.
-                // Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
-                m_backdropController.AddSystemBackdropTarget(this.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
-                m_backdropController.SetSystemBackdropConfiguration(m_configurationSource);
-                return true; // succeeded
-            }
-
-            return false; // Mica is not supported on this system
-        }
-
-        private void Window_Activated(object sender, WindowActivatedEventArgs args)
-        {
-            m_configurationSource.IsInputActive = args.WindowActivationState != WindowActivationState.Deactivated;
-        }
-
-        private void Window_Closed(object sender, WindowEventArgs args)
-        {
-            // Make sure any Mica/Acrylic controller is disposed
-            // so it doesn't try to use this closed window.
-            if (m_backdropController != null)
-            {
-                m_backdropController.Dispose();
-                m_backdropController = null;
-            }
-            this.Activated -= Window_Activated;
-            m_configurationSource = null;
-        }
-
-        private void Window_ThemeChanged(FrameworkElement sender, object args)
-        {
-            if (m_configurationSource != null)
-            {
-                SetConfigurationSourceTheme();
-            }
-        }
-
-        private void SetConfigurationSourceTheme()
-        {
-            switch (((FrameworkElement)this.Content).ActualTheme)
-            {
-                case ElementTheme.Dark: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Dark; break;
-                case ElementTheme.Light: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Light; break;
-                case ElementTheme.Default: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Default; break;
-            }
-        }
-
-        #endregion
-
-        private void MenuListView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+           private void MenuListView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             var nav = sender as NavigationView;
             if (args.IsSettingsSelected)
@@ -216,8 +94,9 @@ namespace RFToolsv4
             }
             else
             {
+                // TODO: Fix cards and navigation
                 ViewModel.IsSettingsPage = false;
-                if (nav.SelectedItem as MenuItem == null)
+                if ((nav.SelectedItem as NavigationViewItem) == null)
                 {
                     ViewModel.IsSettingsPage = true;
                     InfoCards.Visibility = Visibility.Collapsed;
@@ -244,6 +123,7 @@ namespace RFToolsv4
                 "Resonance" => "Resonance",
                 "Skin Depth" => "SkinDepth",
                 "Wavelength & Frequency Conversion" => "Wavelength",
+                "Two-Wire Transmission Lines" => "TwoWireLines",
                 "Delta-Wye Conversion" => "DeltaWye",
                 "Power, Energy, & Charge Conversion" => "PEC",
                 _ => "PathLoss"
@@ -263,17 +143,23 @@ namespace RFToolsv4
         private void NavigateFrame(string item)
         {
             if (mainFrame == null || item == null) return;
-            foreach (var menuItem in ViewModel.MenuItems)
+            // TODO: Improve simplification/use ViewModel
+            var targetTypePage = item switch
             {
-                if (item == menuItem.Title)
-                {
-                    mainFrame.Navigate(menuItem.Page);
-                    break;
-                }
-            }
+                "Free-Space Path Loss" => typeof(FreeSpacePathLossPage),
+                "Link Budget" => typeof(LinkBudgetPage),
+                "Standing Waves" => typeof(StandingWavesPage),
+                "Fresnel Zones" => typeof(FresnelZonesPage),
+                "Resonance" => typeof(ResonancePage),
+                "Skin Depth" => typeof(SkinDepthPage),
+                "Wavelength & Frequency Conversion" => typeof(WavelengthFrequencyPage),
+                "Two-Wire Transmission Lines" => typeof(TransmissionLinesPage),
+                "Delta-Wye Conversion" => typeof(DeltaWyePage),
+                "Power, Energy, & Charge Conversion" => typeof(PECConversionPage),
+                _ => typeof(FreeSpacePathLossPage)
+            };
+            mainFrame.Navigate(targetTypePage);
         }
-
-
 
         private async void ChangelogMD_Loaded(object sender, RoutedEventArgs e)
         {
@@ -282,6 +168,35 @@ namespace RFToolsv4
             var file = @"CHANGELOG.md";
             var path = Path.Combine(directory, file);
             markdown.Text = await File.ReadAllTextAsync(path);
+        }
+
+        private void NewToolWindow_Click(object sender, RoutedEventArgs e)
+        {
+            // C# code to create a new window
+            //var newWindow = WindowHelper.CreateWindow();
+            //var rootPage = new NavigationRootPage();
+            //rootPage.RequestedTheme = ThemeHelper.RootTheme;
+            //newWindow.Content = rootPage;
+            //newWindow.Activate();
+
+            // C# code to navigate in the new window           
+            //var targetPageType = item switch
+            //{
+            //    "Free-Space Path Loss" => typeof(FreeSpacePathLossPage),
+            //    "Link Budget" => typeof(LinkBudgetPage),
+            //    "Standing Waves" => typeof(StandingWavesPage),
+            //    "Fresnel Zones" => typeof(FresnelZonesPage),
+            //    "Resonance" => typeof(ResonancePage),
+            //    "Skin Depth" => typeof(SkinDepthPage),
+            //    "Two-Wire Transmission Lines" => typeof(TransmissionLinesPage),
+            //    "Wavelength & Frequency Conversion" => typeof(WavelengthFrequencyPage),
+            //    "Delta-Wye Conversion" => typeof(DeltaWyePage),
+            //    "Power, Energy, & Charge Conversion" => typeof(PECConversionPage),
+            //    _ => typeof(FreeSpacePathLossPage)
+            //};
+
+            //string targetPageArguments = string.Empty;
+            //rootPage.Navigate(targetPageType, targetPageArguments);
         }
     }
 

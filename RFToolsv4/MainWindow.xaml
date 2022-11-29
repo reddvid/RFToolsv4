@@ -71,6 +71,7 @@
                         Margin="0,20,12,0"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top"
+                        Click="NewToolWindow_Click"
                         ToolTipService.ToolTip="Open new tool window"
                         Visibility="{x:Bind ViewModel.IsSettingsPage, Mode=OneWay}">
                         <Button.Content>
@@ -90,38 +91,6 @@
             Background="{ThemeResource NavPaneColor}">
             <ScrollViewer Margin="0" Padding="16,0">
                 <StackPanel Padding="0,0,0,40">
-
-                    <!--<StackPanel
-                        Spacing="12"
-                        Style="{StaticResource CardStyle}"
-                        Visibility="Collapsed">
-                        <Button HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}">
-                            <Button.Content>
-                                <StackPanel
-                                    HorizontalAlignment="Left"
-                                    Orientation="Horizontal"
-                                    Spacing="8">
-                                    <Viewbox Height="14">
-                                        <SymbolIcon Symbol="Pin" />
-                                    </Viewbox>
-                                    <TextBlock FontSize="12" Text="Pin tool to Start" />
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}">
-                            <Button.Content>
-                                <StackPanel
-                                    HorizontalAlignment="Left"
-                                    Orientation="Horizontal"
-                                    Spacing="8">
-                                    <Viewbox Height="14">
-                                        <SymbolIcon Symbol="NewWindow" />
-                                    </Viewbox>
-                                    <TextBlock FontSize="12" Text="Open new tool window" />
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                    </StackPanel>-->
                     <StackPanel x:Name="InfoCards" Spacing="16">
                         <!--  INFO CARD  -->
                         <StackPanel Style="{StaticResource CardStyle}">
@@ -137,8 +106,8 @@
                             <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Useful Links" />
                             <HyperlinkButton
                                 x:Name="hLink"
-                                Content="Microsoft home page"
-                                NavigateUri="http://www.microsoft.com" />
+                                Content="Wikipedia"
+                                NavigateUri="http://www.wikipedia.org" />
                         </StackPanel>
                     </StackPanel>
 
