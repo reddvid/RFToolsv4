@@ -64,13 +64,19 @@ namespace RFToolsv4
             string savedNavigation = GetLastMenuItem();
 
             if (string.IsNullOrWhiteSpace(savedNavigation)) navigationView.SelectedItem = "Free-Space Path Loss";
-
-            foreach (var menuItem in ViewModel.MenuItems)
+                    
+            foreach (NavigationViewItem menuGroup in ViewModel.MenuItems)
             {
-                if (savedNavigation == menuItem.Content)
+                var list = menuGroup.MenuItemsSource as List<MenuItem>;
+                if (list == null) return;
+
+                foreach (MenuItem menuItem in list)
                 {
-                    navigationView.SelectedItem = menuItem;
-                    break;
+                    if (savedNavigation == menuItem.Title)
+                    {
+                        navigationView.SelectedItem = menuItem;
+                        break;
+                    }
                 }
             }
         }
@@ -81,7 +87,7 @@ namespace RFToolsv4
             return localSettings.Values["navigation"] as string;
         }
 
-           private void MenuListView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        private void MenuListView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
             var nav = sender as NavigationView;
             if (args.IsSettingsSelected)
@@ -96,15 +102,24 @@ namespace RFToolsv4
             {
                 // TODO: Fix cards and navigation
                 ViewModel.IsSettingsPage = false;
-                if ((nav.SelectedItem as NavigationViewItem) == null)
+                if (nav.SelectedItem as NavigationViewItem != null && (nav.SelectedItem as NavigationViewItem).MenuItems != null)
                 {
                     ViewModel.IsSettingsPage = true;
                     InfoCards.Visibility = Visibility.Collapsed;
                     AboutCards.Visibility = Visibility.Visible;
                     return;
                 }
+
+                if ((nav.SelectedItem as MenuItem) == null)
+                {
+                    ViewModel.IsSettingsPage = true;
+                    InfoCards.Visibility = Visibility.Collapsed;
+                    AboutCards.Visibility = Visibility.Visible;
+                    return;
+                }
+
                 string item = (nav.SelectedItem as MenuItem).Title;
-                NavigateFrame(item);
+                NavigateFrame(nav.SelectedItem as MenuItem);
                 SaveMenuItem(item);
                 SetInfoCards(item);
                 InfoCards.Visibility = Visibility.Visible;
@@ -138,6 +153,23 @@ namespace RFToolsv4
             Debug.WriteLine($"Saving {item}");
             ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             localSettings.Values["navigation"] = item;
+        }
+
+        private void NavigateFrame(MenuItem item)
+        {
+            if (mainFrame == null || item == null) return;
+            foreach (NavigationViewItem menuGroup in ViewModel.MenuItems)
+            {
+                var list = menuGroup.MenuItemsSource;
+                foreach (MenuItem menuItem in menuGroup.MenuItems)
+                {
+                    if (menuItem.Title == item.Title)
+                    {
+                        mainFrame.Navigate(menuItem.Page);
+                        break;
+                    }
+                }
+            }
         }
 
         private void NavigateFrame(string item)
