@@ -44,7 +44,7 @@
             IsPaneOpen="True"
             IsPaneToggleButtonVisible="False"
             IsTitleBarAutoPaddingEnabled="True"
-            Loaded="MenuListView_Loaded"
+            Loaded="MenuListView_Loaded" 
             MenuItemsSource="{x:Bind ViewModel.MenuItems}"
             OpenPaneLength="280"
             PaneDisplayMode="Left"
@@ -73,7 +73,7 @@
                         VerticalAlignment="Top"
                         Click="NewToolWindow_Click"
                         ToolTipService.ToolTip="Open new tool window"
-                        Visibility="{x:Bind ViewModel.IsSettingsPage, Mode=OneWay}">
+                        Visibility="Collapsed">
                         <Button.Content>
                             <Viewbox Width="14" Height="14">
                                 <SymbolIcon Symbol="NewWindow" />

@@ -102,11 +102,9 @@ namespace RFToolsv4
             {
                 // TODO: Fix cards and navigation
                 ViewModel.IsSettingsPage = false;
-                if (nav.SelectedItem as NavigationViewItem != null && (nav.SelectedItem as NavigationViewItem).MenuItems != null)
+                if (nav.SelectedItem as NavigationViewItem != null 
+                    && (nav.SelectedItem as NavigationViewItem).MenuItemsSource != null)
                 {
-                    ViewModel.IsSettingsPage = true;
-                    InfoCards.Visibility = Visibility.Collapsed;
-                    AboutCards.Visibility = Visibility.Visible;
                     return;
                 }
 
@@ -160,8 +158,10 @@ namespace RFToolsv4
             if (mainFrame == null || item == null) return;
             foreach (NavigationViewItem menuGroup in ViewModel.MenuItems)
             {
-                var list = menuGroup.MenuItemsSource;
-                foreach (MenuItem menuItem in menuGroup.MenuItems)
+                var list = menuGroup.MenuItemsSource as List<MenuItem>;
+                if (list == null) return;
+
+                foreach (MenuItem menuItem in list)
                 {
                     if (menuItem.Title == item.Title)
                     {
