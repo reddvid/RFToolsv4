@@ -27,6 +27,8 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
 using MenuItem = RFToolsv4.Models.MenuItem;
 using RFToolsv4.Constants;
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -49,7 +51,50 @@ namespace RFToolsv4
             Title = "RF Tools";
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(appTitleBar);
+            // this.SizeChanged += MainWindow_SizeChanged;
+
+            Windowing();
             // SubClassing();
+        }
+
+        private void MainWindow_SizeChanged(object sender, WindowSizeChangedEventArgs args)
+        {
+            IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this); // m_window in App.cs
+            WindowId windowId = Win32Interop.GetWindowIdFromWindow(hWnd);
+            AppWindow appWindow = AppWindow.GetFromWindowId(windowId);
+
+#if DEBUG
+            appTitleText.Text = $"{args.Size.Width} x {args.Size.Height}";
+#endif
+
+            if (args.Size.Width < 1200 && args.Size.Height >= 720)
+            {
+                appWindow.Resize(new Windows.Graphics.SizeInt32 { 
+                    Width = 1200, 
+                    Height = (int)args.Size.Height
+                });
+            }
+
+            if (args.Size.Height < 720 && args.Size.Width >= 1200)
+            {
+                appWindow.Resize(new Windows.Graphics.SizeInt32 { 
+                    Width = (int)args.Size.Width, 
+                    Height = 720 
+                });
+            }
+        }
+
+        private void Windowing()
+        {
+            IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this); // m_window in App.cs
+            WindowId windowId = Win32Interop.GetWindowIdFromWindow(hWnd);
+            AppWindow appWindow = AppWindow.GetFromWindowId(windowId);
+
+            var size = new Windows.Graphics.SizeInt32();
+            size.Width = 1200;
+            size.Height = 720;
+
+            appWindow.Resize(size);
         }
 
         private void MenuListView_Loaded(object sender, RoutedEventArgs e)
@@ -268,22 +313,24 @@ namespace RFToolsv4
 
             // Get links
             List<ToolLink> links = ToolLinks.UriLinks;
-            if (links == null || links.Count == 0 || links.Where(x => x.Tool == tool).Count() == 0)
-            { 
+            if (links != null && links.Count != 0 && links.Any(x => x.Tool == tool))
+            {
+                foreach (ToolLink link in links.Where(x => x.Tool == tool))
+                {
+                    linksPanel.Children.Add(new HyperlinkButton()
+                    {
+                        Content = link.Title,
+                        NavigateUri = link.Link
+                    });
+                }
+
+                linksPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
                 linksPanel.Visibility = Visibility.Collapsed;
                 return;
             }
-
-            foreach (ToolLink link in links.Where(x => x.Tool == tool))
-            {
-                linksPanel.Children.Add(new HyperlinkButton()
-                {
-                    Content = link.Title,
-                    NavigateUri = link.Link
-                });
-            }
-
-            linksPanel.Visibility = Visibility.Visible;
         }
 
         private void SetToolDefinition(string resourceName)

@@ -30,7 +30,7 @@
             Background="{ThemeResource PageBackgroundColor}">
             <TextBlock
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center"
+                VerticalAlignment="Center" x:Name="appTitleText"
                 Text="RF Tools" />
         </Grid>
         <NavigationView
