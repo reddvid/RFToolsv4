@@ -60,14 +60,6 @@
                             Style="{StaticResource SettingsBodyTextStyle}"
                             TextAlignment="Right"
                             TextWrapping="WrapWholeWords">
-                            <Span FontWeight="Bold">Ctrl + M</Span>
-                            <Span>: Toggle Navigation Menu</Span>
-                        </TextBlock>
-                        <TextBlock
-                            IsTextSelectionEnabled="True"
-                            Style="{StaticResource SettingsBodyTextStyle}"
-                            TextAlignment="Right"
-                            TextWrapping="WrapWholeWords">
                             <Span FontWeight="Bold">Ctrl + Delete</Span>
                             <Span>: Clear all inputs</Span>
                         </TextBlock>
@@ -84,31 +76,15 @@
                             Style="{StaticResource SettingsBodyTextStyle}"
                             TextAlignment="Right"
                             TextWrapping="WrapWholeWords">
-                            <Span FontWeight="Bold">Ctrl + Shift + N</Span>
-                            <Span>: Launch new window (current tool)</Span>
-                        </TextBlock>
-                        <TextBlock
-                            IsTextSelectionEnabled="True"
-                            Style="{StaticResource SettingsBodyTextStyle}"
-                            TextAlignment="Right"
-                            TextWrapping="WrapWholeWords">
                             <Span FontWeight="Bold">Win + F</Span>
                             <Span>: Send Feedback (Opens Feedback Hub)</Span>
-                        </TextBlock>
-                        <TextBlock
-                            IsTextSelectionEnabled="True"
-                            Style="{StaticResource SettingsBodyTextStyle}"
-                            TextAlignment="Right"
-                            TextWrapping="WrapWholeWords">
-                            <Span FontWeight="Bold">Win + Shift + Enter</Span>
-                            <Span>: Toggle Fullscreen mode</Span>
                         </TextBlock>
                     </StackPanel>
                     <StackPanel
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
                         Orientation="Horizontal">
-                        <HyperlinkButton Content="Search keyboard shortcuts" NavigateUri="https://www.bing.com/search?q=windows%2011%20keyboard%20shortcuts%20site:microsoft.com" />
+                        <HyperlinkButton Content="More Windows keyboard shortcuts" NavigateUri="https://www.bing.com/search?q=windows%2011%20keyboard%20shortcuts%20site:microsoft.com" />
                     </StackPanel>
                 </Grid>
                 <Grid

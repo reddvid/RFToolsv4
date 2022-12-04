@@ -1,9 +1,9 @@
 ﻿#### v4.0.0
 - Refresh overall app UI
 - Calculation fixes
-- Removed Pin to Start tools [RIP live tiles]
-- Removed keyboard shortcut for Navigation pane toggle
-- Removed timeline support [deprecated on Win11]
+- Remove several keyboard shortcuts (working on it!)
+- Remove Pin to Start tools [RIP live tiles]
+- Remove timeline support [deprecated on Win11]
 
 ----
 #### v3.5
