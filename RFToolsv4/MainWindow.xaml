@@ -90,6 +90,9 @@
             Background="{ThemeResource NavPaneColor}">
             <ScrollViewer Margin="0" Padding="16,0">
                 <StackPanel Padding="0,0,0,40">
+                    <StackPanel.Transitions>
+                        <AddDeleteThemeTransition />
+                    </StackPanel.Transitions>
 
                     <!--<StackPanel
                         Spacing="12"
@@ -133,12 +136,10 @@
                                 TextWrapping="WrapWholeWords" />
                         </StackPanel>
                         <!--  MISC CARD  -->
-                        <StackPanel Style="{StaticResource CardStyle}">
-                            <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Useful Links" />
-                            <HyperlinkButton
-                                x:Name="hLink"
-                                Content="Microsoft home page"
-                                NavigateUri="http://www.microsoft.com" />
+                        <StackPanel x:Name="linksPanel" Style="{StaticResource CardStyle}">
+                            <StackPanel.Transitions>
+                                <AddDeleteThemeTransition />
+                            </StackPanel.Transitions>
                         </StackPanel>
                     </StackPanel>
 

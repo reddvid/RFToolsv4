@@ -9,6 +9,9 @@
     mc:Ignorable="d">
 
     <StackPanel>
+        <StackPanel.Transitions>
+            <AddDeleteThemeTransition />
+        </StackPanel.Transitions>
         <StackPanel.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition IsStaggeringEnabled="True" />
@@ -24,6 +27,9 @@
             CornerRadius="6"
             Style="{StaticResource ResultsCardStyle}"
             Visibility="{Binding ResultsVisibility, ElementName=root}">
+            <StackPanel.Transitions>
+                <AddDeleteThemeTransition />
+            </StackPanel.Transitions>
             <TextBlock Style="{StaticResource CardTitleTextStyle}" Text="Results" />
             <TextBlock
                 IsTextSelectionEnabled="True"

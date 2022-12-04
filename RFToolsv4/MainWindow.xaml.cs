@@ -26,6 +26,7 @@ using CommunityToolkit.WinUI.UI.Controls;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
 using MenuItem = RFToolsv4.Models.MenuItem;
+using RFToolsv4.Constants;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -235,7 +236,7 @@ namespace RFToolsv4
 
         private void SetInfoCards(string item)
         {
-            string resourceName = item switch
+            string tag = item switch
             {
                 "Free-Space Path Loss" => "PathLoss",
                 "Link Budget" => "LinkBudget",
@@ -249,6 +250,44 @@ namespace RFToolsv4
                 _ => "PathLoss"
             };
 
+            SetToolDefinition(tag);
+            SetToolLinks(tag);
+        }
+
+        private void SetToolLinks(string tool)
+        {
+            // Clear linksPanel
+            linksPanel.Children.Clear();
+
+            // Add card title to stackpanel
+            linksPanel.Children.Add(new TextBlock()
+            {
+                Text = "Useful Links",
+                Style = (Style)Application.Current.Resources["CardTitleTextStyle"]
+            });
+
+            // Get links
+            List<ToolLink> links = ToolLinks.UriLinks;
+            if (links == null || links.Count == 0 || links.Where(x => x.Tool == tool).Count() == 0)
+            { 
+                linksPanel.Visibility = Visibility.Collapsed;
+                return;
+            }
+
+            foreach (ToolLink link in links.Where(x => x.Tool == tool))
+            {
+                linksPanel.Children.Add(new HyperlinkButton()
+                {
+                    Content = link.Title,
+                    NavigateUri = link.Link
+                });
+            }
+
+            linksPanel.Visibility = Visibility.Visible;
+        }
+
+        private void SetToolDefinition(string resourceName)
+        {          
             string localizedMessage = (string)Application.Current.Resources[resourceName];
             txbDefinition.Text = localizedMessage;
         }
