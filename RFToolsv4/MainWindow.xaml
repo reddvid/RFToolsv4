@@ -67,18 +67,6 @@
                             <TextBlock Text="version 4" TextAlignment="Center" />
                         </StackPanel>
                     </Frame>
-                    <Button
-                        Margin="0,20,12,0"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Top"
-                        ToolTipService.ToolTip="Open new tool window"
-                        Visibility="{x:Bind ViewModel.IsSettingsPage, Mode=OneWay}">
-                        <Button.Content>
-                            <Viewbox Width="14" Height="14">
-                                <SymbolIcon Symbol="NewWindow" />
-                            </Viewbox>
-                        </Button.Content>
-                    </Button>
                 </Grid>
             </NavigationView.Content>
         </NavigationView>
