@@ -15,7 +15,9 @@ namespace RFToolsv4.Models
         {
             Tool = tool;
             Title = title;
-            Link = title == "Wikipedia" ? new Uri($"https://wikipedia.org/wiki/{link}") : new Uri(link);
+            Link = (title.Contains("Wikipedia") && !link.Contains("wikipedia")) 
+                    ? new Uri($"https://wikipedia.org/wiki/{link}") 
+                    : new Uri(link);
         }
     }
 }
