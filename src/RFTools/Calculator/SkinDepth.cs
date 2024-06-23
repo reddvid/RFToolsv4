@@ -1,9 +1,8 @@
+using RFTools.Constants;
 using RFTools.Models;
 using RFTools.Utilities;
 
 namespace RFTools.Calculator;
-
-
 
 public class SkinDepth : ISkinDepth
 {
@@ -22,6 +21,6 @@ public class SkinDepth : ISkinDepth
 
         double skinDepthInMeters = Math.Sqrt(resistivity / 100 / denominator);
 
-        return new Result("Skin Depth", skinDepthInMeters, "m");
+        return new Result("Skin Depth", skinDepthInMeters, Units.Meter);
     }
 }

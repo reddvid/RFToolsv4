@@ -2,7 +2,7 @@ using RFTools.Models;
 
 namespace RFTools.Calculator;
 
-public interface ISkinDepth
+public interface ISkinDepth: ICalculator
 {
     Result Calculate(
         double resistivity,

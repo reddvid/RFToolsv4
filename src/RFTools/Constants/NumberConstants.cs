@@ -1,6 +1,6 @@
 namespace RFTools.Constants;
 
-public static class NumberConstants
+public static class Values
 {
-    public const int SignificantUnits = 4;
+    public const int PrecisionUnits = 4;
 }
