@@ -22,7 +22,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\RFTools\RFTools.csproj" />
-      <ProjectReference Include="..\src\RFTools\RFTools.csproj" />
     </ItemGroup>
 
 </Project>

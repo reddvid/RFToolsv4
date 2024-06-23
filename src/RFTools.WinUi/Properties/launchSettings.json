@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "RFTools.WinUi (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "RFTools.WinUi (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

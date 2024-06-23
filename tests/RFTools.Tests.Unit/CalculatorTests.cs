@@ -85,4 +85,14 @@ public class CalculatorTests
         // Assert
         Assert.Throws<ArgumentException>(() => _sutStandingWaves.Calculate(Known.Vswr, input));
     }
+
+    [Fact]
+    public void CalculateResonance_FindFrequencyForValues_EqualResult()
+    {
+        // Act
+        var result = _sutResonance.Calculate(Unknown.Frequency, capacitance: 4E-12, inductance: 5E-6);
+
+        // Assert
+        Assert.NotStrictEqual(35.588, (double)result.Value);
+    }
 }
