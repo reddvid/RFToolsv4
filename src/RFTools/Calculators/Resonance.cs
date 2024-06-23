@@ -1,5 +1,6 @@
 using RFTools.Constants;
 using RFTools.Contracts;
+using RFTools.Enums;
 using RFTools.Models;
 
 namespace RFTools.Calculators;

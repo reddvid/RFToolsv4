@@ -1,4 +1,4 @@
-namespace RFTools.Constants;
+namespace RFTools.Enums;
 
 public enum Known
 {
@@ -11,7 +11,6 @@ public enum Unknown
 {
     Frequency,
     Capacitance,
-    Inductance,
-    Resistance
+    Inductance
 }
 
