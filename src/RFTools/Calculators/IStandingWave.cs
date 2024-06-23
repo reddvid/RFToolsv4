@@ -1,7 +1,7 @@
 using RFTools.Constants;
 using RFTools.Models;
 
-namespace RFTools.Calculator;
+namespace RFTools.Calculators;
 
 public interface IStandingWave
 {

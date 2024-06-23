@@ -1,9 +1,10 @@
 using RFTools.Constants;
+using RFTools.Contracts;
 using RFTools.Models;
 
-namespace RFTools.Calculator;
+namespace RFTools.Calculators;
 
-public class StandingWave : IStandingWave
+public class StandingWave : Calculator, IStandingWave
 {
     /// <summary>
     /// Calculate Standing Waves
@@ -38,7 +39,7 @@ public class StandingWave : IStandingWave
         {
             reflectionCoefficient = value;
 
-            if (reflectionCoefficient >= 1)
+            if (reflectionCoefficient is >= 1 or < 0)
             {
                 throw new ArgumentException(message: "Reflection Coefficient should be between 0 and 1.",
                     nameof(reflectionCoefficient));
@@ -49,18 +50,6 @@ public class StandingWave : IStandingWave
                 vswr = 0;
                 returnLoss = double.PositiveInfinity;
                 mismatchLoss = 0;
-            }
-            else if (reflectionCoefficient < 0 && reflectionCoefficient < -1)
-            {
-                vswr = 0;
-                returnLoss = double.NaN;
-                mismatchLoss = -10 * Math.Log10(1 - reflectionCoefficient * reflectionCoefficient);
-            }
-            else if (reflectionCoefficient <= -1)
-            {
-                vswr = 0;
-                returnLoss = double.NaN;
-                mismatchLoss = double.PositiveInfinity;
             }
             else
             {

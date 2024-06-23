@@ -1,10 +1,14 @@
-using RFTools.Calculator;
+using RFTools.Calculators;
 using RFTools.Constants;
+using RFTools.Contracts;
 
-namespace RFTools.Tests.xUnit;
+namespace RFTools.Tests.Unit;
 
 public class CalculatorTests
 {
+    SkinDepth _sutSkinDepth = new();
+    StandingWave _sutStandingWaves = new();
+
     [Theory]
     [InlineData(0.000001678, 0.999991, 2_400_000_000, 1.3308)]
     [InlineData(0.000001678, 0.999991, 4_000_000_000, 1.0308)]
@@ -15,11 +19,8 @@ public class CalculatorTests
         double frequency,
         decimal expected)
     {
-        // Arrange
-        var calculator = new SkinDepth();
-
         // Act
-        var result = calculator.Calculate(resistivity, permeability, frequency);
+        var result = _sutSkinDepth.Calculate(resistivity, permeability, frequency);
 
         // Assert
         Assert.Equal(expected, result.Value);
@@ -28,11 +29,8 @@ public class CalculatorTests
     [Fact]
     public void CalculateSkinDepth_ReturnResult_SameUnits()
     {
-        // Arrange
-        var calculator = new SkinDepth();
-
         // Act
-        var result = calculator.Calculate(0.000001678, 0.999991, 2_400_000_000);
+        var result = _sutSkinDepth.Calculate(0.000001678, 0.999991, 2_400_000_000);
 
         // Assert
         Assert.Equal("µm", result.Unit);
@@ -41,41 +39,38 @@ public class CalculatorTests
     [Theory]
     [InlineData(StandingWaves.VSWR, 5, 5, 0.67, 3.52, 2.55)]
     [InlineData(StandingWaves.ReflectionCoefficient, 0.5, 3, 0.5, 6.02, 1.25)]
+    [InlineData(StandingWaves.ReflectionCoefficient, 0, 1, 0, double.PositiveInfinity, 0)]
     [InlineData(StandingWaves.ReturnLoss, 2, 8.72, 0.79, 2, 4.33)]
-    public void CalculateStandingWave_ReturnResults_EqualResult(
+    public void CalculateStandingWave_ValidInputs_EqualResult(
         StandingWaves type,
         double input,
-        decimal expectedVSWR,
+        decimal expectedVswr,
         decimal expectedReflectionCoefficient,
         decimal expectedReturnLoss,
         decimal expectedMismatchLoss)
     {
-        // Arrange
-        var calculator = new StandingWave();
-
         // Act
-        var result = calculator.Calculate(type, input, precision: 2);
-        var actualVSWR = result.FirstOrDefault(o => o.Name.Equals("VSWR"))!.Value;
+        var result = _sutStandingWaves.Calculate(type, input, precision: 2);
+        var actualVswr = result.FirstOrDefault(o => o.Name.Equals("VSWR"))!.Value;
         var actualReflectionCoefficient = result.FirstOrDefault(o => o.Name.Contains("Reflection Coefficient"))!.Value;
         var actualReturnLoss = result.FirstOrDefault(o => o.Name.Equals("Return Loss"))!.Value;
         var actualMismatchLoss = result.FirstOrDefault(o => o.Name.Equals("Mismatch Loss"))!.Value;
-       
+
         // Assert
-        Assert.Equal(expectedVSWR, actualVSWR);
+        Assert.Equal(expectedVswr, actualVswr);
         Assert.Equal(expectedReflectionCoefficient, actualReflectionCoefficient);
         Assert.Equal(expectedReturnLoss, actualReturnLoss);
         Assert.Equal(expectedMismatchLoss, actualMismatchLoss);
     }
 
-    [Fact]
-    public void CalculateStandingWave_InvalidReflectionCoefficient_ThrowArgumentException()
+    [Theory]
+    [InlineData(1)]
+    [InlineData(-0.5)]
+    public void CalculateStandingWave_InvalidReflectionCoefficient_ThrowArgumentException(double input)
     {
-        // Arrange
-        var calculator = new StandingWave();
-
         // Act
         // Assert
-        Assert.Throws<ArgumentException>(() => calculator.Calculate(StandingWaves.ReflectionCoefficient, 1));
+        Assert.Throws<ArgumentException>(() => _sutStandingWaves.Calculate(StandingWaves.ReflectionCoefficient, input));
     }
 
     [Theory]
@@ -85,11 +80,8 @@ public class CalculatorTests
     [InlineData(-0.5)]
     public void CalculateStandingWave_InvalidVSWR_ThrowArgumentException(double input)
     {
-        // Arrange
-        var calculator = new StandingWave();
-        
         // Act
         // Assert
-        Assert.Throws<ArgumentException>(() => calculator.Calculate(StandingWaves.VSWR, input));
+        Assert.Throws<ArgumentException>(() => _sutStandingWaves.Calculate(StandingWaves.VSWR, input));
     }
 }

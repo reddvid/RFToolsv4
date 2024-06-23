@@ -1,10 +1,10 @@
 using RFTools.Constants;
 using RFTools.Models;
-using RFTools.Utilities;
+using RFTools.Contracts;
 
-namespace RFTools.Calculator;
+namespace RFTools.Calculators;
 
-public class SkinDepth : ISkinDepth
+public class SkinDepth : Calculator, ISkinDepth
 {
     /// <summary>
     /// Calculate Skin Depth
