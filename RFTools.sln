@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFTools.WinUi", "src\RFTool
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A492DD8E-7DCC-4FE1-8DAD-391ABE0A1F05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFTools.Tests.Unit", "RFTools.Tests.Unit\RFTools.Tests.Unit.csproj", "{D579B7FA-8BDD-4D02-AAF8-ACB0D58DA77D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFTools.Tests.Unit", "tests\RFTools.Tests.Unit\RFTools.Tests.Unit.csproj", "{D579B7FA-8BDD-4D02-AAF8-ACB0D58DA77D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

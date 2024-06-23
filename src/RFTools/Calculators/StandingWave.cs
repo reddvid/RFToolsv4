@@ -14,14 +14,14 @@ public class StandingWave : Calculator, IStandingWave
     /// <param name="precision"></param>
     /// <exception cref="ArgumentException">Returns if input is invalid.</exception>
     /// <returns>IReadOnlyList of Results</returns>
-    public List<Result> Calculate(StandingWaves variable, double value, int precision = Values.PrecisionUnits)
+    public List<Result> Calculate(Known variable, double value, int precision = Values.PrecisionUnits)
     {
         double vswr = default!;
         double reflectionCoefficient = default!;
         double returnLoss = default!;
         double mismatchLoss = default!;
 
-        if (variable == StandingWaves.VSWR)
+        if (variable == Known.Vswr)
         {
             vswr = value;
             if (vswr < 1)
@@ -35,7 +35,7 @@ public class StandingWave : Calculator, IStandingWave
             mismatchLoss = -10 * Math.Log10(1 - reflectionCoefficient * reflectionCoefficient);
         }
 
-        if (variable == StandingWaves.ReflectionCoefficient)
+        if (variable == Known.ReflectionCoefficient)
         {
             reflectionCoefficient = value;
 
@@ -59,7 +59,7 @@ public class StandingWave : Calculator, IStandingWave
             }
         }
 
-        if (variable == StandingWaves.ReturnLoss)
+        if (variable == Known.ReturnLoss)
         {
             returnLoss = value;
 

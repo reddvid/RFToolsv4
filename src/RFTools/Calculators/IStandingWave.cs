@@ -5,5 +5,5 @@ namespace RFTools.Calculators;
 
 public interface IStandingWave
 {
-    List<Result> Calculate(StandingWaves variable, double value, int precision = Values.PrecisionUnits);
+    List<Result> Calculate(Known variable, double value, int precision = Values.PrecisionUnits);
 }

@@ -1,8 +1,17 @@
 namespace RFTools.Constants;
 
-public enum StandingWaves
+public enum Known
 {
-    VSWR,
+    Vswr,
     ReflectionCoefficient,
-    ReturnLoss
+    ReturnLoss,
 }
+
+public enum Unknown
+{
+    Frequency,
+    Capacitance,
+    Inductance,
+    Resistance
+}
+
