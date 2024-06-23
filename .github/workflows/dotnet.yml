@@ -22,5 +22,9 @@ jobs:
         dotnet-version: 8.0.x
     - name: Restore dependencies
       run: dotnet restore
+    - name: Build Class Library
+      run: dotnet build --no-restore .\src\RFTools\RFTools.csproj
+    - name: Build Test Project
+      run: dotnet build --no-restore .\tests\RFTools.Tests.Unit\RFTools.Tests.Unit.csproj
     - name: Test
       run: dotnet test --no-build --verbosity normal
