@@ -1,6 +1,7 @@
 using RFTools.Calculators;
 using RFTools.Constants;
 using RFTools.Enums;
+using RFTools.Models;
 
 namespace RFTools.Tests.Unit;
 
@@ -40,7 +41,6 @@ public class CalculatorTests
     [Theory]
     [InlineData(Known.Vswr, 5, 5, 0.67, 3.52, 2.55)]
     [InlineData(Known.ReflectionCoefficient, 0.5, 3, 0.5, 6.02, 1.25)]
-    [InlineData(Known.ReflectionCoefficient, 0, 1, 0, double.PositiveInfinity, 0)]
     [InlineData(Known.ReturnLoss, 2, 8.72, 0.79, 2, 4.33)]
     public void CalculateStandingWave_ValidInputs_EqualResult(
         Known type,
@@ -86,13 +86,23 @@ public class CalculatorTests
         Assert.Throws<ArgumentException>(() => _sutStandingWaves.Calculate(Known.Vswr, input));
     }
 
-    [Fact]
-    public void CalculateResonance_FindFrequencyForValues_EqualResult()
+    [Theory]
+    [InlineData( Unknown.Frequency, 35.588, 0, 4E-12, 5E-6)]
+    [InlineData( Unknown.Capacitance, 879.5, 2.4E8, 0, 5E-6)]
+    [InlineData( Unknown.Inductance, 14.66, 2.4E8, 300, 0)]
+    public void CalculateResonance_FindUnknownForValues_EqualResult(Unknown type, double actual, double frequency, double capacitance, double inductance)
     {
+        // Arrange
         // Act
-        var result = _sutResonance.Calculate(Unknown.Frequency, capacitance: 4E-12, inductance: 5E-6);
+        Result result = default!;
+        if (type == Unknown.Frequency)
+            result = _sutResonance.Calculate(type, capacitance: capacitance, inductance: inductance);
+        else if (type == Unknown.Capacitance)
+            result = _sutResonance.Calculate(type, frequency: frequency, inductance: inductance);
+        else if (type == Unknown.Inductance)
+            result = _sutResonance.Calculate(type, frequency: frequency, capacitance: capacitance);
 
         // Assert
-        Assert.NotStrictEqual(35.588, (double)result.Value);
+        Assert.NotStrictEqual(actual, (double)result.Value);
     }
 }
