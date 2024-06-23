@@ -10,6 +10,7 @@ public class CalculatorTests
     private readonly SkinDepth _sutSkinDepth = new();
     private readonly StandingWave _sutStandingWaves = new();
     private readonly Resonance _sutResonance = new();
+    private readonly PathLoss _sutPathLoss = new();
 
     [Theory]
     [InlineData(0.000001678, 0.999991, 2_400_000_000, 1.3308)]
@@ -90,7 +91,7 @@ public class CalculatorTests
     [InlineData( Unknown.Frequency, 35.588, 0, 4E-12, 5E-6)]
     [InlineData( Unknown.Capacitance, 879.5, 2.4E8, 0, 5E-6)]
     [InlineData( Unknown.Inductance, 14.66, 2.4E8, 300, 0)]
-    public void CalculateResonance_FindUnknownForValues_EqualResult(Unknown type, double actual, double frequency, double capacitance, double inductance)
+    public void CalculateResonance_FindUnknownForValues_EqualResult(Unknown type, double expected, double frequency, double capacitance, double inductance)
     {
         // Arrange
         // Act
@@ -103,6 +104,25 @@ public class CalculatorTests
             result = _sutResonance.Calculate(type, frequency: frequency, capacitance: capacitance);
 
         // Assert
-        Assert.NotStrictEqual(actual, (double)result.Value);
+        Assert.NotStrictEqual(expected, (double)result.Value);
     }
+
+    [Theory]
+    [InlineData(6,2.4E5,0,0, 115.6)]
+    [InlineData(13,5E6,1.3,6, 121.4)]
+    public void CalculatePathLoss_MultipleValues_EqualResult(
+        double distance,
+        double frequency,
+        double txGain,
+        double rxGain,
+        double expected)
+    {
+        // Arrange
+        // Act
+        var result = _sutPathLoss.Calculate(txGain, rxGain, distance, frequency);
+
+        // Assert
+        Assert.NotStrictEqual(expected, (double)result.Value);
+    }
+    
 }

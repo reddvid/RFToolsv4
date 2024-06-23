@@ -12,10 +12,12 @@ public class SkinDepth : Calculator, ISkinDepth
     /// <param name="resistivity">Material resistivity in <b>Ohms/cm</b></param>
     /// <param name="permeability">Material permeability (Value is usually ~1)</param>
     /// <param name="frequency">System operating frequency in <b>Hertz</b></param>
+    /// <param name="precision">Number of decimals in result</param>
     public Result Calculate(
         double resistivity,
         double permeability,
-        double frequency)
+        double frequency,
+        int precision = 4)
     {
         double denominator = Math.PI * frequency * permeability * (4 * Math.PI * Math.Pow(10, -7));
 

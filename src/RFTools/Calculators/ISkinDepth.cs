@@ -4,8 +4,7 @@ namespace RFTools.Calculators;
 
 public interface ISkinDepth
 {
-    Result Calculate(
-        double resistivity,
+    Result Calculate(double resistivity,
         double permeability,
-        double frequency);
+        double frequency, int precision = 4);
 }
