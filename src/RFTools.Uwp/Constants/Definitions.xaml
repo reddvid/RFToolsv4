@@ -1,0 +1,48 @@
+﻿<!--  Copyright (c) Microsoft Corporation. All rights reserved.  -->
+<!--  Licensed under the MIT License. See LICENSE in the project root for license information.  -->
+
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RFTools.Constants">
+    <x:String x:Key="PathLoss" xml:space="preserve">Free-space path loss is often defined as the loss incurred by an electromagnetic wave as it propagates in a straight line through a vacuum with no absorption or reflection of energy from nearby objects.
+               
+Free-space path loss assumes ideal atmospheric conditions so that no electromagnetic energy is actually lost or dissipated - it merely spreads out as it propagates away from the source, resulting in lower relative power densities.</x:String>
+    <x:String x:Key="LinkBudget" xml:space="preserve">A link budget is an accounting of all the gains and losses in a transmission system. The link budget looks at the elements that will determine the signal strength arriving at the receiver.
+        
+Where the losses may vary with time, e.g. fading, and allowance must be made within the link budget.</x:String>
+    <x:String x:Key="Wavelength" xml:space="preserve">Wavelength is the length that one cycle of an electromagnetic wave occupies in space.
+        
+Wavelength is inversely proportional to the frequency of the wave and directly proportional to the velocity of propagation.</x:String>
+    <x:String x:Key="VSWR" xml:space="preserve">A standing wave is an interference pattern set up by two travelling waves.
+        
+This two travelling waves are created by an unmatched or mismatched line - some of the incident power is absorbed by the load, and some is returned (reflected) to the source.
+
+        Standing-wave ratio is the ratio of the maximum voltage to the minimum voltage or (max current to the min current) of a standing wave on a transmission line; a measure of the mismatch between the load impedance and the characteristic impedance of the transmission line.
+        
+Reflection coefficient is the ratio of the reflected voltage to the incident voltage.</x:String>
+    <x:String x:Key="FresnelZone" xml:space="preserve">A Fresnel zone, named for physicist Augustin-Jean Fresnel, is one of a series of concentric prolate ellipsoidal regions of space between and around a transmitting antenna and a receiving antenna system.</x:String>
+    <x:String x:Key="Resonance" xml:space="preserve">In physics, resonance is a phenomenon in which a vibrating system or external force drives another system to oscillate with greater amplitude at specific frequencies.
+
+Frequencies at which the response amplitude is a relative maximum are known as the system's resonant frequencies or resonance frequencies. At resonant frequencies, small periodic driving forces have the ability to produce large amplitude oscillations, due to the storage of vibrational energy.
+        
+An LC circuit, also called a resonant circuit, tank circuit, or tuned circuit, is an electric circuit consisting of an inductor, represented by the letter L, and a capacitor, represented by the letter C, connected together. The circuit can act as an electrical resonator, an electrical analogue of a tuning fork, storing energy oscillating at the circuit's resonant frequency.</x:String>
+    <x:String x:Key="PEC" xml:space="preserve">Power - a physical quantity that describes the amount of work done (energy consumed) in any given unit of time. The Si unit for power is the watt (W) and the symbol is P.
+        
+Power formula:  P = dW/dt        
+Where: dW - amount of work; dt - time
+    
+Electrical energy is the energy newly derived from electric potential energy or kinetic energy. When loosely used to describe energy absorbed or maybe delivered by an electrical circuit (for example, one provided by an electric power utility) "electrical energy" talks about energy which has been converted from electric potential energy. This energy is supplied by the combination of electric current and electric potential that is delivered by the circuit.
+    
+In physics, charge, also known as electric charge, electrical charge, or electrostatic charge and symbolized q, is a characteristic of a unit of matter that expresses the extent to which it has more or fewer electrons than protons.
+        
+The coulomb is the equivalent of one ampere-second. Conversely, an electric current of A represents 1 C of unit electric charge carriers flowing past a specific point in 1 s. The unit electric charge is the amount of charge contained in a single electron. Thus, 6.24 x 1018 electrons have 1 C of charge.
+        
+An ampere hour (abbreviated Ah, or sometimes amp hour) is the amount of energy charge in a battery that will allow one ampere of current to flow for one hour.
+        
+An ampere is a unit of measure of the rate of electron flow or current in an electrical conductor. One ampere of current represents one coulomb of electrical charge moving past a specific point in one second.</x:String>
+    <x:String x:Key="SkinDepth" xml:space="preserve">Skin Depth refers to how deeply an RF signal can penetrate a material, which is dependent on the frequency as well as the material's properties. In DC applications, the conductivity is linearly dependent on the thickness of the material, whereas in RF applications, the relationship is logarithmic.</x:String>
+    <x:String x:Key="DeltaWye" xml:space="preserve">The Y-Δ transform, also written wye-delta and also known by many other names, is a mathematical technique to simplify the analysis of an electrical network. The name derives from the shapes of the circuit diagrams, which look respectively like the letter Y and the Greek capital letter Δ.
+       
+The transformation is used to establish equivalence for networks with three terminals. Where three elements terminate at a common node and none are sources, the node is eliminated by transforming the impedances. For equivalence, the impedance between any pair of terminals must be the same for both networks.</x:String>
+</ResourceDictionary>
