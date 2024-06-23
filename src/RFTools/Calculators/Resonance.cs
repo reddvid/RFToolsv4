@@ -16,8 +16,11 @@ public class Resonance : Calculator, IResonance
     /// <param name="inductance">Inductance in Henry</param>
     /// <param name="precision">Number of decimals in result</param>
     /// <returns>Returns selected Unknown enum</returns>
-    public Result Calculate(Unknown type, double frequency = 0, double capacitance = 0, double inductance = 0,
-        int precision = Values.PrecisionUnits)
+    public Result Calculate(
+        Unknown type, 
+        double frequency = 0, 
+        double capacitance = 0, 
+        double inductance = 0)
     {
         double result = default!;
         string unit = default!;
@@ -41,7 +44,7 @@ public class Resonance : Calculator, IResonance
                 resultName = "Inductance";
                 break;
         }
-
-        return new Result(resultName, result, unit, 2);
+        
+        return new Result(resultName, result, unit);
     }
 }

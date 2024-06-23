@@ -16,8 +16,7 @@ public class SkinDepth : Calculator, ISkinDepth
     public Result Calculate(
         double resistivity,
         double permeability,
-        double frequency,
-        int precision = 4)
+        double frequency)
     {
         double denominator = Math.PI * frequency * permeability * (4 * Math.PI * Math.Pow(10, -7));
 

@@ -6,6 +6,5 @@ namespace RFTools.Calculators;
 
 public interface IResonance
 {
-    Result Calculate(Unknown type, double frequency = 0, double capacitance = 0, double inductance = 0,
-        int precision = Values.PrecisionUnits);
+    Result Calculate(Unknown type, double frequency = 0, double capacitance = 0, double inductance = 0);
 }

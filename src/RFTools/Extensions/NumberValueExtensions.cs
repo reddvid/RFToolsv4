@@ -6,13 +6,12 @@ namespace RFTools.Extensions;
 
 public static class NumberValueExtensions
 {
-    static decimal ToNumberFormat(this double value, int significantUnits = Values.PrecisionUnits)
+    static double ToNumberFormat(this double value)
     {
-        return Math.Round((decimal)value, significantUnits);
+        return Math.Round(value, MidpointRounding.AwayFromZero);
     }
 
-    public static (decimal Value, string Unit) ToSimplifiedSiDoubleValue(this (double Value, string Unit) numberWithUnit,
-        int significantUnits = Values.PrecisionUnits)
+    public static (double Value, string Unit) ToSimplifiedSiDoubleValue(this (double Value, string Unit) numberWithUnit)
     {
         string[] prefixes =
         [
@@ -36,6 +35,6 @@ public static class NumberValueExtensions
         var formattedValue = numberWithUnit.Value / Math.Pow(10, logOfThousand * 3);
         var formattedUnit = prefixes[logOfThousand + 8] + numberWithUnit.Unit;
 
-        return (formattedValue.ToNumberFormat(significantUnits), formattedUnit);
+        return (formattedValue, formattedUnit);
     }
 }

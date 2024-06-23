@@ -15,7 +15,7 @@ public class StandingWave : Calculator, IStandingWave
     /// <param name="precision">Number of decimals in result</param>
     /// <exception cref="ArgumentException">Returns if input is invalid.</exception>
     /// <returns>IReadOnlyList of Results</returns>
-    public List<Result> Calculate(Known variable, double value, int precision = Values.PrecisionUnits)
+    public List<Result> Calculate(Known variable, double value)
     {
         double vswr = default!;
         double reflectionCoefficient = default!;
@@ -68,10 +68,10 @@ public class StandingWave : Calculator, IStandingWave
 
         return
         [
-            new Result("VSWR", vswr, precision: 2),
-            new Result("Reflection Coefficient (Γ)", reflectionCoefficient, precision: 2),
-            new Result("Return Loss", returnLoss, Units.Decibel, precision: 2),
-            new Result("Mismatch Loss", mismatchLoss, Units.Decibel, precision: 2)
+            new Result("VSWR", vswr),
+            new Result("Reflection Coefficient (Γ)", reflectionCoefficient),
+            new Result("Return Loss", returnLoss, Units.Decibel),
+            new Result("Mismatch Loss", mismatchLoss, Units.Decibel)
         ];
     }
 }

@@ -17,6 +17,5 @@ public interface IPathLoss
         double transmitterGain, 
         double receiverGain, 
         double distance, 
-        double frequency, 
-        int precision = 4);
+        double frequency);
 }

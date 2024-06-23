@@ -19,16 +19,15 @@ public class PathLoss : Calculator, IPathLoss
         double transmitterGain, 
         double receiverGain, 
         double distance, 
-        double frequency, 
-        int precision = 4)
+        double frequency)
     {
-        if (distance <= 0)
+        if (distance <= 0 || frequency <= 0)
         {
             throw new ArgumentException("Value must be greater than zero.");
         }
         
-        double pathLoss = 20 * Math.Log10(distance) + 20 * Math.Log10(frequency) + 32.44 - receiverGain - transmitterGain;
+        double pathLoss = (20 * Math.Log10(distance)) + (20 * Math.Log10(frequency)) + 32.44 - receiverGain - transmitterGain;
 
-        return new Result("Path Loss", pathLoss, unit: Units.Decibel, precision: 2);
+        return new Result("Path Loss", pathLoss, unit: Units.Decibel);
     }
 }

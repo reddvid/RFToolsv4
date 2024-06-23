@@ -6,5 +6,5 @@ public interface ISkinDepth
 {
     Result Calculate(double resistivity,
         double permeability,
-        double frequency, int precision = 4);
+        double frequency);
 }
