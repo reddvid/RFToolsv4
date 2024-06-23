@@ -33,7 +33,7 @@ public class LinkBudget : Calculator
         
         double pathLoss = 20 * Math.Log10(distance) + 20 * Math.Log10(frequency) + 32.44;
         double receivedPower = transmitterPower + transmitterGain + receiverGain -
-                               (transmitterLoss + receiverLoss + pathLoss);
+                               transmitterLoss - receiverLoss - pathLoss;
         return
         [
             new Result("Transmitted Power", transmitterPower, unit: Units.DecibelMilliwatts),

@@ -1,4 +1,6 @@
-namespace RFTools.Models.SelectListItems;
+using RFTools.Models;
+
+namespace RFTools.Constants.SelectListItems;
 
 public class Material(string caption, double resistivity, double permeability) : SelectListItem
 {

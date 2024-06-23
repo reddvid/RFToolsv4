@@ -4,13 +4,19 @@ public enum Known
 {
     Vswr,
     ReflectionCoefficient,
-    ReturnLoss,
+    ReturnLoss
 }
 
 public enum Unknown
 {
     Frequency,
     Capacitance,
-    Inductance
+    Inductance,
+    Resistance
 }
 
+public enum CircuitType
+{
+    RC,
+    RL
+}

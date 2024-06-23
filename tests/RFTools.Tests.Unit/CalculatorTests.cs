@@ -12,6 +12,7 @@ public class CalculatorTests
     private readonly Resonance _sutResonance = new();
     private readonly PathLoss _sutPathLoss = new();
     private readonly LinkBudget _sutLinkBudget = new();
+    private readonly CutOffFrequency _sutCutOffFrequency = new();
 
     [Theory]
     [InlineData(0.000001678, 0.999991, 2_400_000_000, 1.3308)]
@@ -95,9 +96,9 @@ public class CalculatorTests
     [InlineData(Unknown.Capacitance, 2.4E6, 0, 5E-6, 0.8795)]
     [InlineData(Unknown.Inductance, 2.4E6, 3E-10, 0, 14.66)]
     public void CalculateResonance_FindUnknownForValues_EqualResult(
-        Unknown type, 
+        Unknown type,
         double frequency,
-        double capacitance, 
+        double capacitance,
         double inductance,
         double expected)
     {
@@ -139,12 +140,52 @@ public class CalculatorTests
     {
         // Arrange
         // Act
-        var result = _sutLinkBudget.Calculate(12, 16, 0, 16, 0, 7, 2.4E2);
+        var result = _sutLinkBudget.Calculate(12, 16, 0, 16, 0, 7, 2_400);
 
         // Assert
         Assert.Multiple(
             () => Assert.Equal(-72.95, result[1].Value, precision: 2),
-            () => Assert.Equal(115, result[2].Value, precision: 2)
+            () => Assert.Equal(116.95, result[2].Value, precision: 2)
         );
+    }
+
+    [Theory]
+    [InlineData(CircuitType.RC, 5_000, 25E-12, 0, 1.2732)]
+    [InlineData(CircuitType.RL, 362, 0, 0.3, 192.05)]
+    public void CalculateCutOffFrequency_GetFrequency_EqualActual(CircuitType type, double resistivity,
+        double capacitance, double inductance, double expected)
+    {
+        // Arrange
+        // Act
+        Result result = default!;
+        if (type == CircuitType.RC)
+            result = _sutCutOffFrequency.Calculate(type, resistivity, capacitance);
+        else if (type == CircuitType.RL)
+            result = _sutCutOffFrequency.Calculate(type, resistivity, inductance: inductance);
+
+        // Assert
+        Assert.Equal(expected, result.Value, precision: 2);
+    }
+
+    [Theory]
+    [InlineData(CircuitType.RC, Unknown.Resistance, 1_500_000, 0, 500E-12, 0, 212.2)]
+    [InlineData(CircuitType.RC, Unknown.Capacitance, 19_000, 37_800, 0, 0, 0.2216)]
+    [InlineData(CircuitType.RL, Unknown.Resistance, 639_000 , 0, 0, 0.009415, 37.8)]
+    [InlineData(CircuitType.RL, Unknown.Inductance, 675_000, 456_000, 0, 0, 0.10752)]
+    public void CalculateCutOffFrequency_GetUnknownVariable_EqualActual(
+        CircuitType type,
+        Unknown unknown,
+        double frequency,
+        double resistance,
+        double capacitance,
+        double inductance,
+        double expected)
+    {
+        // Arrange
+        // Act
+        var result = _sutCutOffFrequency.Calculate(type, unknown, frequency, resistance, capacitance, inductance);
+
+        // Assert
+        Assert.Equal(expected, result.Value, precision: 1);
     }
 }
