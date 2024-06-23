@@ -1,12 +1,13 @@
+using RFTools.Constants;
 using RFTools.Models;
 
 namespace RFTools.Extensions;
 
 public static class NumberValueExtensions
 {
-    public static double ToLimitedDouble(this double value, int maxDigits = 3)
+    public static double ToSignificantUnits(this double value, int significantUnits = NumberConstants.SignificantUnits)
     {
-        var newValue = maxDigits switch
+        var newValue = significantUnits switch
         {
             0 => value.ToString("N0"),
             1 => value.ToString("N1"),
@@ -19,7 +20,7 @@ public static class NumberValueExtensions
         return Convert.ToDouble(newValue);
     }
 
-    public static (double Value, string Unit) SimplifyToSiUnit(this (double Value, string Unit) numberWithUnit)
+    public static (double Value, string Unit) SimplifyToSiUnit(this (double Value, string Unit) numberWithUnit, int significantUnits = NumberConstants.SignificantUnits)
     {
         string[] prefixes =
         [
@@ -43,6 +44,6 @@ public static class NumberValueExtensions
         var formattedValue = numberWithUnit.Value / Math.Pow(10, logOfThousand * 3);
         var formattedUnit = prefixes[logOfThousand + 8] + numberWithUnit.Unit;
         
-        return (formattedValue.ToLimitedDouble(), formattedUnit);
+        return (formattedValue.ToSignificantUnits(), formattedUnit);
     }
 }
