@@ -4,7 +4,7 @@ using RFTools.Models;
 
 namespace RFTools.Calculators;
 
-public class LinkBudget : Calculator
+public class LinkBudget : Calculator, ILinkBudget
 {
     /// <summary>
     /// Calculate Link Budget

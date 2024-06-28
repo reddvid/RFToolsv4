@@ -12,7 +12,6 @@ public class StandingWave : Calculator, IStandingWave
     /// </summary>
     /// <param name="variable">Type of wave</param>
     /// <param name="value">Numerical value of the standing wave</param>
-    /// <param name="precision">Number of decimals in result</param>
     /// <exception cref="ArgumentException">Returns if input is invalid.</exception>
     /// <returns>IReadOnlyList of Results</returns>
     public List<Result> Calculate(Known variable, double value)

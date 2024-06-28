@@ -1,7 +1,7 @@
 namespace RFTools.Converters;
 
 // TODO:
-public class Electromagnetism
+public class ElectricPower
 {
     
 }

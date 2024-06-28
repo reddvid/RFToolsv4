@@ -13,6 +13,11 @@ public class CalculatorTests
     private readonly PathLoss _sutPathLoss = new();
     private readonly LinkBudget _sutLinkBudget = new();
     private readonly CutOffFrequency _sutCutOffFrequency = new();
+    private readonly FresnelZone _sutFresnelZone = new();
+    private readonly LineOfSight _sutLineOfSight = new();
+    private readonly AntennaDownTiltAngle _sutDownTiltAngle = new();
+    private readonly DipoleAntennaLength _sutDipoleLength = new();
+    private readonly EffectiveIsotropicRadiatedPower _sutEirp = new();
 
     [Theory]
     [InlineData(0.000001678, 0.999991, 2_400_000_000, 1.3308)]
@@ -170,7 +175,7 @@ public class CalculatorTests
     [Theory]
     [InlineData(CircuitType.RC, Unknown.Resistance, 1_500_000, 0, 500E-12, 0, 212.2)]
     [InlineData(CircuitType.RC, Unknown.Capacitance, 19_000, 37_800, 0, 0, 0.2216)]
-    [InlineData(CircuitType.RL, Unknown.Resistance, 639_000 , 0, 0, 0.009415, 37.8)]
+    [InlineData(CircuitType.RL, Unknown.Resistance, 639_000, 0, 0, 0.009415, 37.8)]
     [InlineData(CircuitType.RL, Unknown.Inductance, 675_000, 456_000, 0, 0, 0.10752)]
     public void CalculateCutOffFrequency_GetUnknownVariable_EqualActual(
         CircuitType type,
@@ -187,5 +192,76 @@ public class CalculatorTests
 
         // Assert
         Assert.Equal(expected, result.Value, precision: 1);
+    }
+
+    [Fact]
+    public void CalculateFresnelZone_GetResults_ShouldBeEqual()
+    {
+        // Arrange
+        // Act
+        var result = _sutFresnelZone.Calculate(13, 2.4);
+
+        // Assert
+        Assert.Equal(20.16, result[0].Value, precision: 2);
+    }
+
+    [Theory]
+    [InlineData(Input.Meters, 90, 33.867, 39.085)]
+    [InlineData(Input.Feet, 400, 39.419, 45.491)]
+    public void CalculateLineOfSightDistance_MultipleInput_ShouldBeEqual(Input type, double height, double losExpected,
+        double horizonExpected)
+    {
+        // Arrange
+        // Act
+        var result = _sutLineOfSight.Calculate(height, type);
+
+        // Assert
+        Assert.Multiple(
+            () => Assert.Equal(losExpected, result[0].Value, precision: 1),
+            () => Assert.Equal(horizonExpected, result[1].Value, precision: 1)
+        );
+    }
+
+    [Theory]
+    [InlineData(Input.Feet, 400, 125, 7, Input.Miles, 0.4262)]
+    [InlineData(Input.Meters, 121.92, 38.1, 11.2654, Input.Kilometers, 0.4262)]
+    public void CalculateAntennaDownTilt_MultipleInput_ShouldBeEqual(Input heightType, double baseHeight,
+        double remoteHeight,
+        double distance, Input distanceType, double expected)
+    {
+        // Arrange
+        // Act
+        var result = _sutDownTiltAngle.Calculate(heightType, baseHeight, remoteHeight, distance, distanceType);
+
+        // Assert
+        Assert.Equal(expected, result.Value, precision: 2);
+    }
+
+    [Theory] [InlineData(480, 0.975)] [InlineData(1_450, 0.3227)]
+    public void CalculateDipoleLength_Theory_ShouldBeEqual(double frequency, double expectedLength)
+    {
+        // Arrange
+        // Act
+        var result = _sutDipoleLength.Calculate(frequency);
+
+        // Assert
+        Assert.Multiple(
+            () => Assert.Equal(expectedLength, result[0].Value, precision: 3),
+            () => Assert.Equal(expectedLength / 2, result[1].Value, precision: 3)
+        );
+    }
+
+    [Theory]
+    [InlineData(Input.dBm, 13, 0.2, 3, 15.8)]
+    [InlineData(Input.mW, 3, 0.2, 3, 7.57)]
+    public void CalculateEirp_Theory_ShouldBeEqual(Input type, double power, double losses, double gain,
+        double expected)
+    {
+        // Arrange
+        // Act
+        var result = _sutEirp.Calculate(type, power, losses, gain);
+
+        // Assert
+        Assert.Equal(expected, result.Value, 2);
     }
 }

@@ -13,7 +13,6 @@ public class PathLoss : Calculator, IPathLoss
     /// <param name="receiverGain">Receiver Gain in dBi</param>
     /// <param name="distance">Distance between the two systems in kilometers</param>
     /// <param name="frequency">Link or system frequency in Megahertz</param>
-    /// <param name="precision">Number of decimals in result</param>
     /// <returns>Return the System Loss(es) in dB</returns>
     public Result Calculate(
         double transmitterGain, 

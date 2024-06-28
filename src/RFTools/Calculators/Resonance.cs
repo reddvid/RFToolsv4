@@ -14,7 +14,6 @@ public class Resonance : Calculator, IResonance
     /// <param name="frequency">Frequency in Hertz</param>
     /// <param name="capacitance">Capacitance in Farad</param>
     /// <param name="inductance">Inductance in Henry</param>
-    /// <param name="precision">Number of decimals in result</param>
     /// <returns>Returns selected Unknown enum</returns>
     public Result Calculate(
         Unknown type, 

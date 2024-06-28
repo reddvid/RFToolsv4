@@ -12,7 +12,6 @@ public class SkinDepth : Calculator, ISkinDepth
     /// <param name="resistivity">Material resistivity in <b>Ohms/cm</b></param>
     /// <param name="permeability">Material permeability (Value is usually ~1)</param>
     /// <param name="frequency">System operating frequency in <b>Hertz</b></param>
-    /// <param name="precision">Number of decimals in result</param>
     public Result Calculate(
         double resistivity,
         double permeability,
