@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "RFTools (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "RFTools (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
