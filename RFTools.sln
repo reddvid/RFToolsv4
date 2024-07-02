@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A492DD8E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFTools.Tests.Unit", "tests\RFTools.Tests.Unit\RFTools.Tests.Unit.csproj", "{D579B7FA-8BDD-4D02-AAF8-ACB0D58DA77D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RFTools.Uwp", "src\RFTools.Uwp\RFTools.Uwp.csproj", "{F472FBA3-0FC3-4EBB-850E-30298F9DB00B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|arm64 = Debug|arm64
@@ -70,6 +72,18 @@ Global
 		{D579B7FA-8BDD-4D02-AAF8-ACB0D58DA77D}.Release|x64.Build.0 = Release|Any CPU
 		{D579B7FA-8BDD-4D02-AAF8-ACB0D58DA77D}.Release|x86.ActiveCfg = Release|Any CPU
 		{D579B7FA-8BDD-4D02-AAF8-ACB0D58DA77D}.Release|x86.Build.0 = Release|Any CPU
+		{F472FBA3-0FC3-4EBB-850E-30298F9DB00B}.Debug|arm64.ActiveCfg = Debug|arm64
+		{F472FBA3-0FC3-4EBB-850E-30298F9DB00B}.Debug|arm64.Build.0 = Debug|arm64
+		{F472FBA3-0FC3-4EBB-850E-30298F9DB00B}.Debug|x64.ActiveCfg = Debug|x64
+		{F472FBA3-0FC3-4EBB-850E-30298F9DB00B}.Debug|x64.Build.0 = Debug|x64
+		{F472FBA3-0FC3-4EBB-850E-30298F9DB00B}.Debug|x86.ActiveCfg = Debug|x86
+		{F472FBA3-0FC3-4EBB-850E-30298F9DB00B}.Debug|x86.Build.0 = Debug|x86
+		{F472FBA3-0FC3-4EBB-850E-30298F9DB00B}.Release|arm64.ActiveCfg = Release|arm64
+		{F472FBA3-0FC3-4EBB-850E-30298F9DB00B}.Release|arm64.Build.0 = Release|arm64
+		{F472FBA3-0FC3-4EBB-850E-30298F9DB00B}.Release|x64.ActiveCfg = Release|x64
+		{F472FBA3-0FC3-4EBB-850E-30298F9DB00B}.Release|x64.Build.0 = Release|x64
+		{F472FBA3-0FC3-4EBB-850E-30298F9DB00B}.Release|x86.ActiveCfg = Release|x86
+		{F472FBA3-0FC3-4EBB-850E-30298F9DB00B}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +94,7 @@ Global
 		{A004C698-E22F-466E-92FC-8291942F9F79} = {934E1A47-B4C4-4927-AD95-5AFDDE020962}
 		{DCC4B2FC-B3F2-4CD4-90A2-98BDB533D1E7} = {A004C698-E22F-466E-92FC-8291942F9F79}
 		{D579B7FA-8BDD-4D02-AAF8-ACB0D58DA77D} = {A492DD8E-7DCC-4FE1-8DAD-391ABE0A1F05}
+		{F472FBA3-0FC3-4EBB-850E-30298F9DB00B} = {61B40C83-C208-471E-A5D2-ADAE57F01F19}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B0FB5673-0F14-41E8-BAEA-444D8896645D}
