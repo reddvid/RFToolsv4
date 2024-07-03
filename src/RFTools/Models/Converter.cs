@@ -1,4 +1,4 @@
-namespace RFTools.Contracts;
+namespace RFTools.Models;
 
 public abstract class Converter
 {

@@ -24,5 +24,7 @@ public class Result
         Name = name;
         Value = isEngineeringUnit ? value : valueInSiUnit.Value;
         Unit = isEngineeringUnit ? unit : valueInSiUnit.Unit;
+
+        Console.WriteLine($"{Value} {Unit}");
     }
 }

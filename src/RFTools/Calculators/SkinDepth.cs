@@ -1,6 +1,5 @@
 using RFTools.Constants;
 using RFTools.Models;
-using RFTools.Contracts;
 
 namespace RFTools.Calculators;
 
@@ -9,7 +8,7 @@ public class SkinDepth : Calculator, ISkinDepth
     /// <summary>
     /// Calculate Skin Depth
     /// </summary>
-    /// <param name="resistivity">Material resistivity in <b>Ohms/cm</b></param>
+    /// <param name="resistivity">Material resistivity in <b>microhms/cm (µΩ/cm)</b></param>
     /// <param name="permeability">Material permeability (Value is usually ~1)</param>
     /// <param name="frequency">System operating frequency in <b>Hertz</b></param>
     public Result Calculate(
